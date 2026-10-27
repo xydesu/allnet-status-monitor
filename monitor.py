@@ -195,8 +195,15 @@ def save_state(state):
 def export_status_json(results, state=None):
     total = len(results)
     online_count = sum(1 for r in results if r.get("is_online", False))
-    offline_count = total - online_count
-    current_avail_pct = round((online_count / total) * 100, 1) if total > 0 else 0.0
+
+    # 區分探測端地區受阻 (如 my-aime 403 限制日本國內 IP) 與一般服務宕機
+    geo_blocked_count = sum(1 for r in results if r.get("error_type") == "geo_blocked")
+    evaluable_total = max(1, total - geo_blocked_count)
+    actual_offline_count = max(0, evaluable_total - online_count)
+
+    # 扣除探測端受阻站點後的實質在線可用率
+    adjusted_uptime_pct = round((online_count / evaluable_total) * 100, 1)
+    raw_uptime_pct = round((online_count / total) * 100, 1) if total > 0 else 0.0
 
     healthy_latencies = [r["elapsed_ms"] for r in results if r.get("is_online", False) and r.get("elapsed_ms", 0) > 0]
     avg_healthy_latency = int(round(sum(healthy_latencies) / len(healthy_latencies))) if healthy_latencies else 0
@@ -211,7 +218,11 @@ def export_status_json(results, state=None):
     for h_list in hist_map.values():
         total_samples += len(h_list)
         successful_samples += sum(1 for h in h_list if h.get("ok", False))
-    historical_uptime_pct = round((successful_samples / total_samples) * 100, 1) if total_samples > 0 else current_avail_pct
+    historical_uptime_pct = round((successful_samples / total_samples) * 100, 1) if total_samples > 0 else adjusted_uptime_pct
+
+    # 判斷是否為初探估算 (全體站點平均歷史樣本少於 10 筆)
+    avg_sample_count = (total_samples / total) if total > 0 else 0
+    is_preliminary = (avg_sample_count < 10)
 
     probe_region = get_probe_region()
 
@@ -239,19 +250,24 @@ def export_status_json(results, state=None):
 
     data = {
         "system_name": "ALL.Net Sentinel Telemetry",
-        "version": "2.3.0",
+        "version": "2.4.0",
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "probe_region": probe_region,
         "summary": {
             "total": total,
+            "evaluable_total": evaluable_total,
             "online": online_count,
-            "offline": offline_count,
-            "uptime_percent": current_avail_pct,
-            "current_availability_percent": current_avail_pct,
+            "offline": actual_offline_count,
+            "geo_blocked": geo_blocked_count,
+            "uptime_percent": adjusted_uptime_pct,
+            "raw_uptime_percent": raw_uptime_pct,
+            "adjusted_uptime_percent": adjusted_uptime_pct,
+            "current_availability_percent": adjusted_uptime_pct,
             "historical_uptime_percent": historical_uptime_pct,
+            "is_preliminary": is_preliminary,
             "avg_healthy_latency_ms": avg_healthy_latency,
             "probe_region": probe_region,
-            "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else f"{offline_count} 個站點受阻或異常")
+            "status_text": "全數在線" if actual_offline_count == 0 else f"{actual_offline_count} 個站點異常，{geo_blocked_count} 個站點探測受阻"
         },
         "incidents": recent_incidents[-10:],
         "services": enriched_services
