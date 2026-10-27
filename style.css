@@ -102,6 +102,7 @@ html, body {
   border: var(--rule-hair) solid var(--color-rule-2);
   border-radius: var(--radius-input);
   color: var(--color-ink);
+  text-decoration: none;
   cursor: pointer;
   transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
 }
@@ -822,6 +823,28 @@ html, body {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-md);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.footer-repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  color: var(--color-muted);
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: color var(--dur-micro) var(--ease-out);
+}
+
+.footer-repo-link:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
 }
 
 @media (prefers-reduced-motion: reduce) {
