@@ -1,6 +1,6 @@
 {
   "system_name": "ALL.Net Service Monitor",
-  "updated_at": "2026-10-27T13:11:30.082462+00:00",
+  "updated_at": "2026-10-27T13:33:11.322006+00:00",
   "summary": {
     "total": 11,
     "online": 5,
@@ -16,9 +16,9 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2281,
-      "checked_at": "2026-10-27T21:11:21.118716"
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 228,
+      "checked_at": "2026-10-27T13:33:05.511763"
     },
     {
       "url": "https://maimaidx.jp/",
@@ -27,9 +27,9 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2284,
-      "checked_at": "2026-10-27T21:11:23.425046"
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 193,
+      "checked_at": "2026-10-27T13:33:05.711555"
     },
     {
       "url": "https://new.chunithm-net.com/",
@@ -39,8 +39,8 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Unavailable",
-      "elapsed_ms": 254,
-      "checked_at": "2026-10-27T21:11:23.702430"
+      "elapsed_ms": 1216,
+      "checked_at": "2026-10-27T13:33:06.934905"
     },
     {
       "url": "https://chunithm-net-eng.com/",
@@ -49,9 +49,9 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2239,
-      "checked_at": "2026-10-27T21:11:25.965486"
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 193,
+      "checked_at": "2026-10-27T13:33:07.135511"
     },
     {
       "url": "https://ongeki-net.com/",
@@ -60,9 +60,9 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2249,
-      "checked_at": "2026-10-27T21:11:28.240009"
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 205,
+      "checked_at": "2026-10-27T13:33:07.347688"
     },
     {
       "url": "https://my-aime.net/",
@@ -72,8 +72,8 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 192,
-      "checked_at": "2026-10-27T21:11:28.454870"
+      "elapsed_ms": 691,
+      "checked_at": "2026-10-27T13:33:08.045231"
     },
     {
       "url": "https://maimai.sega.jp/",
@@ -83,8 +83,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 122,
-      "checked_at": "2026-10-27T21:11:28.601302"
+      "elapsed_ms": 515,
+      "checked_at": "2026-10-27T13:33:08.567358"
     },
     {
       "url": "https://maimai.sega.com/",
@@ -94,8 +94,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 212,
-      "checked_at": "2026-10-27T21:11:28.838349"
+      "elapsed_ms": 701,
+      "checked_at": "2026-10-27T13:33:09.274767"
     },
     {
       "url": "https://chunithm.sega.com/",
@@ -105,8 +105,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 180,
-      "checked_at": "2026-10-27T21:11:29.047692"
+      "elapsed_ms": 801,
+      "checked_at": "2026-10-27T13:33:10.082687"
     },
     {
       "url": "https://chunithm.sega.jp/",
@@ -116,8 +116,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 156,
-      "checked_at": "2026-10-27T21:11:29.228992"
+      "elapsed_ms": 393,
+      "checked_at": "2026-10-27T13:33:10.482773"
     },
     {
       "url": "https://ongeki.sega.jp/",
@@ -127,8 +127,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 224,
-      "checked_at": "2026-10-27T21:11:29.476923"
+      "elapsed_ms": 412,
+      "checked_at": "2026-10-27T13:33:10.901737"
     }
   ]
 }
