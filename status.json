@@ -1,7 +1,8 @@
 {
   "system_name": "ALL.Net Sentinel Telemetry",
-  "version": "2.2.0",
-  "updated_at": "2026-10-27T13:55:47.377479+00:00",
+  "version": "2.3.0",
+  "updated_at": "2026-10-27T14:10:24.301265+00:00",
+  "probe_region": "本地端點 (Local/Asia-East)",
   "summary": {
     "total": 11,
     "online": 5,
@@ -9,8 +10,11 @@
     "uptime_percent": 45.5,
     "current_availability_percent": 45.5,
     "historical_uptime_percent": 45.5,
-    "status_text": "6 個節點異常"
+    "avg_healthy_latency_ms": 615,
+    "probe_region": "本地端點 (Local/Asia-East)",
+    "status_text": "6 個站點受阻或異常"
   },
+  "incidents": [],
   "services": [
     {
       "url": "https://maimaidx-eng.com/",
@@ -20,8 +24,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2386,
-      "checked_at": "2026-10-27T13:55:47.257457+00:00",
+      "elapsed_ms": 2480,
+      "checked_at": "2026-10-27T14:10:23.998392+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -50,18 +54,34 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793109694,
+          "ms": 2622,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
+        },
+        {
+          "t": 1793110221,
+          "ms": 2480,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:47.257457+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:23.998392+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -72,8 +92,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2305,
-      "checked_at": "2026-10-27T13:55:47.227327+00:00",
+      "elapsed_ms": 2533,
+      "checked_at": "2026-10-27T14:10:23.940344+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -102,18 +122,34 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793109694,
+          "ms": 2486,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
+        },
+        {
+          "t": 1793110221,
+          "ms": 2533,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:47.227327+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:23.940344+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -124,8 +160,8 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Unavailable",
-      "elapsed_ms": 283,
-      "checked_at": "2026-10-27T13:55:45.183566+00:00",
+      "elapsed_ms": 527,
+      "checked_at": "2026-10-27T14:10:22.046737+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
@@ -154,18 +190,34 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1793109694,
+          "ms": 449,
+          "ok": false,
+          "code": 503,
+          "err": "maintenance"
+        },
+        {
+          "t": 1793110221,
+          "ms": 527,
+          "ok": false,
+          "code": 503,
+          "err": "maintenance"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:45.183566+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:22.046737+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -176,8 +228,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2502,
-      "checked_at": "2026-10-27T13:55:47.373255+00:00",
+      "elapsed_ms": 2776,
+      "checked_at": "2026-10-27T14:10:24.296349+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -206,18 +258,34 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793109694,
+          "ms": 2637,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
+        },
+        {
+          "t": 1793110221,
+          "ms": 2776,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:47.373255+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:24.296349+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -228,8 +296,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2315,
-      "checked_at": "2026-10-27T13:55:47.238043+00:00",
+      "elapsed_ms": 2470,
+      "checked_at": "2026-10-27T14:10:23.924114+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -258,18 +326,34 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793109694,
+          "ms": 2502,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
+        },
+        {
+          "t": 1793110221,
+          "ms": 2470,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:47.238043+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:23.924114+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -280,10 +364,10 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 315,
-      "checked_at": "2026-10-27T13:55:45.118251+00:00",
-      "error_type": "access_denied",
-      "error_detail": "伺服器拒絕或限制存取 (可能受限於日本地區 IP、認證限制或 WAF 防護)",
+      "elapsed_ms": 692,
+      "checked_at": "2026-10-27T14:10:22.187364+00:00",
+      "error_type": "geo_blocked",
+      "error_detail": "探測端地區受阻 (目標限制日本國內 IP 存取，非官方伺服器停機)",
       "history": [
         {
           "t": 1793108271,
@@ -310,18 +394,34 @@
           "ok": false,
           "code": 403,
           "err": "access_denied"
+        },
+        {
+          "t": 1793109694,
+          "ms": 375,
+          "ok": false,
+          "code": 403,
+          "err": "geo_blocked"
+        },
+        {
+          "t": 1793110221,
+          "ms": 692,
+          "ok": false,
+          "code": 403,
+          "err": "geo_blocked"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:55:45.118251+00:00",
-        "consecutive_failures": 4,
-        "total_checks": 4,
+        "last_failure_at": "2026-10-27T14:10:22.187364+00:00",
+        "consecutive_failures": 6,
+        "total_checks": 6,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -332,8 +432,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 169,
-      "checked_at": "2026-10-27T13:55:45.102559+00:00",
+      "elapsed_ms": 1304,
+      "checked_at": "2026-10-27T14:10:22.778319+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -362,18 +462,34 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793109694,
+          "ms": 375,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
+        },
+        {
+          "t": 1793110221,
+          "ms": 1304,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:55:45.102559+00:00",
+        "last_success_at": "2026-10-27T14:10:22.778319+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 4,
-        "successful_checks": 4,
+        "total_checks": 6,
+        "successful_checks": 6,
         "recent_uptime_percent": 100.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -384,8 +500,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 265,
-      "checked_at": "2026-10-27T13:55:45.197361+00:00",
+      "elapsed_ms": 452,
+      "checked_at": "2026-10-27T14:10:21.952873+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -414,18 +530,34 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793109694,
+          "ms": 363,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
+        },
+        {
+          "t": 1793110221,
+          "ms": 452,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:55:45.197361+00:00",
+        "last_success_at": "2026-10-27T14:10:21.952873+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 4,
-        "successful_checks": 4,
+        "total_checks": 6,
+        "successful_checks": 6,
         "recent_uptime_percent": 100.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -436,8 +568,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 200,
-      "checked_at": "2026-10-27T13:55:45.123423+00:00",
+      "elapsed_ms": 732,
+      "checked_at": "2026-10-27T14:10:22.251769+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -466,18 +598,34 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793109694,
+          "ms": 243,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
+        },
+        {
+          "t": 1793110221,
+          "ms": 732,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:55:45.123423+00:00",
+        "last_success_at": "2026-10-27T14:10:22.251769+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 4,
-        "successful_checks": 4,
+        "total_checks": 6,
+        "successful_checks": 6,
         "recent_uptime_percent": 100.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -488,8 +636,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 410,
-      "checked_at": "2026-10-27T13:55:45.161853+00:00",
+      "elapsed_ms": 246,
+      "checked_at": "2026-10-27T14:10:21.741382+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -518,18 +666,34 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793109694,
+          "ms": 234,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
+        },
+        {
+          "t": 1793110221,
+          "ms": 246,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:55:45.161853+00:00",
+        "last_success_at": "2026-10-27T14:10:21.741382+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 4,
-        "successful_checks": 4,
+        "total_checks": 6,
+        "successful_checks": 6,
         "recent_uptime_percent": 100.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     },
     {
@@ -540,8 +704,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 222,
-      "checked_at": "2026-10-27T13:55:45.145463+00:00",
+      "elapsed_ms": 340,
+      "checked_at": "2026-10-27T14:10:21.858551+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -570,18 +734,34 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793109694,
+          "ms": 226,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
+        },
+        {
+          "t": 1793110221,
+          "ms": 340,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:55:45.145463+00:00",
+        "last_success_at": "2026-10-27T14:10:21.858551+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 4,
-        "successful_checks": 4,
+        "total_checks": 6,
+        "successful_checks": 6,
         "recent_uptime_percent": 100.0,
-        "sample_count": 4,
+        "sample_count": 6,
         "probe_type": "HTTP/HTTPS 標頭探測",
-        "probe_timeout_seconds": 10
+        "probe_timeout_seconds": 10,
+        "probe_region": "本地端點 (Local/Asia-East)",
+        "has_sufficient_samples": false
       }
     }
   ]

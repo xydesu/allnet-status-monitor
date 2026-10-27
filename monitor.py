@@ -150,6 +150,14 @@ def load_config():
 
     return config
 
+def get_probe_region():
+    env_region = os.getenv("PROBE_REGION")
+    if env_region:
+        return env_region
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        return "GitHub Cloud (US-East)"
+    return "本地端點 (Local/Asia-East)"
+
 def load_state():
     if not os.path.isfile(STATE_FILE):
         return None
@@ -163,12 +171,15 @@ def load_state():
                     "last_daily_report_date": None,
                     "urls": raw,
                     "history": {},
-                    "diagnostics": {}
+                    "diagnostics": {},
+                    "recent_incidents": []
                 }
             if "history" not in raw:
                 raw["history"] = {}
             if "diagnostics" not in raw:
                 raw["diagnostics"] = {}
+            if "recent_incidents" not in raw:
+                raw["recent_incidents"] = []
             return raw
     except Exception as e:
         print(f"[警告] 讀取 state.json 發生錯誤: {e}", flush=True)
@@ -185,10 +196,14 @@ def export_status_json(results, state=None):
     total = len(results)
     online_count = sum(1 for r in results if r.get("is_online", False))
     offline_count = total - online_count
-    pct = round((online_count / total) * 100, 1) if total > 0 else 0.0
+    current_avail_pct = round((online_count / total) * 100, 1) if total > 0 else 0.0
+
+    healthy_latencies = [r["elapsed_ms"] for r in results if r.get("is_online", False) and r.get("elapsed_ms", 0) > 0]
+    avg_healthy_latency = int(round(sum(healthy_latencies) / len(healthy_latencies))) if healthy_latencies else 0
 
     hist_map = (state.get("history") or {}) if state else {}
     diag_map = (state.get("diagnostics") or {}) if state else {}
+    recent_incidents = (state.get("recent_incidents") or []) if state else []
 
     # 計算滾動 1 小時全體總樣本成功率
     total_samples = 0
@@ -196,38 +211,49 @@ def export_status_json(results, state=None):
     for h_list in hist_map.values():
         total_samples += len(h_list)
         successful_samples += sum(1 for h in h_list if h.get("ok", False))
-    historical_uptime_pct = round((successful_samples / total_samples) * 100, 1) if total_samples > 0 else pct
+    historical_uptime_pct = round((successful_samples / total_samples) * 100, 1) if total_samples > 0 else current_avail_pct
+
+    probe_region = get_probe_region()
 
     enriched_services = []
     for r in results:
         url = r["url"]
         enriched = dict(r)
         enriched["history"] = hist_map.get(url, [])
+        sample_count = len(enriched["history"])
         d_info = dict(diag_map.get(url, {
             "last_success_at": r["checked_at"] if r["is_online"] else None,
             "last_failure_at": r["checked_at"] if not r["is_online"] else None,
             "consecutive_failures": 0 if r["is_online"] else 1,
-            "sample_count": len(enriched["history"]),
+            "sample_count": sample_count,
             "recent_uptime_percent": 100.0 if r["is_online"] else 0.0
         }))
         d_info["probe_type"] = "HTTP/HTTPS 標頭探測"
         d_info["probe_timeout_seconds"] = 10
+        d_info["probe_region"] = probe_region
+        d_info["sample_count"] = sample_count
+        # 設定統計門檻：至少 10 筆樣本才具有足夠代表性
+        d_info["has_sufficient_samples"] = (sample_count >= 10)
         enriched["diagnostics"] = d_info
         enriched_services.append(enriched)
 
     data = {
         "system_name": "ALL.Net Sentinel Telemetry",
-        "version": "2.2.0",
+        "version": "2.3.0",
         "updated_at": datetime.now(timezone.utc).isoformat(),
+        "probe_region": probe_region,
         "summary": {
             "total": total,
             "online": online_count,
             "offline": offline_count,
-            "uptime_percent": pct,
-            "current_availability_percent": pct,
+            "uptime_percent": current_avail_pct,
+            "current_availability_percent": current_avail_pct,
             "historical_uptime_percent": historical_uptime_pct,
-            "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else f"{offline_count} 個節點異常")
+            "avg_healthy_latency_ms": avg_healthy_latency,
+            "probe_region": probe_region,
+            "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else f"{offline_count} 個站點受阻或異常")
         },
+        "incidents": recent_incidents[-10:],
         "services": enriched_services
     }
 
@@ -306,8 +332,12 @@ def check_target(target, timeout=10, proxy=None):
         error_type = "ok"
         error_detail = "服務正常回應"
     elif status_code == 403:
-        error_type = "access_denied"
-        error_detail = "伺服器拒絕或限制存取 (可能受限於日本地區 IP、認證限制或 WAF 防護)"
+        if strict_200 or "my-aime" in url:
+            error_type = "geo_blocked"
+            error_detail = "探測端地區受阻 (目標限制日本國內 IP 存取，非官方伺服器停機)"
+        else:
+            error_type = "access_denied"
+            error_detail = "伺服器限制存取 (可能受限於探測端地域 IP 或 WAF 防護)"
     elif status_code == 503:
         error_type = "maintenance"
         error_detail = "伺服器回報服務維護中 (Service Temporarily Unavailable)"
@@ -573,7 +603,10 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
         prev_urls_state = current_state.get("urls", {})
         prev_history = current_state.get("history", {})
         prev_diagnostics = current_state.get("diagnostics", {})
+        prev_incidents = current_state.get("recent_incidents", [])
         last_daily_report_date = current_state.get("last_daily_report_date")
+    else:
+        prev_incidents = []
 
     print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 開始執行服務狀態平行檢測 (共 {len(targets)} 個目標)...", flush=True)
 
@@ -612,6 +645,7 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
     new_urls_state = {}
     new_history = dict(prev_history)
     new_diagnostics = dict(prev_diagnostics)
+    new_incidents = list(prev_incidents)
     changed_urls = set()
 
     for idx, res in enumerate(current_results, 1):
@@ -667,6 +701,18 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
             old_online = prev_urls_state[url].get("is_online")
             if old_online != res["is_online"]:
                 changed_urls.add(url)
+                new_incidents.append({
+                    "timestamp": now_iso,
+                    "url": url,
+                    "name": name,
+                    "from_online": old_online,
+                    "to_online": res["is_online"],
+                    "status_code": res["status_code"],
+                    "error_type": res.get("error_type", "ok"),
+                    "reason": res.get("error_detail") or res.get("reason")
+                })
+                if len(new_incidents) > 20:
+                    new_incidents = new_incidents[-20:]
 
     # 判斷每日報告條件
     trigger_daily = False
@@ -710,7 +756,8 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
         "last_daily_report_date": last_daily_report_date,
         "urls": new_urls_state,
         "history": new_history,
-        "diagnostics": new_diagnostics
+        "diagnostics": new_diagnostics,
+        "recent_incidents": new_incidents
     }
     save_state(updated_state)
     export_status_json(current_results, state=updated_state)

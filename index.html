@@ -77,15 +77,15 @@
           </div>
           <div class="summary-cell">
             <span id="stat-online" class="summary-num healthy">-- / --</span>
-            <span id="label-online" class="summary-tag">正常運行節點</span>
+            <span id="label-online" class="summary-tag">正常運行站點</span>
           </div>
           <div class="summary-cell">
             <span id="stat-offline" class="summary-num alert">--</span>
-            <span id="label-offline" class="summary-tag">異常離線節點</span>
+            <span id="label-offline" class="summary-tag">異常/受阻站點</span>
           </div>
           <div class="summary-cell">
-            <span id="stat-historical" class="summary-num">--%</span>
-            <span id="label-historical" class="summary-tag">全體歷史可用率 (滾動1h)</span>
+            <span id="stat-latency" class="summary-num">--ms</span>
+            <span id="label-latency" class="summary-tag">平均探測延遲 (正常站點)</span>
           </div>
         </div>
 
@@ -97,15 +97,15 @@
               <line x1="12" y1="9" x2="12" y2="13"></line>
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
-            <span id="incident-text">偵測到異常離線節點</span>
+            <span id="incident-text">偵測到異常站點</span>
           </div>
-          <button type="button" id="incident-filter-btn" class="incident-btn">僅看異常節點</button>
+          <button type="button" id="incident-filter-btn" class="incident-btn">僅看異常站點</button>
         </div>
       </section>
 
       <section class="stack-section" aria-labelledby="matrix-title">
         <div class="toolbar-section">
-          <h2 id="matrix-title" class="group-title" style="margin-bottom:0;">服務節點狀態清單</h2>
+          <h2 id="matrix-title" class="group-title" style="margin-bottom:0;">服務站點狀態矩陣</h2>
           
           <!-- 狀態快速篩選 -->
           <div class="filter-btn-group" role="group" aria-label="服務狀態篩選">
@@ -122,7 +122,7 @@
             <span id="badge-cat-net" class="group-badge">--</span>
           </div>
           <div class="service-table" id="table-cat-net">
-            <!-- 動態渲染節點清單 -->
+            <!-- 動態渲染站點清單 -->
           </div>
         </div>
 
@@ -133,7 +133,7 @@
             <span id="badge-cat-aime" class="group-badge">--</span>
           </div>
           <div class="service-table" id="table-cat-aime">
-            <!-- 動態渲染節點清單 -->
+            <!-- 動態渲染站點清單 -->
           </div>
         </div>
 
@@ -144,7 +144,18 @@
             <span id="badge-cat-web" class="group-badge">--</span>
           </div>
           <div class="service-table" id="table-cat-web">
-            <!-- 動態渲染節點清單 -->
+            <!-- 動態渲染站點清單 -->
+          </div>
+        </div>
+
+        <!-- 近期狀態異動記錄 (Recent Incidents) -->
+        <div class="incidents-section" id="incidents-section">
+          <div class="group-header">
+            <h3 id="incidents-title" class="group-title">近期狀態異動記錄</h3>
+            <span id="badge-probe-region" class="group-badge">探測來源：載入中…</span>
+          </div>
+          <div class="incidents-card" id="incidents-content">
+            <!-- 動態渲染異動事件或平穩提示 -->
           </div>
         </div>
       </section>
@@ -167,10 +178,10 @@
         heroHeadline: 'ALL.Net Telemetry',
         heroLead: '全天候即時監控 11 個 SEGA 音樂遊戲官方網站與 Aime 認證網路之在線狀態與延遲。',
         labelUptime: '即時在線率 (當前週期)',
-        labelOnline: '正常運行節點',
-        labelOffline: '異常離線節點',
-        labelHistorical: '全體歷史可用率 (滾動1h)',
-        matrixTitle: '服務節點狀態清單',
+        labelOnline: '正常運行站點',
+        labelOffline: '異常/受阻站點',
+        labelLatency: '平均探測延遲 (正常站點)',
+        matrixTitle: '服務站點狀態矩陣',
         catNet: '玩家數據服務 (Net)',
         catAime: '帳號與認證系統 (Aime)',
         catWeb: '遊戲官方網站 (Web)',
@@ -178,15 +189,16 @@
         footerCountdown: ' (下次更新：%s秒後)',
         footerUpdatePrefix: '快照時間: ',
         footerFetchError: '狀態同步失敗，顯示前次快照',
-        incidentFound: '偵測到 %d 個服務節點回應異常，請點擊篩選以排查問題。',
+        incidentFound: '偵測到 %d 個服務站點回應異常或受阻，請點擊篩選以排查問題。',
         incidentAllGood: '全系統 11 個監控端點正常運作中。',
-        btnViewIssues: '僅看異常節點',
-        btnViewAll: '檢視全部節點',
+        btnViewIssues: '僅看異常站點',
+        btnViewAll: '檢視全部站點',
         filterAll: '全部',
         filterIssues: '僅異常',
         filterHealthy: '僅正常',
         badgeNormal: '200 正常',
         badgeMaint: '503 維護',
+        badgeGeoBlocked: '403 地區受阻',
         badgeJapanOnly: '403 存取受限',
         badgeConnRefused: '連線被拒',
         badgeTimeout: '連線逾時',
@@ -195,19 +207,27 @@
         badgeServerError: 'HTTP 5xx 異常',
         badgeNetworkError: '網路連線異常',
         sparklinePending: '資料累積中',
+        diagSamplesPending: '資料累積中 (%d/10 樣本)',
         diagTitle: '診斷說明：',
         diagLastSuccess: '最近成功回應',
         diagLastFailure: '最近異常時間',
         diagConsecutiveFails: '連續失敗次數',
-        diagRecentUptime: '節點滾動可用率 (1h)',
-        diagSpec: '探測端點規格：HTTP/HTTPS 標頭探測 • 逾時上限 10s • 端點直接探測',
+        diagRecentUptime: '站點滾動可用率 (1h)',
+        diagSpec: '探測規格：HTTP/HTTPS 標頭探測 • 逾時 10s • 端點直接探測',
         diagOpenSite: '開啟目標網站 ↗',
         diagNever: '尚未記錄到成功回應',
         diagNoFailure: '近期無異常記錄',
         diagTimes: ' 次',
         diagSamples: ' 樣本',
-        emptyFilter: '本分組無符合條件之節點',
-        resetFilter: '重設篩選條件 (顯示全部)'
+        emptyFilter: '本分組無符合條件之站點',
+        resetFilter: '重設篩選條件 (顯示全部)',
+        incidentsTitle: '近期狀態異動記錄',
+        incidentsEmpty: '近期全系統穩定，無狀態異動記錄。',
+        incidentRecovered: '已恢復正常',
+        incidentDegraded: '發生異常',
+        probeRegionPrefix: '探測來源：',
+        uptimeStripTitle: '近 1 小時健康時間條 (最近 %d 次探測)',
+        sparklineLast: '最新記錄：'
       },
       'en': {
         pageTitle: 'ALL.Net Service Status Sentinel',
@@ -215,9 +235,9 @@
         heroHeadline: 'ALL.Net Telemetry',
         heroLead: 'Continuous real-time health telemetry across 11 SEGA rhythm game platforms and Aime networks.',
         labelUptime: 'Current Availability (Cycle)',
-        labelOnline: 'Online Nodes',
-        labelOffline: 'Offline Nodes',
-        labelHistorical: 'Historical Availability (1h)',
+        labelOnline: 'Online Endpoints',
+        labelOffline: 'Degraded / Blocked',
+        labelLatency: 'Avg Latency (Healthy)',
         matrixTitle: 'Service Telemetry Matrix',
         catNet: 'Player Services (Net)',
         catAime: 'Authentication (Aime)',
@@ -226,15 +246,16 @@
         footerCountdown: ' (Next check in %ss)',
         footerUpdatePrefix: 'Snapshot: ',
         footerFetchError: 'Sync failed, displaying cached snapshot',
-        incidentFound: '%d service node(s) currently experiencing issues. Click to isolate.',
+        incidentFound: '%d service endpoint(s) degraded or unreachable from probe region.',
         incidentAllGood: 'All 11 telemetry endpoints operational.',
         btnViewIssues: 'View Issues Only',
-        btnViewAll: 'View All Nodes',
+        btnViewAll: 'View All Endpoints',
         filterAll: 'All',
         filterIssues: 'Issues Only',
         filterHealthy: 'Healthy Only',
         badgeNormal: '200 OK',
         badgeMaint: '503 Maint',
+        badgeGeoBlocked: '403 Geo-Blocked',
         badgeJapanOnly: '403 Restricted',
         badgeConnRefused: 'Conn Refused',
         badgeTimeout: 'Timed Out',
@@ -243,6 +264,7 @@
         badgeServerError: 'HTTP 5xx',
         badgeNetworkError: 'Network Error',
         sparklinePending: 'Accumulating',
+        diagSamplesPending: 'Accumulating (%d/10 samples)',
         diagTitle: 'Diagnostic Assessment: ',
         diagLastSuccess: 'Last Success',
         diagLastFailure: 'Last Failure',
@@ -254,8 +276,15 @@
         diagNoFailure: 'No incidents recorded recently',
         diagTimes: ' fails',
         diagSamples: ' samples',
-        emptyFilter: 'No matching nodes in this category',
-        resetFilter: 'Reset Filters (Show All)'
+        emptyFilter: 'No matching endpoints in this category',
+        resetFilter: 'Reset Filters (Show All)',
+        incidentsTitle: 'Recent Incident Log',
+        incidentsEmpty: 'All systems stable. No incidents recorded.',
+        incidentRecovered: 'Recovered',
+        incidentDegraded: 'Degraded',
+        probeRegionPrefix: 'Probe Source: ',
+        uptimeStripTitle: 'Recent Health Sequence (%d checks)',
+        sparklineLast: 'Latest: '
       },
       'ja': {
         pageTitle: 'ALL.Net サービス稼働状況モニター',
@@ -264,9 +293,9 @@
         heroLead: 'SEGA 音ゲー公式サイトおよび Aime 認証基盤の稼働状況と応答速度を24時間監視中。',
         labelUptime: '即時稼働率 (現在周期)',
         labelOnline: '稼働中ノード',
-        labelOffline: '停止中ノード',
-        labelHistorical: '全体累積稼働率 (直近1h)',
-        matrixTitle: 'サービス稼働リスト',
+        labelOffline: '停止/制限中ノード',
+        labelLatency: '平均応答速度 (正常ノード)',
+        matrixTitle: 'サービス稼働マトリクス',
         catNet: 'プレイヤーサービス (Net)',
         catAime: '認証基盤 (Aime)',
         catWeb: 'ゲーム公式サイト (Web)',
@@ -274,7 +303,7 @@
         footerCountdown: ' (次回更新: %s秒後)',
         footerUpdatePrefix: '最終更新: ',
         footerFetchError: '取得失敗、キャッシュ快照を表示中',
-        incidentFound: '%d 件のサービスで障害を検知しました。絞り込みで詳細を確認してください。',
+        incidentFound: '%d 件のサービスで地域制限または障害を検知しました。',
         incidentAllGood: '全 11 箇所の監視エンドポイントは正常に稼働しています。',
         btnViewIssues: '障害ノードのみ',
         btnViewAll: 'すべて表示',
@@ -283,6 +312,7 @@
         filterHealthy: '正常のみ',
         badgeNormal: '200 正常',
         badgeMaint: '503 メンテ中',
+        badgeGeoBlocked: '403 地域制限',
         badgeJapanOnly: '403 アクセス制限',
         badgeConnRefused: '接続拒否',
         badgeTimeout: 'タイムアウト',
@@ -291,6 +321,7 @@
         badgeServerError: 'HTTP 5xx 異常',
         badgeNetworkError: 'ネットワーク障害',
         sparklinePending: 'データ蓄積中',
+        diagSamplesPending: 'データ蓄積中 (%d/10 サンプル)',
         diagTitle: '診断情報: ',
         diagLastSuccess: '最終成功日時',
         diagLastFailure: '最終障害日時',
@@ -303,7 +334,14 @@
         diagTimes: ' 回',
         diagSamples: ' サンプル',
         emptyFilter: '該当するサービスノードがありません',
-        resetFilter: 'フィルターを解除 (すべて表示)'
+        resetFilter: 'フィルターを解除 (すべて表示)',
+        incidentsTitle: '直近の障害・復旧履歴',
+        incidentsEmpty: '直近の障害または状態変化はありません。安定稼働中。',
+        incidentRecovered: '復旧',
+        incidentDegraded: '障害発生',
+        probeRegionPrefix: 'プローブ地点: ',
+        uptimeStripTitle: '直近 1 時間の稼働状態 (%d 回)',
+        sparklineLast: '最新: '
       }
     };
 
@@ -330,11 +368,12 @@
       document.getElementById('label-uptime').textContent = t.labelUptime;
       document.getElementById('label-online').textContent = t.labelOnline;
       document.getElementById('label-offline').textContent = t.labelOffline;
-      document.getElementById('label-historical').textContent = t.labelHistorical;
+      document.getElementById('label-latency').textContent = t.labelLatency;
       document.getElementById('matrix-title').textContent = t.matrixTitle;
       document.getElementById('cat-net-title').textContent = t.catNet;
       document.getElementById('cat-aime-title').textContent = t.catAime;
       document.getElementById('cat-web-title').textContent = t.catWeb;
+      document.getElementById('incidents-title').textContent = t.incidentsTitle;
 
       const langSelect = document.getElementById('lang-select');
       if (langSelect) langSelect.value = lang;
@@ -410,6 +449,9 @@
       const code = s.status_code || 0;
       const type = s.error_type || '';
 
+      if (type === 'geo_blocked' || (code === 403 && s.url.includes('my-aime.net'))) {
+        return { cssClass: 'offline', text: t.badgeGeoBlocked };
+      }
       if (code === 503 || type === 'maintenance') {
         return { cssClass: 'offline', text: t.badgeMaint };
       }
@@ -434,43 +476,59 @@
       return { cssClass: 'offline', text: t.badgeNetworkError };
     }
 
-    // ── 生成精準純 SVG Sparkline 走勢圖 (明確區分成功延遲、失敗點與時間缺口) ──
+    // ── 生成升級版純 SVG Sparkline 走勢圖 (放大、統一一貫 Y 軸標尺、失敗紅柱標記、帶 Tooltip) ──
     function generateSparklineSVG(history, t) {
       if (!Array.isArray(history) || history.length < 2) {
-        return `<span class="sparkline-insufficient">${t.sparklinePending}</span>`;
+        return {
+          html: `<span class="sparkline-insufficient">${t.sparklinePending}</span>`,
+          tooltip: t.sparklinePending
+        };
       }
-      const w = 72;
-      const h = 20;
+      const w = 96;
+      const h = 26;
       const p = 3;
 
       const okItems = history.filter(item => item.ok);
+      const lastItem = history[history.length - 1];
+      const lastTimeStr = lastItem && lastItem.t ? new Date(lastItem.t * 1000).toLocaleTimeString(currentLang, { hour: '2-digit', minute: '2-digit', hour12: false }) : '';
+      let tooltipText = '';
+      if (lastItem) {
+        if (lastItem.ok) {
+          tooltipText = `${lastTimeStr} · ${lastItem.ms}ms (${t.badgeNormal})`;
+        } else {
+          const errCode = lastItem.code ? `HTTP ${lastItem.code}` : (lastItem.err || '異常');
+          tooltipText = `${lastTimeStr} · ${errCode}`;
+        }
+      }
+
       if (okItems.length === 0) {
-        // 全失敗：不畫假折線，畫紅色虛線基準與紅色警報點
-        const failDots = history.map((item, idx) => {
+        // 全失敗：不畫假折線，畫紅色虛線基準與紅色垂直失敗標記
+        const failBars = history.map((item, idx) => {
           const x = p + (idx / (history.length - 1)) * (w - p * 2);
-          return `<circle cx="${x.toFixed(1)}" cy="${h - p}" r="1.5" fill="var(--color-error)" />`;
+          return `<line x1="${x.toFixed(1)}" y1="${h - p}" x2="${x.toFixed(1)}" y2="${p + 2}" stroke="var(--color-error)" stroke-width="2" stroke-linecap="round" />`;
         }).join('');
-        return `
-          <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="${p}" y1="${h - p}" x2="${w - p}" y2="${h - p}" stroke="var(--color-error)" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.6" />
-            ${failDots}
-          </svg>
-        `;
+        return {
+          html: `
+            <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="${p}" y1="${h - p}" x2="${w - p}" y2="${h - p}" stroke="var(--color-error)" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.4" />
+              ${failBars}
+            </svg>
+          `,
+          tooltip: tooltipText
+        };
       }
 
       const msList = okItems.map(item => Math.max(1, item.ms || 0));
-      const min = Math.min(...msList);
-      const max = Math.max(...msList);
-      const range = (max === min) ? 1 : (max - min);
+      // 統一一貫的 Y-Scale 基準：0 ~ max(500ms, 最大延遲)
+      const maxRange = Math.max(500, Math.max(...msList));
 
-      // 依時間序列分段繪製 (若兩次探測間隔超過 300 秒則中斷連線，不跨時間繪製誤導連續線)
+      // 依時間序列分段繪製 (若兩次探測間隔超過 300 秒或探測失敗則中斷折線)
       let segments = [];
       let currentSegment = [];
 
       history.forEach((item, idx) => {
         const x = p + (idx / (history.length - 1)) * (w - p * 2);
         if (!item.ok) {
-          // 探測失敗點：中斷當前折線段
           if (currentSegment.length > 0) {
             segments.push(currentSegment);
             currentSegment = [];
@@ -479,54 +537,129 @@
           if (currentSegment.length > 0) {
             const prev = history[idx - 1];
             if (prev && (item.t - prev.t > 300)) {
-              // 探測缺失區間：中斷折線
               segments.push(currentSegment);
               currentSegment = [];
             }
           }
-          const y = (h - p) - ((item.ms - min) / range) * (h - p * 2);
+          const y = (h - p) - (item.ms / maxRange) * (h - p * 2);
           currentSegment.push(`${x.toFixed(1)},${y.toFixed(1)}`);
         }
       });
       if (currentSegment.length > 0) segments.push(currentSegment);
 
       const polylineHtml = segments.map(seg => `
-        <polyline fill="none" stroke="var(--color-success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="${seg.join(' ')}" />
+        <polyline fill="none" stroke="var(--color-success)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" points="${seg.join(' ')}" />
       `).join('');
 
-      // 探測失敗的點於底線標示紅色小圓點 (不誤導為 0ms)
-      const failDotsHtml = history.map((item, idx) => {
+      // 探測失敗的點以紅色垂直小短柱渲染 (不誤導為 0ms)
+      const failBarsHtml = history.map((item, idx) => {
         if (item.ok) return '';
         const x = p + (idx / (history.length - 1)) * (w - p * 2);
-        return `<circle cx="${x.toFixed(1)}" cy="${h - p}" r="1.5" fill="var(--color-error)" />`;
+        return `<line x1="${x.toFixed(1)}" y1="${h - p}" x2="${x.toFixed(1)}" y2="${p + 4}" stroke="var(--color-error)" stroke-width="2" stroke-linecap="round" />`;
       }).join('');
 
       // 最後一個點若為成功則繪製實心綠點
-      const lastItem = history[history.length - 1];
       let lastDotHtml = '';
       if (lastItem && lastItem.ok) {
         const lastX = w - p;
-        const lastY = (h - p) - ((lastItem.ms - min) / range) * (h - p * 2);
-        lastDotHtml = `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2" fill="var(--color-success)" />`;
+        const lastY = (h - p) - (lastItem.ms / maxRange) * (h - p * 2);
+        lastDotHtml = `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2.5" fill="var(--color-success)" />`;
       }
 
+      return {
+        html: `
+          <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="${p}" y1="${h - p}" x2="${w - p}" y2="${h - p}" stroke="var(--color-rule-2)" stroke-width="1" opacity="0.3" />
+            ${polylineHtml}
+            ${failBarsHtml}
+            ${lastDotHtml}
+          </svg>
+        `,
+        tooltip: tooltipText
+      };
+    }
+
+    // ── 生成各站點 1 小時健康時間條 (Uptime Strip) ──
+    function generateUptimeStripHTML(history, t) {
+      const maxSlots = 30;
+      const items = Array.isArray(history) ? history.slice(-maxSlots) : [];
+      const emptyCount = Math.max(0, maxSlots - items.length);
+
+      let pillsHtml = '';
+      for (let i = 0; i < emptyCount; i++) {
+        pillsHtml += `<span class="uptime-pill empty" title="${t.sparklinePending}"></span>`;
+      }
+      items.forEach(item => {
+        const timeStr = item.t ? new Date(item.t * 1000).toLocaleTimeString(currentLang, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '';
+        if (item.ok) {
+          pillsHtml += `<span class="uptime-pill ok" title="${timeStr} · ${item.ms}ms (${t.badgeNormal})"></span>`;
+        } else {
+          const reason = item.code ? `HTTP ${item.code}` : (item.err || '異常');
+          pillsHtml += `<span class="uptime-pill fail" title="${timeStr} · ${reason}"></span>`;
+        }
+      });
+
+      const okCount = items.filter(i => i.ok).length;
       return `
-        <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
-          ${polylineHtml}
-          ${failDotsHtml}
-          ${lastDotHtml}
-        </svg>
+        <div class="uptime-strip-container">
+          <div class="uptime-strip-header">
+            <span>${t.uptimeStripTitle.replace('%d', maxSlots)}</span>
+            <span>${okCount} / ${items.length} 正常</span>
+          </div>
+          <div class="uptime-strip" role="img" aria-label="健康度時間條">
+            ${pillsHtml}
+          </div>
+        </div>
       `;
+    }
+
+    // ── 渲染近期狀態異動記錄 (Recent Incident Log) ──
+    function renderIncidents(incidents, probeRegion, t) {
+      const contentEl = document.getElementById('incidents-content');
+      const regionEl = document.getElementById('badge-probe-region');
+      if (regionEl) {
+        regionEl.textContent = `${t.probeRegionPrefix}${probeRegion || '未知地區'}`;
+      }
+      if (!contentEl) return;
+
+      if (!Array.isArray(incidents) || incidents.length === 0) {
+        contentEl.innerHTML = `
+          <div class="incidents-empty">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>${t.incidentsEmpty}</span>
+          </div>
+        `;
+        return;
+      }
+
+      const itemsHtml = incidents.map(inc => {
+        const timeStr = formatTime(inc.time, '--');
+        const isRecovered = inc.to_status === 'online';
+        const tagClass = isRecovered ? 'recovered' : 'degraded';
+        const tagText = isRecovered ? t.incidentRecovered : t.incidentDegraded;
+        return `
+          <div class="incident-item">
+            <div class="incident-meta">
+              <span class="incident-time">${timeStr}</span>
+              <span class="incident-target">${inc.name}</span>
+              <span class="incident-status-tag ${tagClass}">${tagText}</span>
+            </div>
+            <div class="incident-desc">${inc.reason || ''}</div>
+          </div>
+        `;
+      }).join('');
+
+      contentEl.innerHTML = `<div class="incidents-list">${itemsHtml}</div>`;
     }
 
     // ── 分組內智慧排序 (異常優先置頂) ──
     function sortServicesInGroup(services) {
       return [...services].sort((a, b) => {
-        // 異常者 (is_online === false) 置頂排在前面
         if (a.is_online !== b.is_online) {
           return a.is_online ? 1 : -1;
         }
-        // 延遲高者在前
         return (b.elapsed_ms || 0) - (a.elapsed_ms || 0);
       });
     }
@@ -565,15 +698,17 @@
       const offlineCount = total - onlineCount;
       const uptimePct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 'N/A';
       
-      const histPct = data.summary && typeof data.summary.historical_uptime_percent === 'number'
-        ? data.summary.historical_uptime_percent.toFixed(1) + '%'
-        : (uptimePct !== 'N/A' ? `${uptimePct}%` : 'N/A');
+      const avgLatencyMs = data.summary && typeof data.summary.avg_healthy_latency_ms === 'number' && data.summary.avg_healthy_latency_ms > 0
+        ? `${data.summary.avg_healthy_latency_ms}ms`
+        : '--ms';
+      const probeRegion = data.probe_region || (data.summary && data.summary.probe_region) || '本地端點';
 
-      // 1. 頂部總覽四欄 (明確區分即時節點比例與歷史滾動可用率)
+      // 1. 頂部總覽四欄 (無重複百分比、去前導零、標示探測地區)
       document.getElementById('stat-uptime').textContent = uptimePct !== 'N/A' ? `${uptimePct}%` : 'N/A';
-      document.getElementById('stat-online').textContent = `${String(onlineCount).padStart(2, '0')} / ${total}`;
-      document.getElementById('stat-offline').textContent = String(offlineCount).padStart(2, '0');
-      document.getElementById('stat-historical').textContent = histPct;
+      document.getElementById('stat-online').textContent = `${onlineCount} / ${total}`;
+      document.getElementById('stat-offline').textContent = String(offlineCount);
+      document.getElementById('stat-latency').textContent = avgLatencyMs;
+      document.getElementById('label-latency').textContent = `${t.labelLatency} · ${probeRegion}`;
 
       // 2. 故障通知橫條
       const incidentBanner = document.getElementById('incident-banner');
@@ -607,11 +742,10 @@
 
         const groupOffline = list.filter(s => !s.is_online).length;
         if (badgeEl) {
-          badgeEl.textContent = `${list.length - groupOffline} 正常 · ${groupOffline} 異常`;
+          badgeEl.textContent = `${list.length - groupOffline} 正常 · ${groupOffline} 異常/受阻`;
           badgeEl.className = groupOffline > 0 ? 'group-badge has-issue' : 'group-badge';
         }
 
-        // 分組內排序：異常置頂
         const sorted = sortServicesInGroup(list);
         tableEl.innerHTML = '';
 
@@ -624,7 +758,6 @@
           const domain = s.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
           const drawerId = `drawer-${key}-${idx}`;
 
-          // 比對搜尋與過濾
           const matchSearch = !currentSearchQuery || 
             s.name.toLowerCase().includes(currentSearchQuery) || 
             domain.toLowerCase().includes(currentSearchQuery);
@@ -643,21 +776,37 @@
           itemDiv.dataset.online = String(s.is_online);
           itemDiv.style.display = isVisible ? 'block' : 'none';
 
-          const sparklineHtml = generateSparklineSVG(hist, t);
+          const sparklineObj = generateSparklineSVG(hist, t);
+          const uptimeStripHtml = generateUptimeStripHTML(hist, t);
           const errorDetailText = s.error_detail || s.reason || '正常運作中';
+
+          // 滾動歷史可用率精確判斷 (不足 10 樣本明確顯示累積中)
+          const sampleCount = diag.sample_count || hist.length;
+          const hasSufficient = (diag.has_sufficient_samples !== undefined) ? diag.has_sufficient_samples : (sampleCount >= 10);
+          let uptimeDisplay = '';
+          if (!hasSufficient) {
+            uptimeDisplay = t.diagSamplesPending.replace('%d', sampleCount);
+          } else {
+            const pct = (typeof diag.recent_uptime_percent === 'number') ? diag.recent_uptime_percent.toFixed(1) + '%' : '100%';
+            uptimeDisplay = `${pct} (${sampleCount}${t.diagSamples})`;
+          }
 
           itemDiv.innerHTML = `
             <div class="service-row" role="button" tabindex="0" aria-expanded="false" aria-controls="${drawerId}">
               <div class="service-main">
                 <span class="beacon ${s.is_online ? 'online' : 'offline'}" aria-hidden="true"></span>
-                <div>
+                <div class="service-meta">
                   <span class="service-name">${s.name}</span>
-                  <span class="service-domain">${domain}</span>
+                  <div class="service-sub">
+                    <span class="service-domain">${domain}</span>
+                    ${!s.is_online ? `<span class="service-failure-hint" title="${errorDetailText}">• ${errorDetailText}</span>` : ''}
+                  </div>
                 </div>
               </div>
               <div class="service-side">
-                <div class="sparkline-box" title="近期延遲趨勢 (最多 1 小時)">
-                  ${sparklineHtml}
+                <div class="sparkline-box">
+                  ${sparklineObj.html}
+                  <div class="sparkline-tooltip">${sparklineObj.tooltip}</div>
                 </div>
                 <span class="service-tag ${badge.cssClass}">${badge.text}</span>
                 <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -666,6 +815,7 @@
               </div>
             </div>
             <div class="service-drawer" id="${drawerId}">
+              ${uptimeStripHtml}
               <div class="diag-banner">
                 <strong>${t.diagTitle}</strong>${errorDetailText}
               </div>
@@ -687,13 +837,12 @@
                 <div class="diag-card">
                   <div class="diag-lbl">${t.diagRecentUptime}</div>
                   <div class="diag-val">
-                    ${typeof diag.recent_uptime_percent === 'number' ? diag.recent_uptime_percent.toFixed(1) + '%' : '100%'}
-                    (${diag.sample_count || hist.length}${t.diagSamples})
+                    ${uptimeDisplay}
                   </div>
                 </div>
               </div>
               <div class="diag-footer">
-                <span>${t.diagSpec}</span>
+                <span>${t.diagSpec} • ${diag.probe_region || probeRegion}</span>
                 <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="diag-link">
                   ${t.diagOpenSite}
                 </a>
@@ -701,7 +850,7 @@
             </div>
           `;
 
-          // 綁定點擊展開抽屜與鍵盤無障礙操作
+          // 綁定點擊展開抽屜與鍵盤操作 (預設折疊)
           const rowEl = itemDiv.querySelector('.service-row');
           const toggleDrawer = () => {
             const isOpen = itemDiv.classList.toggle('is-open');
@@ -731,12 +880,113 @@
         }
       }
 
-      // 5. 頁尾快照時間
+      // 5. 渲染近期異動記錄
+      renderIncidents(data.incidents || [], probeRegion, t);
+
+      // 6. 頁尾快照時間
       if (data.updated_at) {
         const d = new Date(data.updated_at);
         document.getElementById('footer-updated').textContent = t.footerUpdatePrefix + d.toLocaleString(currentLang, { hour12: false });
       }
+
+      // 支援網址參數展開首個站點供診斷檢視
+      if (window.location.search.includes('expand=1')) {
+        const firstRow = document.querySelector('.service-row');
+        if (firstRow && !firstRow.closest('.service-item').classList.contains('is-open')) {
+          firstRow.click();
+        }
+      }
     }
+
+    // ── 篩選切換 ──
+    function setFilter(filterType) {
+      currentFilter = filterType;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filterType);
+      });
+      if (latestData) {
+        renderAll(latestData);
+      }
+    }
+
+    document.getElementById('filter-all').addEventListener('click', () => setFilter('all'));
+    document.getElementById('filter-issues').addEventListener('click', () => setFilter('issues'));
+    document.getElementById('filter-healthy').addEventListener('click', () => setFilter('healthy'));
+
+    document.getElementById('incident-filter-btn').addEventListener('click', () => {
+      setFilter(currentFilter === 'issues' ? 'all' : 'issues');
+    });
+
+    // ── 即時搜尋 ──
+    const searchInput = document.getElementById('service-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchQuery = e.target.value.trim().toLowerCase();
+        if (latestData) {
+          renderAll(latestData);
+        }
+      });
+    }
+
+    // ── 狀態數據拉取 ──
+    async function loadStatus() {
+      if (isFetching) return;
+      isFetching = true;
+
+      const refreshBtn = document.getElementById('refresh-btn');
+      const t = I18N[currentLang];
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.classList.add('is-spinning');
+      }
+
+      try {
+        const res = await fetch('./status.json?t=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        renderAll(data);
+        secondsToNextPoll = pollIntervalSeconds;
+      } catch (err) {
+        console.warn('載入 status.json 失敗，保留既有資料:', err);
+        const footerUpdated = document.getElementById('footer-updated');
+        if (footerUpdated) {
+          footerUpdated.textContent = t.footerFetchError;
+        }
+      } finally {
+        isFetching = false;
+        if (refreshBtn) {
+          refreshBtn.disabled = false;
+          refreshBtn.classList.remove('is-spinning');
+        }
+      }
+    }
+
+    const refreshBtn = document.getElementById('refresh-btn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        loadStatus();
+      });
+    }
+
+    // ── 秒數倒數計時 ──
+    setInterval(() => {
+      secondsToNextPoll--;
+      if (secondsToNextPoll <= 0) {
+        secondsToNextPoll = pollIntervalSeconds;
+        loadStatus();
+      }
+      const t = I18N[currentLang];
+      const footerSys = document.getElementById('footer-system-text');
+      if (footerSys) {
+        footerSys.textContent = t.footerSystem + t.footerCountdown.replace('%s', secondsToNextPoll);
+      }
+    }, 1000);
+
+    // ── 初始化 ──
+    applyLanguage(currentLang);
+    updateThemeBtnIcon();
+    loadStatus();
+  </script>
 
     // ── 篩選切換 ──
     function setFilter(filterType) {

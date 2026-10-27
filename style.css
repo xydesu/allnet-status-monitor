@@ -431,8 +431,9 @@ html, body {
 }
 
 .sparkline-box {
-  width: 72px;
-  height: 22px;
+  position: relative;
+  width: 96px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -444,8 +445,33 @@ html, body {
   overflow: visible;
 }
 
+.sparkline-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 50%;
+  transform: translateX(50%);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-input);
+  font-family: var(--font-outlier);
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-micro) var(--ease-out), visibility var(--dur-micro) var(--ease-out);
+  z-index: var(--z-tooltip);
+  box-shadow: var(--shadow-card);
+}
+
+.sparkline-box:hover .sparkline-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
 .sparkline-insufficient {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--color-muted);
   white-space: nowrap;
 }
@@ -490,7 +516,7 @@ html, body {
 
 .diag-lbl {
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 12px;
   margin-bottom: var(--space-3xs);
 }
 
@@ -499,6 +525,57 @@ html, body {
   font-weight: 500;
   font-size: var(--text-xs);
   color: var(--color-ink);
+}
+
+/* ── Uptime Strip (近期健康度連續條) ── */
+.uptime-strip-container {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  background: var(--color-paper);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-input);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.uptime-strip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2xs);
+}
+
+.uptime-strip {
+  display: flex;
+  gap: var(--space-3xs);
+  height: 14px;
+  align-items: center;
+  width: 100%;
+}
+
+.uptime-pill {
+  flex: 1;
+  height: 100%;
+  border-radius: 2px;
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+
+.uptime-pill:hover {
+  transform: scaleY(1.3);
+}
+
+.uptime-pill.ok {
+  background-color: var(--color-success);
+}
+
+.uptime-pill.fail {
+  background-color: var(--color-error);
+}
+
+.uptime-pill.empty {
+  background-color: var(--color-rule-2);
+  opacity: 0.4;
 }
 
 .diag-banner {
@@ -574,6 +651,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  min-width: 0;
 }
 
 .beacon {
@@ -591,14 +669,40 @@ html, body {
   background-color: var(--color-error);
 }
 
+.service-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  min-width: 0;
+}
+
 .service-name {
   font-weight: 500;
   font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+
+.service-sub {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  font-size: var(--text-xs);
 }
 
 .service-domain {
   font-size: var(--text-xs);
   color: var(--color-muted);
+}
+
+.service-failure-hint {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  font-weight: 500;
+  max-width: 480px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-tag {
@@ -608,6 +712,7 @@ html, body {
   border-radius: var(--radius-input);
   border: var(--rule-hair) solid var(--color-rule-2);
   background: var(--color-paper-2);
+  white-space: nowrap;
 }
 
 .service-tag.online {
@@ -618,6 +723,89 @@ html, body {
 .service-tag.offline {
   color: var(--color-error);
   border-color: var(--color-error);
+}
+
+/* ── Recent Incidents Section (近期狀態異動記錄) ── */
+.incidents-section {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.incidents-card {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+}
+
+.incidents-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.incident-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-paper-2);
+  border: var(--rule-hair) solid var(--color-rule-2);
+  border-radius: var(--radius-input);
+  font-size: var(--text-xs);
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.incident-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.incident-time {
+  color: var(--color-muted);
+  font-family: var(--font-outlier);
+  font-size: 11px;
+}
+
+.incident-target {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.incident-desc {
+  color: var(--color-muted);
+}
+
+.incident-status-tag {
+  font-family: var(--font-outlier);
+  font-size: 11px;
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+}
+
+.incident-status-tag.recovered {
+  background: var(--color-paper);
+  border: var(--rule-hair) solid var(--color-success);
+  color: var(--color-success);
+}
+
+.incident-status-tag.degraded {
+  background: var(--color-paper);
+  border: var(--rule-hair) solid var(--color-error);
+  color: var(--color-error);
+}
+
+.incidents-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  padding: var(--space-xs) 0;
 }
 
 /* ── Index Columns Footer ── */
