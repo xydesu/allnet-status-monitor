@@ -134,5 +134,60 @@ class TestMonitorLogic(unittest.TestCase):
             self.assertIn("urls", loaded)
             self.assertIn("https://url1", loaded["urls"])
 
+    def test_error_type_classification(self):
+        # 測試 403 存取受限
+        import urllib.error
+        target_403 = {"name": "Test 403", "url": "https://test403", "strict_200": False}
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.side_effect = urllib.error.HTTPError("https://test403", 403, "Forbidden", {}, None)
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target_403)
+            self.assertEqual(res["error_type"], "access_denied")
+            self.assertIn("限制存取", res["error_detail"])
+
+        # 測試 503 維護
+        target_503 = {"name": "Test 503", "url": "https://test503", "strict_200": False}
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.side_effect = urllib.error.HTTPError("https://test503", 503, "Service Unavailable", {}, None)
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target_503)
+            self.assertEqual(res["error_type"], "maintenance")
+            self.assertIn("維護中", res["error_detail"])
+
+    def test_export_status_json_with_diagnostics(self):
+        results = [
+            {
+                "url": "https://sample.url",
+                "name": "Sample Node",
+                "category": "NET",
+                "is_online": True,
+                "status_code": 200,
+                "reason": "OK",
+                "elapsed_ms": 100,
+                "checked_at": "2026-10-27T00:00:00Z",
+                "error_type": "ok",
+                "error_detail": "服務正常回應"
+            }
+        ]
+        state = {
+            "history": {
+                "https://sample.url": [{"t": 100, "ms": 100, "ok": True, "code": 200}]
+            },
+            "diagnostics": {
+                "https://sample.url": {
+                    "last_success_at": "2026-10-27T00:00:00Z",
+                    "last_failure_at": None,
+                    "consecutive_failures": 0,
+                    "recent_uptime_percent": 100.0,
+                    "sample_count": 1
+                }
+            }
+        }
+        with patch("builtins.open", unittest.mock.mock_open()) as mock_f:
+            monitor.export_status_json(results, state=state)
+            mock_f.assert_called_with(monitor.STATUS_JSON_FILE, "w", encoding="utf-8")
+
 if __name__ == "__main__":
     unittest.main()

@@ -12,6 +12,7 @@ import urllib.request
 import urllib.error
 import ssl
 from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Windows 終端機 UTF-8 強制重設
 if sys.stdout is not None and hasattr(sys.stdout, "reconfigure"):
@@ -155,11 +156,19 @@ def load_state():
     try:
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             raw = json.load(f)
-            if "urls" not in raw and isinstance(raw, dict):
-                return {
+            if not isinstance(raw, dict):
+                return None
+            if "urls" not in raw:
+                raw = {
                     "last_daily_report_date": None,
-                    "urls": raw
+                    "urls": raw,
+                    "history": {},
+                    "diagnostics": {}
                 }
+            if "history" not in raw:
+                raw["history"] = {}
+            if "diagnostics" not in raw:
+                raw["diagnostics"] = {}
             return raw
     except Exception as e:
         print(f"[警告] 讀取 state.json 發生錯誤: {e}", flush=True)
@@ -172,23 +181,41 @@ def save_state(state):
     except Exception as e:
         print(f"[錯誤] 儲存 state.json 失敗: {e}", flush=True)
 
-def export_status_json(results):
+def export_status_json(results, state=None):
     total = len(results)
-    online_count = sum(1 for r in results if r["is_online"])
+    online_count = sum(1 for r in results if r.get("is_online", False))
     offline_count = total - online_count
-    pct = int((online_count / total) * 100) if total > 0 else 0
+    pct = round((online_count / total) * 100, 1) if total > 0 else 0.0
+
+    hist_map = (state.get("history") or {}) if state else {}
+    diag_map = (state.get("diagnostics") or {}) if state else {}
+
+    enriched_services = []
+    for r in results:
+        url = r["url"]
+        enriched = dict(r)
+        enriched["history"] = hist_map.get(url, [])
+        enriched["diagnostics"] = diag_map.get(url, {
+            "last_success_at": r["checked_at"] if r["is_online"] else None,
+            "last_failure_at": r["checked_at"] if not r["is_online"] else None,
+            "consecutive_failures": 0 if r["is_online"] else 1,
+            "sample_count": len(enriched["history"]),
+            "recent_uptime_percent": 100.0 if r["is_online"] else 0.0
+        })
+        enriched_services.append(enriched)
 
     data = {
-        "system_name": "ALL.Net Service Monitor",
+        "system_name": "ALL.Net Sentinel Telemetry",
+        "version": "2.1.0",
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "summary": {
             "total": total,
             "online": online_count,
             "offline": offline_count,
             "uptime_percent": pct,
-            "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else "部分異常")
+            "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else f"{offline_count} 個節點異常")
         },
-        "services": results
+        "services": enriched_services
     }
 
     try:
@@ -199,12 +226,14 @@ def export_status_json(results):
 
 def git_push_status():
     try:
-        subprocess.run(["git", "add", "status.json", "state.json"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["git", "add", "status.json"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"], cwd=BASE_DIR)
         if diff_res.returncode != 0:
-            subprocess.run(["git", "commit", "-m", "chore(telemetry): 更新服務狀態快照 [skip ci]"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(["git", "commit", "-m", "chore(telemetry): 自動更新 ALL.Net 服務狀態快照 [skip ci]"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             subprocess.run(["git", "push"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             print("[Git] 已成功自動推送最新狀態快照至 GitHub Pages！", flush=True)
+        else:
+            print("[Git] 狀態快照無變更，跳過推送。", flush=True)
     except Exception as e:
         print(f"[警告] Git 自動推送失敗: {e}", flush=True)
 
@@ -258,6 +287,36 @@ def check_target(target, timeout=10, proxy=None):
     else:
         is_online = (200 <= status_code < 400)
 
+    # 精細分類異常原因
+    raw_r = str(reason).lower()
+    if is_online:
+        error_type = "ok"
+        error_detail = "服務正常回應"
+    elif status_code == 403:
+        error_type = "access_denied"
+        error_detail = "伺服器拒絕或限制存取 (可能受限於日本地區 IP、認證限制或 WAF 防護)"
+    elif status_code == 503:
+        error_type = "maintenance"
+        error_detail = "伺服器回報服務維護中 (Service Temporarily Unavailable)"
+    elif 400 <= status_code < 500:
+        error_type = "client_error"
+        error_detail = f"客戶端請求錯誤 (HTTP {status_code})"
+    elif status_code >= 500:
+        error_type = "server_error"
+        error_detail = f"目標伺服器內部錯誤 (HTTP {status_code})"
+    elif "timeout" in raw_r or "超時" in raw_r or "timed out" in raw_r:
+        error_type = "timeout"
+        error_detail = "連線逾時：探測端在預設期限內未收到伺服器回應"
+    elif "10061" in raw_r or "refused" in raw_r or "拒絕" in raw_r:
+        error_type = "conn_refused"
+        error_detail = "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)"
+    elif "getaddrinfo" in raw_r or "name resolution" in raw_r or "dns" in raw_r:
+        error_type = "dns_error"
+        error_detail = "網域名稱解析失敗 (DNS 解析異常)"
+    else:
+        error_type = "network_error"
+        error_detail = f"網路連線異常 ({reason})"
+
     return {
         "url": url,
         "name": target.get("name", url),
@@ -267,7 +326,9 @@ def check_target(target, timeout=10, proxy=None):
         "status_code": status_code,
         "reason": reason,
         "elapsed_ms": elapsed_ms,
-        "checked_at": datetime.now().isoformat()
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "error_type": error_type,
+        "error_detail": error_detail
     }
 
 def format_status_badge(item):
@@ -486,30 +547,65 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
 
     today_str = datetime.now().strftime("%Y-%m-%d")
     now_time_str = datetime.now().strftime("%H:%M")
+    now_iso = datetime.now(timezone.utc).isoformat()
+    now_unix = int(time.time())
 
     is_startup = (current_state is None)
     prev_urls_state = {}
+    prev_history = {}
+    prev_diagnostics = {}
     last_daily_report_date = None
 
     if current_state is not None:
         prev_urls_state = current_state.get("urls", {})
+        prev_history = current_state.get("history", {})
+        prev_diagnostics = current_state.get("diagnostics", {})
         last_daily_report_date = current_state.get("last_daily_report_date")
 
-    current_results = []
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 開始執行服務狀態平行檢測 (共 {len(targets)} 個目標)...", flush=True)
+
+    current_results = [None] * len(targets)
+    start_all = time.time()
+
+    with ThreadPoolExecutor(max_workers=min(12, len(targets))) as executor:
+        future_to_idx = {
+            executor.submit(check_target, target, timeout=timeout, proxy=proxy): idx
+            for idx, target in enumerate(targets)
+        }
+        for future in as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            try:
+                res = future.result()
+            except Exception as e:
+                target = targets[idx]
+                res = {
+                    "url": target["url"],
+                    "name": target.get("name", target["url"]),
+                    "category": target.get("category", "🌐 其他站點"),
+                    "strict_200": target.get("strict_200", False),
+                    "is_online": False,
+                    "status_code": 0,
+                    "reason": f"探測異常 ({e})",
+                    "elapsed_ms": 0,
+                    "checked_at": now_iso,
+                    "error_type": "unknown",
+                    "error_detail": f"探測程序發生未知例外: {e}"
+                }
+            current_results[idx] = res
+
+    elapsed_all = round(time.time() - start_all, 2)
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] 平行檢測完成！耗時 {elapsed_all} 秒", flush=True)
+
     new_urls_state = {}
+    new_history = dict(prev_history)
+    new_diagnostics = dict(prev_diagnostics)
     changed_urls = set()
 
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 開始執行服務狀態檢測 (共 {len(targets)} 個目標)...", flush=True)
-
-    for idx, target in enumerate(targets, 1):
-        name = target.get("name", target["url"])
-        print(f"  [{idx:02d}/{len(targets):02d}] 檢測中: {name} ...", end=" ", flush=True)
-        res = check_target(target, timeout=timeout, proxy=proxy)
-        current_results.append(res)
+    for idx, res in enumerate(current_results, 1):
         url = res["url"]
-
+        name = res["name"]
         status_str = "🟢 在線" if res["is_online"] else "🔴 離線"
-        print(f"{status_str} (狀態碼: {res['status_code']} | 耗時: {res['elapsed_ms']}ms)", flush=True)
+        print(f"  [{idx:02d}/{len(targets):02d}] {name} -> {status_str} (狀態碼: {res['status_code']} | 耗時: {res['elapsed_ms']}ms)", flush=True)
 
         new_urls_state[url] = {
             "is_online": res["is_online"],
@@ -517,6 +613,41 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
             "reason": res["reason"],
             "checked_at": res["checked_at"]
         }
+
+        # 維護歷史數據 (保留最近 60 筆)
+        hist = list(new_history.get(url, []))
+        hist.append({
+            "t": now_unix,
+            "ms": res["elapsed_ms"],
+            "ok": res["is_online"],
+            "code": res["status_code"]
+        })
+        if len(hist) > 60:
+            hist = hist[-60:]
+        new_history[url] = hist
+
+        # 維護診斷統計
+        diag = dict(new_diagnostics.get(url, {
+            "last_success_at": None,
+            "last_failure_at": None,
+            "consecutive_failures": 0,
+            "total_checks": 0,
+            "successful_checks": 0
+        }))
+        diag["total_checks"] = diag.get("total_checks", 0) + 1
+
+        if res["is_online"]:
+            diag["last_success_at"] = res["checked_at"]
+            diag["consecutive_failures"] = 0
+            diag["successful_checks"] = diag.get("successful_checks", 0) + 1
+        else:
+            diag["last_failure_at"] = res["checked_at"]
+            diag["consecutive_failures"] = diag.get("consecutive_failures", 0) + 1
+
+        recent_up_pct = round((sum(1 for h in hist if h["ok"]) / len(hist)) * 100, 1) if hist else (100.0 if res["is_online"] else 0.0)
+        diag["recent_uptime_percent"] = recent_up_pct
+        diag["sample_count"] = len(hist)
+        new_diagnostics[url] = diag
 
         if prev_urls_state and url in prev_urls_state:
             old_online = prev_urls_state[url].get("is_online")
@@ -563,10 +694,12 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
 
     updated_state = {
         "last_daily_report_date": last_daily_report_date,
-        "urls": new_urls_state
+        "urls": new_urls_state,
+        "history": new_history,
+        "diagnostics": new_diagnostics
     }
     save_state(updated_state)
-    export_status_json(current_results)
+    export_status_json(current_results, state=updated_state)
     if auto_push:
         git_push_status()
     return updated_state

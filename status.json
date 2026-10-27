@@ -1,12 +1,13 @@
 {
-  "system_name": "ALL.Net Service Monitor",
-  "updated_at": "2026-10-27T13:33:11.322006+00:00",
+  "system_name": "ALL.Net Sentinel Telemetry",
+  "version": "2.1.0",
+  "updated_at": "2026-10-27T13:42:26.273462+00:00",
   "summary": {
     "total": 11,
     "online": 5,
     "offline": 6,
-    "uptime_percent": 45,
-    "status_text": "部分異常"
+    "uptime_percent": 45.5,
+    "status_text": "6 個節點異常"
   },
   "services": [
     {
@@ -16,9 +17,34 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 228,
-      "checked_at": "2026-10-27T13:33:05.511763"
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2564,
+      "checked_at": "2026-10-27T13:42:26.268220+00:00",
+      "error_type": "conn_refused",
+      "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 2263,
+          "ok": false,
+          "code": 0
+        },
+        {
+          "t": 1793108543,
+          "ms": 2564,
+          "ok": false,
+          "code": 0
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:26.268220+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://maimaidx.jp/",
@@ -27,9 +53,34 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 193,
-      "checked_at": "2026-10-27T13:33:05.711555"
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2261,
+      "checked_at": "2026-10-27T13:42:26.107726+00:00",
+      "error_type": "conn_refused",
+      "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 2263,
+          "ok": false,
+          "code": 0
+        },
+        {
+          "t": 1793108543,
+          "ms": 2261,
+          "ok": false,
+          "code": 0
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:26.107726+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://new.chunithm-net.com/",
@@ -39,8 +90,33 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Unavailable",
-      "elapsed_ms": 1216,
-      "checked_at": "2026-10-27T13:33:06.934905"
+      "elapsed_ms": 320,
+      "checked_at": "2026-10-27T13:42:24.203047+00:00",
+      "error_type": "maintenance",
+      "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 260,
+          "ok": false,
+          "code": 503
+        },
+        {
+          "t": 1793108543,
+          "ms": 320,
+          "ok": false,
+          "code": 503
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:24.203047+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://chunithm-net-eng.com/",
@@ -49,9 +125,34 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 193,
-      "checked_at": "2026-10-27T13:33:07.135511"
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2263,
+      "checked_at": "2026-10-27T13:42:26.107925+00:00",
+      "error_type": "conn_refused",
+      "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 2332,
+          "ok": false,
+          "code": 0
+        },
+        {
+          "t": 1793108543,
+          "ms": 2263,
+          "ok": false,
+          "code": 0
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:26.107925+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://ongeki-net.com/",
@@ -60,9 +161,34 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 205,
-      "checked_at": "2026-10-27T13:33:07.347688"
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2351,
+      "checked_at": "2026-10-27T13:42:26.220905+00:00",
+      "error_type": "conn_refused",
+      "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 2394,
+          "ok": false,
+          "code": 0
+        },
+        {
+          "t": 1793108543,
+          "ms": 2351,
+          "ok": false,
+          "code": 0
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:26.220905+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://my-aime.net/",
@@ -72,8 +198,33 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 691,
-      "checked_at": "2026-10-27T13:33:08.045231"
+      "elapsed_ms": 227,
+      "checked_at": "2026-10-27T13:42:24.056948+00:00",
+      "error_type": "access_denied",
+      "error_detail": "伺服器拒絕或限制存取 (可能受限於日本地區 IP、認證限制或 WAF 防護)",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 205,
+          "ok": false,
+          "code": 403
+        },
+        {
+          "t": 1793108543,
+          "ms": 227,
+          "ok": false,
+          "code": 403
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": null,
+        "last_failure_at": "2026-10-27T13:42:24.056948+00:00",
+        "consecutive_failures": 2,
+        "total_checks": 2,
+        "successful_checks": 0,
+        "recent_uptime_percent": 0.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://maimai.sega.jp/",
@@ -83,8 +234,33 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 515,
-      "checked_at": "2026-10-27T13:33:08.567358"
+      "elapsed_ms": 231,
+      "checked_at": "2026-10-27T13:42:24.038900+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 218,
+          "ok": true,
+          "code": 200
+        },
+        {
+          "t": 1793108543,
+          "ms": 231,
+          "ok": true,
+          "code": 200
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": "2026-10-27T13:42:24.038900+00:00",
+        "last_failure_at": null,
+        "consecutive_failures": 0,
+        "total_checks": 2,
+        "successful_checks": 2,
+        "recent_uptime_percent": 100.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://maimai.sega.com/",
@@ -94,8 +270,33 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 701,
-      "checked_at": "2026-10-27T13:33:09.274767"
+      "elapsed_ms": 294,
+      "checked_at": "2026-10-27T13:42:24.116268+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 220,
+          "ok": true,
+          "code": 200
+        },
+        {
+          "t": 1793108543,
+          "ms": 294,
+          "ok": true,
+          "code": 200
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": "2026-10-27T13:42:24.116268+00:00",
+        "last_failure_at": null,
+        "consecutive_failures": 0,
+        "total_checks": 2,
+        "successful_checks": 2,
+        "recent_uptime_percent": 100.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://chunithm.sega.com/",
@@ -105,8 +306,33 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 801,
-      "checked_at": "2026-10-27T13:33:10.082687"
+      "elapsed_ms": 270,
+      "checked_at": "2026-10-27T13:42:24.115931+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 237,
+          "ok": true,
+          "code": 200
+        },
+        {
+          "t": 1793108543,
+          "ms": 270,
+          "ok": true,
+          "code": 200
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": "2026-10-27T13:42:24.115931+00:00",
+        "last_failure_at": null,
+        "consecutive_failures": 0,
+        "total_checks": 2,
+        "successful_checks": 2,
+        "recent_uptime_percent": 100.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://chunithm.sega.jp/",
@@ -116,8 +342,33 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 393,
-      "checked_at": "2026-10-27T13:33:10.482773"
+      "elapsed_ms": 251,
+      "checked_at": "2026-10-27T13:42:24.127267+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 209,
+          "ok": true,
+          "code": 200
+        },
+        {
+          "t": 1793108543,
+          "ms": 251,
+          "ok": true,
+          "code": 200
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": "2026-10-27T13:42:24.127267+00:00",
+        "last_failure_at": null,
+        "consecutive_failures": 0,
+        "total_checks": 2,
+        "successful_checks": 2,
+        "recent_uptime_percent": 100.0,
+        "sample_count": 2
+      }
     },
     {
       "url": "https://ongeki.sega.jp/",
@@ -127,8 +378,33 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 412,
-      "checked_at": "2026-10-27T13:33:10.901737"
+      "elapsed_ms": 233,
+      "checked_at": "2026-10-27T13:42:24.116319+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
+      "history": [
+        {
+          "t": 1793108271,
+          "ms": 241,
+          "ok": true,
+          "code": 200
+        },
+        {
+          "t": 1793108543,
+          "ms": 233,
+          "ok": true,
+          "code": 200
+        }
+      ],
+      "diagnostics": {
+        "last_success_at": "2026-10-27T13:42:24.116319+00:00",
+        "last_failure_at": null,
+        "consecutive_failures": 0,
+        "total_checks": 2,
+        "successful_checks": 2,
+        "recent_uptime_percent": 100.0,
+        "sample_count": 2
+      }
     }
   ]
 }

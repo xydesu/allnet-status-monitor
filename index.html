@@ -25,7 +25,7 @@
           <span class="brand-title">ALL.Net Sentinel</span>
         </a>
         <div class="nav-controls">
-          <input type="search" id="service-search" class="search-input" placeholder="過濾站點名稱或網址…" aria-label="過濾站點">
+          <input type="search" id="service-search" class="search-input" placeholder="搜尋站點名稱或網址…" aria-label="搜尋站點">
           
           <!-- 多語言切換選單 -->
           <select id="lang-select" class="nav-select" aria-label="切換語言">
@@ -50,155 +50,79 @@
 
         <div class="summary-strip">
           <div class="summary-cell">
-            <span id="stat-uptime" class="summary-num">45%</span>
+            <span id="stat-uptime" class="summary-num">--%</span>
             <span id="label-uptime" class="summary-tag">全體在線率</span>
           </div>
           <div class="summary-cell">
-            <span id="stat-online" class="summary-num healthy">05 / 11</span>
+            <span id="stat-online" class="summary-num healthy">-- / --</span>
             <span id="label-online" class="summary-tag">正常運行節點</span>
           </div>
           <div class="summary-cell">
-            <span id="stat-offline" class="summary-num alert">06</span>
+            <span id="stat-offline" class="summary-num alert">--</span>
             <span id="label-offline" class="summary-tag">異常離線節點</span>
           </div>
           <div class="summary-cell">
-            <span class="summary-num">60s</span>
+            <span id="stat-interval" class="summary-num">60s</span>
             <span id="label-interval" class="summary-tag">背景輪詢週期</span>
           </div>
+        </div>
+
+        <!-- 異常故障快速警示橫條 -->
+        <div id="incident-banner" class="incident-banner" role="status" aria-live="polite" style="display: none;">
+          <div class="incident-info">
+            <svg id="incident-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span id="incident-text">偵測到異常離線節點</span>
+          </div>
+          <button type="button" id="incident-filter-btn" class="incident-btn">僅看異常節點</button>
         </div>
       </section>
 
       <section class="stack-section" aria-labelledby="matrix-title">
-        <h2 id="matrix-title" class="group-title">服務節點狀態清單</h2>
+        <div class="toolbar-section">
+          <h2 id="matrix-title" class="group-title" style="margin-bottom:0;">服務節點狀態清單</h2>
+          
+          <!-- 狀態快速篩選 -->
+          <div class="filter-btn-group" role="group" aria-label="服務狀態篩選">
+            <button type="button" id="filter-all" class="filter-btn active" data-filter="all">全部</button>
+            <button type="button" id="filter-issues" class="filter-btn" data-filter="issues">僅異常</button>
+            <button type="button" id="filter-healthy" class="filter-btn" data-filter="healthy">僅正常</button>
+          </div>
+        </div>
 
         <!-- 街機玩家數據服務 (NET) -->
         <div class="stack-group" data-category="net">
-          <h3 id="cat-net-title" class="group-title">玩家數據服務 (Net)</h3>
-          <div class="service-table">
-            <a href="https://maimaidx-eng.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai DX (國際版 Net)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Maimai DX (國際版 Net)</span>
-                  <span class="service-domain">maimaidx-eng.com</span>
-                </div>
-              </div>
-              <span class="service-tag offline">連線被拒</span>
-            </a>
-            <a href="https://maimaidx.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai DX (日本版 Net)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Maimai DX (日本版 Net)</span>
-                  <span class="service-domain">maimaidx.jp</span>
-                </div>
-              </div>
-              <span class="service-tag offline">連線被拒</span>
-            </a>
-            <a href="https://new.chunithm-net.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm-Net (日本版)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Chunithm-Net (日本版)</span>
-                  <span class="service-domain">new.chunithm-net.com</span>
-                </div>
-              </div>
-              <span class="service-tag offline">503 維護</span>
-            </a>
-            <a href="https://chunithm-net-eng.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm-Net (國際版)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Chunithm-Net (國際版)</span>
-                  <span class="service-domain">chunithm-net-eng.com</span>
-                </div>
-              </div>
-              <span class="service-tag offline">連線被拒</span>
-            </a>
-            <a href="https://ongeki-net.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Ongeki-Net (音擊)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Ongeki-Net (音擊)</span>
-                  <span class="service-domain">ongeki-net.com</span>
-                </div>
-              </div>
-              <span class="service-tag offline">連線被拒</span>
-            </a>
+          <div class="group-header">
+            <h3 id="cat-net-title" class="group-title">玩家數據服務 (Net)</h3>
+            <span id="badge-cat-net" class="group-badge">--</span>
+          </div>
+          <div class="service-table" id="table-cat-net">
+            <!-- 動態渲染節點清單 -->
           </div>
         </div>
 
         <!-- 帳號與認證系統 (Aime) -->
         <div class="stack-group" data-category="aime">
-          <h3 id="cat-aime-title" class="group-title">帳號與認證系統 (Aime)</h3>
-          <div class="service-table">
-            <a href="https://my-aime.net/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Aime 服務平台 (my-aime)">
-              <div class="service-main">
-                <span class="beacon offline" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Aime 服務平台 (my-aime)</span>
-                  <span class="service-domain">my-aime.net (嚴格 200 限制)</span>
-                </div>
-              </div>
-              <span class="service-tag offline">403 日本限定</span>
-            </a>
+          <div class="group-header">
+            <h3 id="cat-aime-title" class="group-title">帳號與認證系統 (Aime)</h3>
+            <span id="badge-cat-aime" class="group-badge">--</span>
+          </div>
+          <div class="service-table" id="table-cat-aime">
+            <!-- 動態渲染節點清單 -->
           </div>
         </div>
 
         <!-- 遊戲官方網站 (Web) -->
         <div class="stack-group" data-category="web">
-          <h3 id="cat-web-title" class="group-title">遊戲官方網站 (Web)</h3>
-          <div class="service-table">
-            <a href="https://maimai.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai (日本官方網站)">
-              <div class="service-main">
-                <span class="beacon online" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Maimai (日本官方網站)</span>
-                  <span class="service-domain">maimai.sega.jp</span>
-                </div>
-              </div>
-              <span class="service-tag online">200 OK · 229ms</span>
-            </a>
-            <a href="https://maimai.sega.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai (國際官方網站)">
-              <div class="service-main">
-                <span class="beacon online" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Maimai (國際官方網站)</span>
-                  <span class="service-domain">maimai.sega.com</span>
-                </div>
-              </div>
-              <span class="service-tag online">200 OK · 252ms</span>
-            </a>
-            <a href="https://chunithm.sega.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm (國際官方網站)">
-              <div class="service-main">
-                <span class="beacon online" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Chunithm (國際官方網站)</span>
-                  <span class="service-domain">chunithm.sega.com</span>
-                </div>
-              </div>
-              <span class="service-tag online">200 OK · 222ms</span>
-            </a>
-            <a href="https://chunithm.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm (日本官方網站)">
-              <div class="service-main">
-                <span class="beacon online" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Chunithm (日本官方網站)</span>
-                  <span class="service-domain">chunithm.sega.jp</span>
-                </div>
-              </div>
-              <span class="service-tag online">200 OK · 178ms</span>
-            </a>
-            <a href="https://ongeki.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Ongeki (日本官方網站)">
-              <div class="service-main">
-                <span class="beacon online" aria-hidden="true"></span>
-                <div>
-                  <span class="service-name">Ongeki (日本官方網站)</span>
-                  <span class="service-domain">ongeki.sega.jp</span>
-                </div>
-              </div>
-              <span class="service-tag online">200 OK · 188ms</span>
-            </a>
+          <div class="group-header">
+            <h3 id="cat-web-title" class="group-title">遊戲官方網站 (Web)</h3>
+            <span id="badge-cat-web" class="group-badge">--</span>
+          </div>
+          <div class="service-table" id="table-cat-web">
+            <!-- 動態渲染節點清單 -->
           </div>
         </div>
       </section>
@@ -206,18 +130,18 @@
 
     <footer class="index-footer">
       <div class="footer-bar">
-        <div id="footer-system-text">ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒</div>
-        <div id="footer-updated">快照更新時間: 2026-10-27 21:02:18 (UTC)</div>
+        <div id="footer-system-text">ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒 (下次檢查：--s)</div>
+        <div id="footer-updated">快照更新時間: 載入中…</div>
       </div>
     </footer>
   </div>
 
   <script>
-    // ── 多語言翻譯字典 (i18n) ──
+    // ── 多語言字典 (i18n) ──
     const I18N = {
       'zh-Hant': {
         pageTitle: 'ALL.Net 服務在線狀態監控面板',
-        searchPlaceholder: '過濾站點名稱或網址…',
+        searchPlaceholder: '搜尋站點名稱或網址…',
         refreshBtn: '重新整理',
         refreshingBtn: '更新中…',
         heroHeadline: 'ALL.Net Telemetry',
@@ -230,16 +154,42 @@
         catNet: '玩家數據服務 (Net)',
         catAime: '帳號與認證系統 (Aime)',
         catWeb: '遊戲官方網站 (Web)',
-        footerSystem: 'ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒',
-        footerUpdatePrefix: '快照更新時間: ',
+        footerSystem: 'ALL.Net NOC Sentinel • 每 60 秒自動輪詢',
+        footerCountdown: ' (下次更新：%s秒後)',
+        footerUpdatePrefix: '快照時間: ',
+        footerFetchError: '狀態同步失敗，顯示前次快照',
+        incidentFound: '偵測到 %d 個服務節點回應異常，請點擊篩選以排查問題。',
+        incidentAllGood: '全系統 11 個監控端點正常運作中。',
+        btnViewIssues: '僅看異常節點',
+        btnViewAll: '檢視全部節點',
+        filterAll: '全部',
+        filterIssues: '僅異常',
+        filterHealthy: '僅正常',
+        badgeNormal: '200 正常',
         badgeMaint: '503 維護',
-        badgeJapanOnly: '403 日本限定',
+        badgeJapanOnly: '403 存取受限',
         badgeConnRefused: '連線被拒',
-        badgeNormal: '200 OK'
+        badgeTimeout: '連線逾時',
+        badgeDnsError: '網域解析失敗',
+        badgeClientError: 'HTTP 4xx 異常',
+        badgeServerError: 'HTTP 5xx 異常',
+        badgeNetworkError: '網路連線異常',
+        sparklinePending: '資料累積中',
+        diagTitle: '診斷說明：',
+        diagLastSuccess: '最近成功回應',
+        diagLastFailure: '最近異常時間',
+        diagConsecutiveFails: '連續失敗次數',
+        diagRecentUptime: '近期可用率 (1小時)',
+        diagSpec: '探測端點規格：HTTP/HTTPS 週期探測 (超時 10s)',
+        diagOpenSite: '開啟目標網站 ↗',
+        diagNever: '無記錄',
+        diagTimes: ' 次',
+        diagSamples: ' 樣本',
+        emptyFilter: '無符合條件之服務節點'
       },
       'en': {
         pageTitle: 'ALL.Net Service Status Sentinel',
-        searchPlaceholder: 'Filter services or URLs…',
+        searchPlaceholder: 'Search service or URL…',
         refreshBtn: 'Refresh',
         refreshingBtn: 'Updating…',
         heroHeadline: 'ALL.Net Telemetry',
@@ -253,15 +203,41 @@
         catAime: 'Authentication (Aime)',
         catWeb: 'Official Portals (Web)',
         footerSystem: 'ALL.Net NOC Sentinel • Polling cycle 60s',
-        footerUpdatePrefix: 'Snapshot updated: ',
+        footerCountdown: ' (Next check in %ss)',
+        footerUpdatePrefix: 'Snapshot: ',
+        footerFetchError: 'Sync failed, displaying cached snapshot',
+        incidentFound: '%d service node(s) currently experiencing issues. Click to isolate.',
+        incidentAllGood: 'All 11 telemetry endpoints operational.',
+        btnViewIssues: 'View Issues Only',
+        btnViewAll: 'View All Nodes',
+        filterAll: 'All',
+        filterIssues: 'Issues Only',
+        filterHealthy: 'Healthy Only',
+        badgeNormal: '200 OK',
         badgeMaint: '503 Maint',
-        badgeJapanOnly: '403 Japan Only',
+        badgeJapanOnly: '403 Restricted',
         badgeConnRefused: 'Conn Refused',
-        badgeNormal: '200 OK'
+        badgeTimeout: 'Timed Out',
+        badgeDnsError: 'DNS Error',
+        badgeClientError: 'HTTP 4xx',
+        badgeServerError: 'HTTP 5xx',
+        badgeNetworkError: 'Network Error',
+        sparklinePending: 'Accumulating',
+        diagTitle: 'Diagnostic Assessment: ',
+        diagLastSuccess: 'Last Success',
+        diagLastFailure: 'Last Failure',
+        diagConsecutiveFails: 'Consecutive Fails',
+        diagRecentUptime: 'Recent Uptime (1h)',
+        diagSpec: 'Probe Spec: Standard HTTP/HTTPS probe (10s timeout)',
+        diagOpenSite: 'Open Target ↗',
+        diagNever: 'Never',
+        diagTimes: ' fails',
+        diagSamples: ' samples',
+        emptyFilter: 'No matching service nodes'
       },
       'ja': {
         pageTitle: 'ALL.Net サービス稼働状況モニター',
-        searchPlaceholder: 'サイト名やURLで絞り込み…',
+        searchPlaceholder: 'サイト名やURLで検索…',
         refreshBtn: '更新する',
         refreshingBtn: '取得中…',
         heroHeadline: 'ALL.Net Telemetry',
@@ -275,16 +251,49 @@
         catAime: '認証基盤 (Aime)',
         catWeb: 'ゲーム公式サイト (Web)',
         footerSystem: 'ALL.Net NOC Sentinel • 巡回周期 60秒',
-        footerUpdatePrefix: '最終更新日時: ',
+        footerCountdown: ' (次回更新: %s秒後)',
+        footerUpdatePrefix: '最終更新: ',
+        footerFetchError: '取得失敗、キャッシュ快照を表示中',
+        incidentFound: '%d 件のサービスで障害を検知しました。絞り込みで詳細を確認してください。',
+        incidentAllGood: '全 11 箇所の監視エンドポイントは正常に稼働しています。',
+        btnViewIssues: '障害ノードのみ',
+        btnViewAll: 'すべて表示',
+        filterAll: 'すべて',
+        filterIssues: '異常のみ',
+        filterHealthy: '正常のみ',
+        badgeNormal: '200 正常',
         badgeMaint: '503 メンテ中',
-        badgeJapanOnly: '403 日本国内限定',
+        badgeJapanOnly: '403 アクセス制限',
         badgeConnRefused: '接続拒否',
-        badgeNormal: '200 OK'
+        badgeTimeout: 'タイムアウト',
+        badgeDnsError: 'DNS名前解決失敗',
+        badgeClientError: 'HTTP 4xx 異常',
+        badgeServerError: 'HTTP 5xx 異常',
+        badgeNetworkError: 'ネットワーク障害',
+        sparklinePending: 'データ蓄積中',
+        diagTitle: '診断情報: ',
+        diagLastSuccess: '最終成功日時',
+        diagLastFailure: '最終障害日時',
+        diagConsecutiveFails: '連続失敗回数',
+        diagRecentUptime: '直近稼働率 (1時間)',
+        diagSpec: 'プローブ仕様: HTTP/HTTPS 定期検査 (タイムアウト 10s)',
+        diagOpenSite: 'サイトを開く ↗',
+        diagNever: '記録なし',
+        diagTimes: ' 回',
+        diagSamples: ' サンプル',
+        emptyFilter: '該当するサービスノードがありません'
       }
     };
 
     let currentLang = localStorage.getItem('allnet_lang') || 'zh-Hant';
+    let currentFilter = 'all';
+    let currentSearchQuery = '';
+    let latestData = null;
+    let pollIntervalSeconds = 60;
+    let secondsToNextPoll = pollIntervalSeconds;
+    let isFetching = false;
 
+    // ── 語言切換應用 ──
     function applyLanguage(lang) {
       if (!I18N[lang]) lang = 'zh-Hant';
       currentLang = lang;
@@ -305,10 +314,13 @@
       document.getElementById('cat-net-title').textContent = t.catNet;
       document.getElementById('cat-aime-title').textContent = t.catAime;
       document.getElementById('cat-web-title').textContent = t.catWeb;
-      document.getElementById('footer-system-text').textContent = t.footerSystem;
 
       const langSelect = document.getElementById('lang-select');
       if (langSelect) langSelect.value = lang;
+
+      if (latestData) {
+        renderAll(latestData);
+      }
     }
 
     // ── 深色 / 淺色模式切換 ──
@@ -337,95 +349,374 @@
       langSelect.addEventListener('change', (e) => {
         applyLanguage(e.target.value);
         updateThemeBtnText();
-        loadStatus();
+      });
+    }
+
+    // ── 格式化狀態標籤 ──
+    function getStatusBadgeInfo(s, t) {
+      if (s.is_online) {
+        const msText = s.elapsed_ms > 0 ? ` · ${s.elapsed_ms}ms` : '';
+        return {
+          cssClass: 'online',
+          text: `${t.badgeNormal}${msText}`
+        };
+      }
+
+      const code = s.status_code || 0;
+      const type = s.error_type || '';
+
+      if (code === 503 || type === 'maintenance') {
+        return { cssClass: 'offline', text: t.badgeMaint };
+      }
+      if (code === 403 || type === 'access_denied') {
+        return { cssClass: 'offline', text: t.badgeJapanOnly };
+      }
+      if (type === 'timeout') {
+        return { cssClass: 'offline', text: t.badgeTimeout };
+      }
+      if (type === 'dns_error') {
+        return { cssClass: 'offline', text: t.badgeDnsError };
+      }
+      if (type === 'conn_refused') {
+        return { cssClass: 'offline', text: t.badgeConnRefused };
+      }
+      if (code >= 400 && code < 500) {
+        return { cssClass: 'offline', text: t.badgeClientError };
+      }
+      if (code >= 500) {
+        return { cssClass: 'offline', text: t.badgeServerError };
+      }
+      return { cssClass: 'offline', text: t.badgeNetworkError };
+    }
+
+    // ── 生成輕量純 SVG Sparkline 走勢圖 ──
+    function generateSparklineSVG(history, t) {
+      if (!Array.isArray(history) || history.length < 2) {
+        return `<span class="sparkline-insufficient">${t.sparklinePending}</span>`;
+      }
+      const w = 72;
+      const h = 20;
+      const p = 3;
+      const msList = history.map(item => Math.max(1, item.ms || 0));
+      const min = Math.min(...msList);
+      const max = Math.max(...msList);
+      const range = (max === min) ? 1 : (max - min);
+
+      const points = history.map((item, idx) => {
+        const x = p + (idx / (history.length - 1)) * (w - p * 2);
+        const y = (h - p) - ((item.ms - min) / range) * (h - p * 2);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+
+      const last = history[history.length - 1];
+      const strokeColor = last.ok ? 'var(--color-success)' : 'var(--color-error)';
+      const lastX = (w - p);
+      const lastY = (h - p) - ((last.ms - min) / range) * (h - p * 2);
+
+      return `
+        <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="${strokeColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="${points}" />
+          <circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2" fill="${strokeColor}" />
+        </svg>
+      `;
+    }
+
+    // ── 分組內智慧排序 (異常優先置頂) ──
+    function sortServicesInGroup(services) {
+      return [...services].sort((a, b) => {
+        // 異常者 (is_online === false) 置頂
+        if (a.is_online !== b.is_online) {
+          return a.is_online ? 1 : -1;
+        }
+        // 延遲高者在前
+        return (b.elapsed_ms || 0) - (a.elapsed_ms || 0);
+      });
+    }
+
+    // ── 格式化時間 ──
+    function formatTime(isoStr) {
+      if (!isoStr) return I18N[currentLang].diagNever;
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleString(currentLang, { hour12: false });
+      } catch (e) {
+        return isoStr;
+      }
+    }
+
+    // ── 渲染全部介面 ──
+    function renderAll(data) {
+      latestData = data;
+      const t = I18N[currentLang];
+      const services = Array.isArray(data.services) ? data.services : [];
+
+      const total = services.length;
+      const onlineCount = services.filter(s => s.is_online).length;
+      const offlineCount = total - onlineCount;
+      const uptimePct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 'N/A';
+
+      // 1. 頂部總覽四欄
+      document.getElementById('stat-uptime').textContent = uptimePct !== 'N/A' ? `${uptimePct}%` : 'N/A';
+      document.getElementById('stat-online').textContent = `${String(onlineCount).padStart(2, '0')} / ${total}`;
+      document.getElementById('stat-offline').textContent = String(offlineCount).padStart(2, '0');
+      document.getElementById('stat-interval').textContent = `${pollIntervalSeconds}s`;
+
+      // 2. 故障通知橫條
+      const incidentBanner = document.getElementById('incident-banner');
+      const incidentText = document.getElementById('incident-text');
+      const incidentBtn = document.getElementById('incident-filter-btn');
+
+      if (offlineCount > 0) {
+        incidentBanner.style.display = 'flex';
+        incidentText.textContent = t.incidentFound.replace('%d', offlineCount);
+        incidentBtn.textContent = currentFilter === 'issues' ? t.btnViewAll : t.btnViewIssues;
+      } else {
+        incidentBanner.style.display = 'none';
+      }
+
+      // 3. 篩選標籤數字更新
+      document.getElementById('filter-all').textContent = `${t.filterAll} (${total})`;
+      document.getElementById('filter-issues').textContent = `${t.filterIssues} (${offlineCount})`;
+      document.getElementById('filter-healthy').textContent = `${t.filterHealthy} (${onlineCount})`;
+
+      // 4. 群組分類劃分
+      const groups = {
+        'net': services.filter(s => s.category && s.category.includes('NET')),
+        'aime': services.filter(s => s.category && s.category.includes('Aime')),
+        'web': services.filter(s => s.category && s.category.includes('Web'))
+      };
+
+      for (const [key, list] of Object.entries(groups)) {
+        const tableEl = document.getElementById(`table-cat-${key}`);
+        const badgeEl = document.getElementById(`badge-cat-${key}`);
+        if (!tableEl) continue;
+
+        const groupOffline = list.filter(s => !s.is_online).length;
+        if (badgeEl) {
+          badgeEl.textContent = `${list.length - groupOffline} 正常 · ${groupOffline} 異常`;
+          if (groupOffline > 0) {
+            badgeEl.className = 'group-badge has-issue';
+          } else {
+            badgeEl.className = 'group-badge';
+          }
+        }
+
+        // 分組內排序：異常置頂
+        const sorted = sortServicesInGroup(list);
+        tableEl.innerHTML = '';
+
+        let visibleCount = 0;
+
+        sorted.forEach((s, idx) => {
+          const badge = getStatusBadgeInfo(s, t);
+          const diag = s.diagnostics || {};
+          const hist = s.history || [];
+          const domain = s.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+          const itemId = `item-${key}-${idx}`;
+          const drawerId = `drawer-${key}-${idx}`;
+
+          // 比對搜尋與過濾
+          const matchSearch = !currentSearchQuery || 
+            s.name.toLowerCase().includes(currentSearchQuery) || 
+            domain.toLowerCase().includes(currentSearchQuery);
+
+          let matchFilter = true;
+          if (currentFilter === 'issues') matchFilter = !s.is_online;
+          if (currentFilter === 'healthy') matchFilter = s.is_online;
+
+          const isVisible = matchSearch && matchFilter;
+          if (isVisible) visibleCount++;
+
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'service-item';
+          itemDiv.dataset.url = s.url;
+          itemDiv.dataset.name = s.name;
+          itemDiv.dataset.online = String(s.is_online);
+          itemDiv.style.display = isVisible ? 'block' : 'none';
+
+          const sparklineHtml = generateSparklineSVG(hist, t);
+          const errorDetailText = s.error_detail || s.reason || '正常運作中';
+
+          itemDiv.innerHTML = `
+            <div class="service-row" role="button" tabindex="0" aria-expanded="false" aria-controls="${drawerId}">
+              <div class="service-main">
+                <span class="beacon ${s.is_online ? 'online' : 'offline'}" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">${s.name}</span>
+                  <span class="service-domain">${domain}</span>
+                </div>
+              </div>
+              <div class="service-side">
+                <div class="sparkline-box" title="近期延遲趨勢 (最多 1 小時)">
+                  ${sparklineHtml}
+                </div>
+                <span class="service-tag ${badge.cssClass}">${badge.text}</span>
+                <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="service-drawer" id="${drawerId}">
+              <div class="diag-banner">
+                <strong>${t.diagTitle}</strong>${errorDetailText}
+              </div>
+              <div class="diag-grid">
+                <div class="diag-card">
+                  <div class="diag-lbl">${t.diagLastSuccess}</div>
+                  <div class="diag-val">${formatTime(diag.last_success_at)}</div>
+                </div>
+                <div class="diag-card">
+                  <div class="diag-lbl">${t.diagLastFailure}</div>
+                  <div class="diag-val">${formatTime(diag.last_failure_at)}</div>
+                </div>
+                <div class="diag-card">
+                  <div class="diag-lbl">${t.diagConsecutiveFails}</div>
+                  <div class="diag-val" style="color: ${diag.consecutive_failures > 0 ? 'var(--color-error)' : 'var(--color-success)'};">
+                    ${diag.consecutive_failures || 0}${t.diagTimes}
+                  </div>
+                </div>
+                <div class="diag-card">
+                  <div class="diag-lbl">${t.diagRecentUptime}</div>
+                  <div class="diag-val">
+                    ${typeof diag.recent_uptime_percent === 'number' ? diag.recent_uptime_percent.toFixed(1) + '%' : '100%'}
+                    (${diag.sample_count || hist.length}${t.diagSamples})
+                  </div>
+                </div>
+              </div>
+              <div class="diag-footer">
+                <span>${t.diagSpec}</span>
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="diag-link">
+                  ${t.diagOpenSite}
+                </a>
+              </div>
+            </div>
+          `;
+
+          // 綁定點擊展開抽屜與鍵盤操作
+          const rowEl = itemDiv.querySelector('.service-row');
+          const toggleDrawer = () => {
+            const isOpen = itemDiv.classList.toggle('is-open');
+            rowEl.setAttribute('aria-expanded', String(isOpen));
+          };
+
+          rowEl.addEventListener('click', toggleDrawer);
+          rowEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              toggleDrawer();
+            }
+          });
+
+          tableEl.appendChild(itemDiv);
+        });
+
+        if (visibleCount === 0) {
+          const emptyDiv = document.createElement('div');
+          emptyDiv.className = 'empty-state';
+          emptyDiv.textContent = t.emptyFilter;
+          tableEl.appendChild(emptyDiv);
+        }
+      }
+
+      // 5. 頁尾快照時間
+      if (data.updated_at) {
+        const d = new Date(data.updated_at);
+        document.getElementById('footer-updated').textContent = t.footerUpdatePrefix + d.toLocaleString(currentLang, { hour12: false });
+      }
+    }
+
+    // ── 篩選切換 ──
+    function setFilter(filterType) {
+      currentFilter = filterType;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === filterType) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      if (latestData) {
+        renderAll(latestData);
+      }
+    }
+
+    document.getElementById('filter-all').addEventListener('click', () => setFilter('all'));
+    document.getElementById('filter-issues').addEventListener('click', () => setFilter('issues'));
+    document.getElementById('filter-healthy').addEventListener('click', () => setFilter('healthy'));
+
+    document.getElementById('incident-filter-btn').addEventListener('click', () => {
+      setFilter(currentFilter === 'issues' ? 'all' : 'issues');
+    });
+
+    // ── 即時搜尋 ──
+    const searchInput = document.getElementById('service-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchQuery = e.target.value.trim().toLowerCase();
+        if (latestData) {
+          renderAll(latestData);
+        }
       });
     }
 
     // ── 狀態數據拉取 ──
     async function loadStatus() {
+      if (isFetching) return;
+      isFetching = true;
+
       const refreshBtn = document.getElementById('refresh-btn');
-      const t = I18N[currentLang] || I18N['zh-Hant'];
-      if (refreshBtn) refreshBtn.textContent = t.refreshingBtn;
+      const t = I18N[currentLang];
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = t.refreshingBtn;
+      }
 
       try {
         const res = await fetch('./status.json?t=' + Date.now());
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-
-        if (data.summary) {
-          const uptimeEl = document.getElementById('stat-uptime');
-          const onlineEl = document.getElementById('stat-online');
-          const offlineEl = document.getElementById('stat-offline');
-
-          if (uptimeEl) uptimeEl.textContent = data.summary.uptime_percent + '%';
-          if (onlineEl) onlineEl.textContent = String(data.summary.online).padStart(2, '0') + ' / ' + data.summary.total;
-          if (offlineEl) offlineEl.textContent = String(data.summary.offline).padStart(2, '0');
-        }
-
-        if (data.updated_at) {
-          const footerEl = document.getElementById('footer-updated');
-          const d = new Date(data.updated_at);
-          if (footerEl) footerEl.textContent = t.footerUpdatePrefix + d.toLocaleString(currentLang);
-        }
-
-        if (Array.isArray(data.services)) {
-          data.services.forEach(s => {
-            const row = document.querySelector(`.service-row[href="${s.url}"]`);
-            if (row) {
-              const beacon = row.querySelector('.beacon');
-              const tag = row.querySelector('.service-tag');
-
-              if (beacon && tag) {
-                if (s.is_online) {
-                  beacon.className = 'beacon online';
-                  tag.className = 'service-tag online';
-                  tag.textContent = `${t.badgeNormal} · ${s.elapsed_ms}ms`;
-                } else {
-                  beacon.className = 'beacon offline';
-                  tag.className = 'service-tag offline';
-                  if (s.status_code === 503) {
-                    tag.textContent = t.badgeMaint;
-                  } else if (s.status_code === 403) {
-                    tag.textContent = t.badgeJapanOnly;
-                  } else {
-                    tag.textContent = t.badgeConnRefused;
-                  }
-                }
-              }
-            }
-          });
-        }
+        renderAll(data);
+        secondsToNextPoll = pollIntervalSeconds;
       } catch (err) {
-        console.warn('載入 status.json 失敗，保留靜態快照內容:', err);
+        console.warn('載入 status.json 失敗，保留既有資料:', err);
+        const footerUpdated = document.getElementById('footer-updated');
+        if (footerUpdated) {
+          footerUpdated.textContent = t.footerFetchError;
+        }
       } finally {
-        if (refreshBtn) refreshBtn.textContent = t.refreshBtn;
+        isFetching = false;
+        if (refreshBtn) {
+          refreshBtn.disabled = false;
+          refreshBtn.textContent = t.refreshBtn;
+        }
       }
-    }
-
-    const searchInput = document.getElementById('service-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const q = e.target.value.trim().toLowerCase();
-        document.querySelectorAll('.service-row').forEach(row => {
-          const name = (row.dataset.name || '').toLowerCase();
-          const href = (row.getAttribute('href') || '').toLowerCase();
-          const match = !q || name.includes(q) || href.includes(q);
-          row.style.display = match ? 'flex' : 'none';
-        });
-      });
     }
 
     const refreshBtn = document.getElementById('refresh-btn');
     if (refreshBtn) {
-      refreshBtn.addEventListener('click', loadStatus);
+      refreshBtn.addEventListener('click', () => {
+        loadStatus();
+      });
     }
 
-    // 初始化語言與模式
+    // ── 秒數倒數計時 ──
+    setInterval(() => {
+      secondsToNextPoll--;
+      if (secondsToNextPoll <= 0) {
+        secondsToNextPoll = pollIntervalSeconds;
+        loadStatus();
+      }
+      const t = I18N[currentLang];
+      const footerSys = document.getElementById('footer-system-text');
+      if (footerSys) {
+        footerSys.textContent = t.footerSystem + t.footerCountdown.replace('%s', secondsToNextPoll);
+      }
+    }, 1000);
+
+    // ── 初始化 ──
     applyLanguage(currentLang);
     updateThemeBtnText();
-
-    // 15 秒非同步輪詢
-    setInterval(loadStatus, 15000);
+    loadStatus();
   </script>
 </body>
 </html>
