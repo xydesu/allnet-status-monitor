@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import unittest
+from unittest.mock import patch, MagicMock
+import json
+import os
+import sys
+
+# Windows 終端機 UTF-8 強制重設
+if sys.stdout is not None and hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if sys.stderr is not None and hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+import monitor
+
+class TestMonitorLogic(unittest.TestCase):
+
+    def test_strict_200_evaluation(self):
+        target = {
+            "name": "Aime 服務平台",
+            "url": "https://my-aime.net/",
+            "strict_200": True
+        }
+
+        # 模擬 200 (在線)
+        mock_resp = MagicMock()
+        mock_resp.status = 200
+        mock_resp.reason = "OK"
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.return_value.__enter__.return_value = mock_resp
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target)
+            self.assertTrue(res["is_online"])
+            self.assertEqual(res["status_code"], 200)
+
+        # 模擬 403 (離線)
+        import urllib.error
+        http_err = urllib.error.HTTPError("https://my-aime.net/", 403, "Forbidden", {}, None)
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.side_effect = http_err
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target)
+            self.assertFalse(res["is_online"])
+            self.assertEqual(res["status_code"], 403)
+
+    def test_normal_target_evaluation(self):
+        target = {
+            "name": "maimai (日本官方網站)",
+            "url": "https://maimai.sega.jp/",
+            "strict_200": False
+        }
+
+        # 模擬 200 -> 在線
+        mock_resp = MagicMock()
+        mock_resp.status = 200
+        mock_resp.reason = "OK"
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.return_value.__enter__.return_value = mock_resp
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target)
+            self.assertTrue(res["is_online"])
+
+        # 模擬 503 維護中 -> 離線
+        import urllib.error
+        http_err = urllib.error.HTTPError("https://maimai.sega.jp/", 503, "Service Unavailable", {}, None)
+        with patch("urllib.request.build_opener") as mock_opener:
+            mock_inst = MagicMock()
+            mock_inst.open.side_effect = http_err
+            mock_opener.return_value = mock_inst
+            res = monitor.check_target(target)
+            self.assertFalse(res["is_online"])
+
+    def test_build_discord_embed_categories(self):
+        results = [
+            {
+                "url": "https://url1",
+                "name": "NET 服務1",
+                "category": "🎮 玩家數據服務 (NET)",
+                "is_online": True,
+                "status_code": 200,
+                "reason": "OK",
+                "elapsed_ms": 120
+            },
+            {
+                "url": "https://url2",
+                "name": "NET 服務2",
+                "category": "🎮 玩家數據服務 (NET)",
+                "is_online": False,
+                "status_code": 503,
+                "reason": "Maintenance",
+                "elapsed_ms": 80
+            },
+            {
+                "url": "https://url3",
+                "name": "Aime 平台",
+                "category": "🪪 帳號與認證系統 (Aime)",
+                "is_online": False,
+                "status_code": 403,
+                "reason": "Forbidden",
+                "elapsed_ms": 60
+            }
+        ]
+        changed_urls = {"https://url2"}
+
+        embed = monitor.build_discord_embed(results, changed_urls, report_type="status_change")
+
+        # 檢查標題與動態條
+        self.assertIn("ALL.Net", embed["title"])
+        self.assertIn("▰", embed["description"])
+        self.assertIn("本次狀態異動", embed["description"])
+
+        # 檢查分類分組 fields (應有 2 個分類群組)
+        self.assertEqual(len(embed["fields"]), 2)
+        cat_names = [f["name"] for f in embed["fields"]]
+        self.assertTrue(any("玩家數據服務" in c for c in cat_names))
+        self.assertTrue(any("帳號與認證系統" in c for c in cat_names))
+
+        # 檢查已更新標籤
+        self.assertIn("[已更新]", embed["fields"][0]["value"])
+
+    def test_downward_compatible_load_state(self):
+        legacy_data = {
+            "https://url1": {"is_online": True, "status_code": 200}
+        }
+        with patch("os.path.isfile", return_value=True), \
+             patch("builtins.open", unittest.mock.mock_open(read_data=json.dumps(legacy_data))):
+            loaded = monitor.load_state()
+            self.assertIn("urls", loaded)
+            self.assertIn("https://url1", loaded["urls"])
+
+if __name__ == "__main__":
+    unittest.main()

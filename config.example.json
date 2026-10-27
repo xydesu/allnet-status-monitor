@@ -1,0 +1,77 @@
+{
+  "discord_webhook_url": "YOUR_DISCORD_WEBHOOK_URL_HERE",
+  "check_interval_seconds": 60,
+  "timeout_seconds": 10,
+  "proxy": null,
+  "send_on_startup": true,
+  "daily_report_enabled": true,
+  "daily_report_time": "09:00",
+  "targets": [
+    {
+      "name": "maimai DX (國際版 NET)",
+      "url": "https://maimaidx-eng.com/",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false
+    },
+    {
+      "name": "maimai DX (日本版 NET)",
+      "url": "https://maimaidx.jp/",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false
+    },
+    {
+      "name": "CHUNITHM-NET (日本版)",
+      "url": "https://new.chunithm-net.com/",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false
+    },
+    {
+      "name": "CHUNITHM-NET (國際版)",
+      "url": "https://chunithm-net-eng.com/",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false
+    },
+    {
+      "name": "O.N.G.E.K.I. (音擊 NET)",
+      "url": "https://ongeki-net.com/",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false
+    },
+    {
+      "name": "Aime 服務平台 (my-aime)",
+      "url": "https://my-aime.net/",
+      "category": "🪪 帳號與認證系統 (Aime)",
+      "strict_200": true
+    },
+    {
+      "name": "maimai (日本官方網站)",
+      "url": "https://maimai.sega.jp/",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false
+    },
+    {
+      "name": "maimai (國際官方網站)",
+      "url": "https://maimai.sega.com/",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false
+    },
+    {
+      "name": "CHUNITHM (國際官方網站)",
+      "url": "https://chunithm.sega.com/",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false
+    },
+    {
+      "name": "CHUNITHM (日本官方網站)",
+      "url": "https://chunithm.sega.jp/",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false
+    },
+    {
+      "name": "O.N.G.E.K.I. (日本官方網站)",
+      "url": "https://ongeki.sega.jp/",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false
+    }
+  ]
+}

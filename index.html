@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ALL.Net 音樂遊戲與 Aime 服務即時健康度與在線狀態監控面板。">
+  <title id="page-title">ALL.Net 服務在線狀態監控面板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    const savedMode = localStorage.getItem('allnet_mode');
+    if (savedMode) document.documentElement.dataset.mode = savedMode;
+    const savedLang = localStorage.getItem('allnet_lang');
+    if (savedLang) document.documentElement.lang = savedLang;
+  </script>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <nav class="nav-bar" aria-label="主要導覽">
+        <a href="./" class="brand">
+          <img src="./assets/logo.png" alt="ALL.Net 標誌" class="brand-logo" width="28" height="28">
+          <span class="brand-title">ALL.Net Sentinel</span>
+        </a>
+        <div class="nav-controls">
+          <input type="search" id="service-search" class="search-input" placeholder="過濾站點名稱或網址…" aria-label="過濾站點">
+          
+          <!-- 多語言切換選單 -->
+          <select id="lang-select" class="nav-select" aria-label="切換語言">
+            <option value="zh-Hant">繁體中文</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+          </select>
+
+          <!-- 深淺色切換按鈕 -->
+          <button type="button" id="theme-toggle-btn" class="nav-select" aria-label="切換色彩模式">深色模式</button>
+          
+          <!-- 重新整理按鈕 -->
+          <button type="button" id="refresh-btn" class="key-btn">重新整理</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero-headline">ALL.Net Telemetry</h1>
+        <p id="hero-lead-text" class="hero-lead">全天候即時監控 11 個 SEGA 音樂遊戲官方網站與 Aime 認證網路之在線狀態與延遲。</p>
+
+        <div class="summary-strip">
+          <div class="summary-cell">
+            <span id="stat-uptime" class="summary-num">45%</span>
+            <span id="label-uptime" class="summary-tag">全體在線率</span>
+          </div>
+          <div class="summary-cell">
+            <span id="stat-online" class="summary-num healthy">05 / 11</span>
+            <span id="label-online" class="summary-tag">正常運行節點</span>
+          </div>
+          <div class="summary-cell">
+            <span id="stat-offline" class="summary-num alert">06</span>
+            <span id="label-offline" class="summary-tag">異常離線節點</span>
+          </div>
+          <div class="summary-cell">
+            <span class="summary-num">60s</span>
+            <span id="label-interval" class="summary-tag">背景輪詢週期</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stack-section" aria-labelledby="matrix-title">
+        <h2 id="matrix-title" class="group-title">服務節點狀態清單</h2>
+
+        <!-- 街機玩家數據服務 (NET) -->
+        <div class="stack-group" data-category="net">
+          <h3 id="cat-net-title" class="group-title">玩家數據服務 (Net)</h3>
+          <div class="service-table">
+            <a href="https://maimaidx-eng.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai DX (國際版 Net)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Maimai DX (國際版 Net)</span>
+                  <span class="service-domain">maimaidx-eng.com</span>
+                </div>
+              </div>
+              <span class="service-tag offline">連線被拒</span>
+            </a>
+            <a href="https://maimaidx.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai DX (日本版 Net)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Maimai DX (日本版 Net)</span>
+                  <span class="service-domain">maimaidx.jp</span>
+                </div>
+              </div>
+              <span class="service-tag offline">連線被拒</span>
+            </a>
+            <a href="https://new.chunithm-net.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm-Net (日本版)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Chunithm-Net (日本版)</span>
+                  <span class="service-domain">new.chunithm-net.com</span>
+                </div>
+              </div>
+              <span class="service-tag offline">503 維護</span>
+            </a>
+            <a href="https://chunithm-net-eng.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm-Net (國際版)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Chunithm-Net (國際版)</span>
+                  <span class="service-domain">chunithm-net-eng.com</span>
+                </div>
+              </div>
+              <span class="service-tag offline">連線被拒</span>
+            </a>
+            <a href="https://ongeki-net.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Ongeki-Net (音擊)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Ongeki-Net (音擊)</span>
+                  <span class="service-domain">ongeki-net.com</span>
+                </div>
+              </div>
+              <span class="service-tag offline">連線被拒</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 帳號與認證系統 (Aime) -->
+        <div class="stack-group" data-category="aime">
+          <h3 id="cat-aime-title" class="group-title">帳號與認證系統 (Aime)</h3>
+          <div class="service-table">
+            <a href="https://my-aime.net/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Aime 服務平台 (my-aime)">
+              <div class="service-main">
+                <span class="beacon offline" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Aime 服務平台 (my-aime)</span>
+                  <span class="service-domain">my-aime.net (嚴格 200 限制)</span>
+                </div>
+              </div>
+              <span class="service-tag offline">403 日本限定</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 遊戲官方網站 (Web) -->
+        <div class="stack-group" data-category="web">
+          <h3 id="cat-web-title" class="group-title">遊戲官方網站 (Web)</h3>
+          <div class="service-table">
+            <a href="https://maimai.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai (日本官方網站)">
+              <div class="service-main">
+                <span class="beacon online" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Maimai (日本官方網站)</span>
+                  <span class="service-domain">maimai.sega.jp</span>
+                </div>
+              </div>
+              <span class="service-tag online">200 OK · 229ms</span>
+            </a>
+            <a href="https://maimai.sega.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Maimai (國際官方網站)">
+              <div class="service-main">
+                <span class="beacon online" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Maimai (國際官方網站)</span>
+                  <span class="service-domain">maimai.sega.com</span>
+                </div>
+              </div>
+              <span class="service-tag online">200 OK · 252ms</span>
+            </a>
+            <a href="https://chunithm.sega.com/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm (國際官方網站)">
+              <div class="service-main">
+                <span class="beacon online" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Chunithm (國際官方網站)</span>
+                  <span class="service-domain">chunithm.sega.com</span>
+                </div>
+              </div>
+              <span class="service-tag online">200 OK · 222ms</span>
+            </a>
+            <a href="https://chunithm.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Chunithm (日本官方網站)">
+              <div class="service-main">
+                <span class="beacon online" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Chunithm (日本官方網站)</span>
+                  <span class="service-domain">chunithm.sega.jp</span>
+                </div>
+              </div>
+              <span class="service-tag online">200 OK · 178ms</span>
+            </a>
+            <a href="https://ongeki.sega.jp/" target="_blank" rel="noopener noreferrer" class="service-row" data-name="Ongeki (日本官方網站)">
+              <div class="service-main">
+                <span class="beacon online" aria-hidden="true"></span>
+                <div>
+                  <span class="service-name">Ongeki (日本官方網站)</span>
+                  <span class="service-domain">ongeki.sega.jp</span>
+                </div>
+              </div>
+              <span class="service-tag online">200 OK · 188ms</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="index-footer">
+      <div class="footer-bar">
+        <div id="footer-system-text">ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒</div>
+        <div id="footer-updated">快照更新時間: 2026-10-27 21:02:18 (UTC)</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ── 多語言翻譯字典 (i18n) ──
+    const I18N = {
+      'zh-Hant': {
+        pageTitle: 'ALL.Net 服務在線狀態監控面板',
+        searchPlaceholder: '過濾站點名稱或網址…',
+        refreshBtn: '重新整理',
+        refreshingBtn: '更新中…',
+        heroHeadline: 'ALL.Net Telemetry',
+        heroLead: '全天候即時監控 11 個 SEGA 音樂遊戲官方網站與 Aime 認證網路之在線狀態與延遲。',
+        labelUptime: '全體在線率',
+        labelOnline: '正常運行節點',
+        labelOffline: '異常離線節點',
+        labelInterval: '背景輪詢週期',
+        matrixTitle: '服務節點狀態清單',
+        catNet: '玩家數據服務 (Net)',
+        catAime: '帳號與認證系統 (Aime)',
+        catWeb: '遊戲官方網站 (Web)',
+        footerSystem: 'ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒',
+        footerUpdatePrefix: '快照更新時間: ',
+        badgeMaint: '503 維護',
+        badgeJapanOnly: '403 日本限定',
+        badgeConnRefused: '連線被拒',
+        badgeNormal: '200 OK'
+      },
+      'en': {
+        pageTitle: 'ALL.Net Service Status Sentinel',
+        searchPlaceholder: 'Filter services or URLs…',
+        refreshBtn: 'Refresh',
+        refreshingBtn: 'Updating…',
+        heroHeadline: 'ALL.Net Telemetry',
+        heroLead: 'Continuous real-time health telemetry across 11 SEGA rhythm game platforms and Aime networks.',
+        labelUptime: 'System Availability',
+        labelOnline: 'Online Nodes',
+        labelOffline: 'Offline Nodes',
+        labelInterval: 'Polling Cycle',
+        matrixTitle: 'Service Telemetry Matrix',
+        catNet: 'Player Services (Net)',
+        catAime: 'Authentication (Aime)',
+        catWeb: 'Official Portals (Web)',
+        footerSystem: 'ALL.Net NOC Sentinel • Polling cycle 60s',
+        footerUpdatePrefix: 'Snapshot updated: ',
+        badgeMaint: '503 Maint',
+        badgeJapanOnly: '403 Japan Only',
+        badgeConnRefused: 'Conn Refused',
+        badgeNormal: '200 OK'
+      },
+      'ja': {
+        pageTitle: 'ALL.Net サービス稼働状況モニター',
+        searchPlaceholder: 'サイト名やURLで絞り込み…',
+        refreshBtn: '更新する',
+        refreshingBtn: '取得中…',
+        heroHeadline: 'ALL.Net Telemetry',
+        heroLead: 'SEGA 音ゲー公式サイトおよび Aime 認証基盤の稼働状況と応答速度を24時間監視中。',
+        labelUptime: '稼働率',
+        labelOnline: '稼働中ノード',
+        labelOffline: '停止中ノード',
+        labelInterval: '監視間隔',
+        matrixTitle: 'サービス稼働リスト',
+        catNet: 'プレイヤーサービス (Net)',
+        catAime: '認証基盤 (Aime)',
+        catWeb: 'ゲーム公式サイト (Web)',
+        footerSystem: 'ALL.Net NOC Sentinel • 巡回周期 60秒',
+        footerUpdatePrefix: '最終更新日時: ',
+        badgeMaint: '503 メンテ中',
+        badgeJapanOnly: '403 日本国内限定',
+        badgeConnRefused: '接続拒否',
+        badgeNormal: '200 OK'
+      }
+    };
+
+    let currentLang = localStorage.getItem('allnet_lang') || 'zh-Hant';
+
+    function applyLanguage(lang) {
+      if (!I18N[lang]) lang = 'zh-Hant';
+      currentLang = lang;
+      localStorage.setItem('allnet_lang', lang);
+      document.documentElement.lang = lang;
+
+      const t = I18N[lang];
+      document.getElementById('page-title').textContent = t.pageTitle;
+      document.getElementById('service-search').placeholder = t.searchPlaceholder;
+      document.getElementById('refresh-btn').textContent = t.refreshBtn;
+      document.getElementById('hero-headline').textContent = t.heroHeadline;
+      document.getElementById('hero-lead-text').textContent = t.heroLead;
+      document.getElementById('label-uptime').textContent = t.labelUptime;
+      document.getElementById('label-online').textContent = t.labelOnline;
+      document.getElementById('label-offline').textContent = t.labelOffline;
+      document.getElementById('label-interval').textContent = t.labelInterval;
+      document.getElementById('matrix-title').textContent = t.matrixTitle;
+      document.getElementById('cat-net-title').textContent = t.catNet;
+      document.getElementById('cat-aime-title').textContent = t.catAime;
+      document.getElementById('cat-web-title').textContent = t.catWeb;
+      document.getElementById('footer-system-text').textContent = t.footerSystem;
+
+      const langSelect = document.getElementById('lang-select');
+      if (langSelect) langSelect.value = lang;
+    }
+
+    // ── 深色 / 淺色模式切換 ──
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    function updateThemeBtnText() {
+      const isDark = document.documentElement.dataset.mode === 'dark' || 
+        (!document.documentElement.dataset.mode && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (themeBtn) {
+        themeBtn.textContent = isDark ? (currentLang === 'en' ? 'Light Mode' : (currentLang === 'ja' ? 'ライト表示' : '淺色模式'))
+                                      : (currentLang === 'en' ? 'Dark Mode' : (currentLang === 'ja' ? 'ダーク表示' : '深色模式'));
+      }
+    }
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const currentMode = document.documentElement.dataset.mode;
+        const newMode = (currentMode === 'dark') ? 'light' : 'dark';
+        document.documentElement.dataset.mode = newMode;
+        localStorage.setItem('allnet_mode', newMode);
+        updateThemeBtnText();
+      });
+    }
+
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+      langSelect.addEventListener('change', (e) => {
+        applyLanguage(e.target.value);
+        updateThemeBtnText();
+        loadStatus();
+      });
+    }
+
+    // ── 狀態數據拉取 ──
+    async function loadStatus() {
+      const refreshBtn = document.getElementById('refresh-btn');
+      const t = I18N[currentLang] || I18N['zh-Hant'];
+      if (refreshBtn) refreshBtn.textContent = t.refreshingBtn;
+
+      try {
+        const res = await fetch('./status.json?t=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+
+        if (data.summary) {
+          const uptimeEl = document.getElementById('stat-uptime');
+          const onlineEl = document.getElementById('stat-online');
+          const offlineEl = document.getElementById('stat-offline');
+
+          if (uptimeEl) uptimeEl.textContent = data.summary.uptime_percent + '%';
+          if (onlineEl) onlineEl.textContent = String(data.summary.online).padStart(2, '0') + ' / ' + data.summary.total;
+          if (offlineEl) offlineEl.textContent = String(data.summary.offline).padStart(2, '0');
+        }
+
+        if (data.updated_at) {
+          const footerEl = document.getElementById('footer-updated');
+          const d = new Date(data.updated_at);
+          if (footerEl) footerEl.textContent = t.footerUpdatePrefix + d.toLocaleString(currentLang);
+        }
+
+        if (Array.isArray(data.services)) {
+          data.services.forEach(s => {
+            const row = document.querySelector(`.service-row[href="${s.url}"]`);
+            if (row) {
+              const beacon = row.querySelector('.beacon');
+              const tag = row.querySelector('.service-tag');
+
+              if (beacon && tag) {
+                if (s.is_online) {
+                  beacon.className = 'beacon online';
+                  tag.className = 'service-tag online';
+                  tag.textContent = `${t.badgeNormal} · ${s.elapsed_ms}ms`;
+                } else {
+                  beacon.className = 'beacon offline';
+                  tag.className = 'service-tag offline';
+                  if (s.status_code === 503) {
+                    tag.textContent = t.badgeMaint;
+                  } else if (s.status_code === 403) {
+                    tag.textContent = t.badgeJapanOnly;
+                  } else {
+                    tag.textContent = t.badgeConnRefused;
+                  }
+                }
+              }
+            }
+          });
+        }
+      } catch (err) {
+        console.warn('載入 status.json 失敗，保留靜態快照內容:', err);
+      } finally {
+        if (refreshBtn) refreshBtn.textContent = t.refreshBtn;
+      }
+    }
+
+    const searchInput = document.getElementById('service-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        document.querySelectorAll('.service-row').forEach(row => {
+          const name = (row.dataset.name || '').toLowerCase();
+          const href = (row.getAttribute('href') || '').toLowerCase();
+          const match = !q || name.includes(q) || href.includes(q);
+          row.style.display = match ? 'flex' : 'none';
+        });
+      });
+    }
+
+    const refreshBtn = document.getElementById('refresh-btn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', loadStatus);
+    }
+
+    // 初始化語言與模式
+    applyLanguage(currentLang);
+    updateThemeBtnText();
+
+    // 15 秒非同步輪詢
+    setInterval(loadStatus, 15000);
+  </script>
+</body>
+</html>

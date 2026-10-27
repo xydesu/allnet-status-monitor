@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Config & State (Secrets)
+.env
+config.json
+state.json
+
+# Tooling
+.hallmark/

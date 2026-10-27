@@ -1,0 +1,134 @@
+{
+  "system_name": "ALL.Net Service Monitor",
+  "updated_at": "2026-10-27T13:11:30.082462+00:00",
+  "summary": {
+    "total": 11,
+    "online": 5,
+    "offline": 6,
+    "uptime_percent": 45,
+    "status_text": "部分異常"
+  },
+  "services": [
+    {
+      "url": "https://maimaidx-eng.com/",
+      "name": "maimai DX (國際版 NET)",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false,
+      "is_online": false,
+      "status_code": 0,
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2281,
+      "checked_at": "2026-10-27T21:11:21.118716"
+    },
+    {
+      "url": "https://maimaidx.jp/",
+      "name": "maimai DX (日本版 NET)",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false,
+      "is_online": false,
+      "status_code": 0,
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2284,
+      "checked_at": "2026-10-27T21:11:23.425046"
+    },
+    {
+      "url": "https://new.chunithm-net.com/",
+      "name": "CHUNITHM-NET (日本版)",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false,
+      "is_online": false,
+      "status_code": 503,
+      "reason": "Service Unavailable",
+      "elapsed_ms": 254,
+      "checked_at": "2026-10-27T21:11:23.702430"
+    },
+    {
+      "url": "https://chunithm-net-eng.com/",
+      "name": "CHUNITHM-NET (國際版)",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false,
+      "is_online": false,
+      "status_code": 0,
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2239,
+      "checked_at": "2026-10-27T21:11:25.965486"
+    },
+    {
+      "url": "https://ongeki-net.com/",
+      "name": "O.N.G.E.K.I. (音擊 NET)",
+      "category": "🎮 玩家數據服務 (NET)",
+      "strict_200": false,
+      "is_online": false,
+      "status_code": 0,
+      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
+      "elapsed_ms": 2249,
+      "checked_at": "2026-10-27T21:11:28.240009"
+    },
+    {
+      "url": "https://my-aime.net/",
+      "name": "Aime 服務平台 (my-aime)",
+      "category": "🪪 帳號與認證系統 (Aime)",
+      "strict_200": true,
+      "is_online": false,
+      "status_code": 403,
+      "reason": "Forbidden",
+      "elapsed_ms": 192,
+      "checked_at": "2026-10-27T21:11:28.454870"
+    },
+    {
+      "url": "https://maimai.sega.jp/",
+      "name": "maimai (日本官方網站)",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false,
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 122,
+      "checked_at": "2026-10-27T21:11:28.601302"
+    },
+    {
+      "url": "https://maimai.sega.com/",
+      "name": "maimai (國際官方網站)",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false,
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 212,
+      "checked_at": "2026-10-27T21:11:28.838349"
+    },
+    {
+      "url": "https://chunithm.sega.com/",
+      "name": "CHUNITHM (國際官方網站)",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false,
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 180,
+      "checked_at": "2026-10-27T21:11:29.047692"
+    },
+    {
+      "url": "https://chunithm.sega.jp/",
+      "name": "CHUNITHM (日本官方網站)",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false,
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 156,
+      "checked_at": "2026-10-27T21:11:29.228992"
+    },
+    {
+      "url": "https://ongeki.sega.jp/",
+      "name": "O.N.G.E.K.I. (日本官方網站)",
+      "category": "🌐 遊戲官方網站 (Web)",
+      "strict_200": false,
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 224,
+      "checked_at": "2026-10-27T21:11:29.476923"
+    }
+  ]
+}
