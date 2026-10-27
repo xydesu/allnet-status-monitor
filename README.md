@@ -1,6 +1,6 @@
-# ALL.Net 服務在線狀態監控系統 (ALL.Net Status Monitor)
+# ALL<span>.</span>Net 服務在線狀態監控系統 (ALL<span>.</span>Net Status Monitor)
 
-針對 ALL.Net 旗下街機音樂遊戲（maimai DX、CHUNITHM、O.N.G.E.K.I.）個人數據服務 (NET)、官方網站與 Aime 認證平台開發的輕量化狀態監控工具。提供 Discord Webhook 結構化狀態推播與 GitHub Pages 靜態狀態儀表板。
+針對 ALL<span>.</span>Net 旗下街機音樂遊戲（maimai DX、CHUNITHM、O.N.G.E.K.I.）個人數據服務 (NET)、官方網站與 Aime 認證平台開發的輕量化狀態監控工具。提供 Discord Webhook 結構化狀態推播與 GitHub Pages 靜態狀態儀表板。
 
 ---
 
