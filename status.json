@@ -1,7 +1,7 @@
 {
   "system_name": "ALL.Net Sentinel Telemetry",
   "version": "2.1.0",
-  "updated_at": "2026-10-27T13:42:26.273462+00:00",
+  "updated_at": "2026-10-27T13:43:33.982714+00:00",
   "summary": {
     "total": 11,
     "online": 5,
@@ -17,33 +17,27 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2564,
-      "checked_at": "2026-10-27T13:42:26.268220+00:00",
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 203,
+      "checked_at": "2026-10-27T13:43:32.383404+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 2263,
-          "ok": false,
-          "code": 0
-        },
-        {
-          "t": 1793108543,
-          "ms": 2564,
+          "t": 1793108612,
+          "ms": 203,
           "ok": false,
           "code": 0
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:26.268220+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:32.383404+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -53,33 +47,27 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2261,
-      "checked_at": "2026-10-27T13:42:26.107726+00:00",
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 242,
+      "checked_at": "2026-10-27T13:43:32.426585+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 2263,
-          "ok": false,
-          "code": 0
-        },
-        {
-          "t": 1793108543,
-          "ms": 2261,
+          "t": 1793108612,
+          "ms": 242,
           "ok": false,
           "code": 0
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:26.107726+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:32.426585+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -90,32 +78,26 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Unavailable",
-      "elapsed_ms": 320,
-      "checked_at": "2026-10-27T13:42:24.203047+00:00",
+      "elapsed_ms": 1211,
+      "checked_at": "2026-10-27T13:43:33.400779+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 260,
-          "ok": false,
-          "code": 503
-        },
-        {
-          "t": 1793108543,
-          "ms": 320,
+          "t": 1793108612,
+          "ms": 1211,
           "ok": false,
           "code": 503
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:24.203047+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:33.400779+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -125,33 +107,27 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2263,
-      "checked_at": "2026-10-27T13:42:26.107925+00:00",
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 206,
+      "checked_at": "2026-10-27T13:43:32.393195+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 2332,
-          "ok": false,
-          "code": 0
-        },
-        {
-          "t": 1793108543,
-          "ms": 2263,
+          "t": 1793108612,
+          "ms": 206,
           "ok": false,
           "code": 0
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:26.107925+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:32.393195+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -161,33 +137,27 @@
       "strict_200": false,
       "is_online": false,
       "status_code": 0,
-      "reason": "連線失敗 ([WinError 10061] 無法連線，因為目標電腦拒絕連線。)",
-      "elapsed_ms": 2351,
-      "checked_at": "2026-10-27T13:42:26.220905+00:00",
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "elapsed_ms": 189,
+      "checked_at": "2026-10-27T13:43:32.379681+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 2394,
-          "ok": false,
-          "code": 0
-        },
-        {
-          "t": 1793108543,
-          "ms": 2351,
+          "t": 1793108612,
+          "ms": 189,
           "ok": false,
           "code": 0
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:26.220905+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:32.379681+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -198,32 +168,26 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 227,
-      "checked_at": "2026-10-27T13:42:24.056948+00:00",
+      "elapsed_ms": 689,
+      "checked_at": "2026-10-27T13:43:32.880951+00:00",
       "error_type": "access_denied",
       "error_detail": "伺服器拒絕或限制存取 (可能受限於日本地區 IP、認證限制或 WAF 防護)",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 205,
-          "ok": false,
-          "code": 403
-        },
-        {
-          "t": 1793108543,
-          "ms": 227,
+          "t": 1793108612,
+          "ms": 689,
           "ok": false,
           "code": 403
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T13:42:24.056948+00:00",
-        "consecutive_failures": 2,
-        "total_checks": 2,
+        "last_failure_at": "2026-10-27T13:43:32.880951+00:00",
+        "consecutive_failures": 1,
+        "total_checks": 1,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -234,32 +198,26 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 231,
-      "checked_at": "2026-10-27T13:42:24.038900+00:00",
+      "elapsed_ms": 586,
+      "checked_at": "2026-10-27T13:43:32.772016+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 218,
-          "ok": true,
-          "code": 200
-        },
-        {
-          "t": 1793108543,
-          "ms": 231,
+          "t": 1793108612,
+          "ms": 586,
           "ok": true,
           "code": 200
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:42:24.038900+00:00",
+        "last_success_at": "2026-10-27T13:43:32.772016+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 2,
-        "successful_checks": 2,
+        "total_checks": 1,
+        "successful_checks": 1,
         "recent_uptime_percent": 100.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -270,32 +228,26 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 294,
-      "checked_at": "2026-10-27T13:42:24.116268+00:00",
+      "elapsed_ms": 799,
+      "checked_at": "2026-10-27T13:43:32.989853+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 220,
-          "ok": true,
-          "code": 200
-        },
-        {
-          "t": 1793108543,
-          "ms": 294,
+          "t": 1793108612,
+          "ms": 799,
           "ok": true,
           "code": 200
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:42:24.116268+00:00",
+        "last_success_at": "2026-10-27T13:43:32.989853+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 2,
-        "successful_checks": 2,
+        "total_checks": 1,
+        "successful_checks": 1,
         "recent_uptime_percent": 100.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -306,32 +258,26 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 270,
-      "checked_at": "2026-10-27T13:42:24.115931+00:00",
+      "elapsed_ms": 688,
+      "checked_at": "2026-10-27T13:43:32.868114+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 237,
-          "ok": true,
-          "code": 200
-        },
-        {
-          "t": 1793108543,
-          "ms": 270,
+          "t": 1793108612,
+          "ms": 688,
           "ok": true,
           "code": 200
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:42:24.115931+00:00",
+        "last_success_at": "2026-10-27T13:43:32.868114+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 2,
-        "successful_checks": 2,
+        "total_checks": 1,
+        "successful_checks": 1,
         "recent_uptime_percent": 100.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -342,32 +288,26 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 251,
-      "checked_at": "2026-10-27T13:42:24.127267+00:00",
+      "elapsed_ms": 515,
+      "checked_at": "2026-10-27T13:43:32.698483+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 209,
-          "ok": true,
-          "code": 200
-        },
-        {
-          "t": 1793108543,
-          "ms": 251,
+          "t": 1793108612,
+          "ms": 515,
           "ok": true,
           "code": 200
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:42:24.127267+00:00",
+        "last_success_at": "2026-10-27T13:43:32.698483+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 2,
-        "successful_checks": 2,
+        "total_checks": 1,
+        "successful_checks": 1,
         "recent_uptime_percent": 100.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     },
     {
@@ -378,32 +318,26 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 233,
-      "checked_at": "2026-10-27T13:42:24.116319+00:00",
+      "elapsed_ms": 385,
+      "checked_at": "2026-10-27T13:43:32.576943+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793108271,
-          "ms": 241,
-          "ok": true,
-          "code": 200
-        },
-        {
-          "t": 1793108543,
-          "ms": 233,
+          "t": 1793108612,
+          "ms": 385,
           "ok": true,
           "code": 200
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T13:42:24.116319+00:00",
+        "last_success_at": "2026-10-27T13:43:32.576943+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 2,
-        "successful_checks": 2,
+        "total_checks": 1,
+        "successful_checks": 1,
         "recent_uptime_percent": 100.0,
-        "sample_count": 2
+        "sample_count": 1
       }
     }
   ]
