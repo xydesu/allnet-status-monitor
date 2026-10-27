@@ -1,7 +1,7 @@
 {
   "system_name": "ALL.Net Sentinel Telemetry",
   "version": "2.4.0",
-  "updated_at": "2026-10-27T18:55:37.112042+00:00",
+  "updated_at": "2026-10-27T22:49:23.743288+00:00",
   "probe_region": "GitHub Cloud (US-East)",
   "summary": {
     "total": 11,
@@ -15,7 +15,7 @@
     "current_availability_percent": 50.0,
     "historical_uptime_percent": 45.5,
     "is_preliminary": true,
-    "avg_healthy_latency_ms": 615,
+    "avg_healthy_latency_ms": 674,
     "probe_region": "GitHub Cloud (US-East)",
     "status_text": "5 個站點異常，1 個站點探測受阻"
   },
@@ -29,14 +29,14 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 333,
-      "checked_at": "2026-10-27T18:55:35.670704+00:00",
+      "elapsed_ms": 194,
+      "checked_at": "2026-10-27T22:49:21.973986+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 333,
+          "t": 1793141361,
+          "ms": 194,
           "ok": false,
           "code": 0,
           "err": "conn_refused"
@@ -44,7 +44,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:35.670704+00:00",
+        "last_failure_at": "2026-10-27T22:49:21.973986+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -64,14 +64,14 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 340,
-      "checked_at": "2026-10-27T18:55:35.672409+00:00",
+      "elapsed_ms": 190,
+      "checked_at": "2026-10-27T22:49:21.971844+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 340,
+          "t": 1793141361,
+          "ms": 190,
           "ok": false,
           "code": 0,
           "err": "conn_refused"
@@ -79,7 +79,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:35.672409+00:00",
+        "last_failure_at": "2026-10-27T22:49:21.971844+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -99,14 +99,14 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Unavailable",
-      "elapsed_ms": 1233,
-      "checked_at": "2026-10-27T18:55:36.573662+00:00",
+      "elapsed_ms": 1493,
+      "checked_at": "2026-10-27T22:49:23.280174+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 1233,
+          "t": 1793141361,
+          "ms": 1493,
           "ok": false,
           "code": 503,
           "err": "maintenance"
@@ -114,7 +114,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:36.573662+00:00",
+        "last_failure_at": "2026-10-27T22:49:23.280174+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -134,14 +134,14 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 351,
-      "checked_at": "2026-10-27T18:55:35.690215+00:00",
+      "elapsed_ms": 195,
+      "checked_at": "2026-10-27T22:49:21.981456+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 351,
+          "t": 1793141361,
+          "ms": 195,
           "ok": false,
           "code": 0,
           "err": "conn_refused"
@@ -149,7 +149,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:35.690215+00:00",
+        "last_failure_at": "2026-10-27T22:49:21.981456+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -169,14 +169,14 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 349,
-      "checked_at": "2026-10-27T18:55:35.682064+00:00",
+      "elapsed_ms": 217,
+      "checked_at": "2026-10-27T22:49:22.003321+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 349,
+          "t": 1793141361,
+          "ms": 217,
           "ok": false,
           "code": 0,
           "err": "conn_refused"
@@ -184,7 +184,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:35.682064+00:00",
+        "last_failure_at": "2026-10-27T22:49:22.003321+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -204,14 +204,14 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 727,
-      "checked_at": "2026-10-27T18:55:36.068988+00:00",
+      "elapsed_ms": 665,
+      "checked_at": "2026-10-27T22:49:22.446200+00:00",
       "error_type": "geo_blocked",
       "error_detail": "探測端地區受阻 (目標限制日本國內 IP 存取，非官方伺服器停機)",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 727,
+          "t": 1793141361,
+          "ms": 665,
           "ok": false,
           "code": 403,
           "err": "geo_blocked"
@@ -219,7 +219,7 @@
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-27T18:55:36.068988+00:00",
+        "last_failure_at": "2026-10-27T22:49:22.446200+00:00",
         "consecutive_failures": 1,
         "total_checks": 1,
         "successful_checks": 0,
@@ -239,21 +239,21 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 411,
-      "checked_at": "2026-10-27T18:55:35.741080+00:00",
+      "elapsed_ms": 514,
+      "checked_at": "2026-10-27T22:49:22.299339+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 411,
+          "t": 1793141361,
+          "ms": 514,
           "ok": true,
           "code": 200,
           "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T18:55:35.741080+00:00",
+        "last_success_at": "2026-10-27T22:49:22.299339+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
         "total_checks": 1,
@@ -274,21 +274,21 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 736,
-      "checked_at": "2026-10-27T18:55:36.074153+00:00",
+      "elapsed_ms": 837,
+      "checked_at": "2026-10-27T22:49:22.615324+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 736,
+          "t": 1793141361,
+          "ms": 837,
           "ok": true,
           "code": 200,
           "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T18:55:36.074153+00:00",
+        "last_success_at": "2026-10-27T22:49:22.615324+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
         "total_checks": 1,
@@ -309,21 +309,21 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 845,
-      "checked_at": "2026-10-27T18:55:36.184854+00:00",
+      "elapsed_ms": 869,
+      "checked_at": "2026-10-27T22:49:22.641766+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 845,
+          "t": 1793141361,
+          "ms": 869,
           "ok": true,
           "code": 200,
           "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T18:55:36.184854+00:00",
+        "last_success_at": "2026-10-27T22:49:22.641766+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
         "total_checks": 1,
@@ -344,21 +344,21 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 420,
-      "checked_at": "2026-10-27T18:55:35.762280+00:00",
+      "elapsed_ms": 546,
+      "checked_at": "2026-10-27T22:49:22.329655+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 420,
+          "t": 1793141361,
+          "ms": 546,
           "ok": true,
           "code": 200,
           "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T18:55:35.762280+00:00",
+        "last_success_at": "2026-10-27T22:49:22.329655+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
         "total_checks": 1,
@@ -379,21 +379,21 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 665,
-      "checked_at": "2026-10-27T18:55:36.006671+00:00",
+      "elapsed_ms": 602,
+      "checked_at": "2026-10-27T22:49:22.388744+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
         {
-          "t": 1793127335,
-          "ms": 665,
+          "t": 1793141361,
+          "ms": 602,
           "ok": true,
           "code": 200,
           "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-27T18:55:36.006671+00:00",
+        "last_success_at": "2026-10-27T22:49:22.388744+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
         "total_checks": 1,
