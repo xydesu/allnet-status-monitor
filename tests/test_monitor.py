@@ -185,9 +185,18 @@ class TestMonitorLogic(unittest.TestCase):
                 }
             }
         }
-        with patch("builtins.open", unittest.mock.mock_open()) as mock_f:
+        written_data = None
+        def mock_json_dump(obj, f, **kwargs):
+            nonlocal written_data
+            written_data = obj
+
+        with patch("builtins.open", unittest.mock.mock_open()), \
+             patch("json.dump", side_effect=mock_json_dump):
             monitor.export_status_json(results, state=state)
-            mock_f.assert_called_with(monitor.STATUS_JSON_FILE, "w", encoding="utf-8")
+            self.assertIsNotNone(written_data)
+            self.assertIn("current_availability_percent", written_data["summary"])
+            self.assertIn("historical_uptime_percent", written_data["summary"])
+            self.assertEqual(written_data["services"][0]["diagnostics"]["probe_type"], "HTTP/HTTPS 標頭探測")
 
 if __name__ == "__main__":
     unittest.main()

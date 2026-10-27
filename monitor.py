@@ -190,29 +190,42 @@ def export_status_json(results, state=None):
     hist_map = (state.get("history") or {}) if state else {}
     diag_map = (state.get("diagnostics") or {}) if state else {}
 
+    # 計算滾動 1 小時全體總樣本成功率
+    total_samples = 0
+    successful_samples = 0
+    for h_list in hist_map.values():
+        total_samples += len(h_list)
+        successful_samples += sum(1 for h in h_list if h.get("ok", False))
+    historical_uptime_pct = round((successful_samples / total_samples) * 100, 1) if total_samples > 0 else pct
+
     enriched_services = []
     for r in results:
         url = r["url"]
         enriched = dict(r)
         enriched["history"] = hist_map.get(url, [])
-        enriched["diagnostics"] = diag_map.get(url, {
+        d_info = dict(diag_map.get(url, {
             "last_success_at": r["checked_at"] if r["is_online"] else None,
             "last_failure_at": r["checked_at"] if not r["is_online"] else None,
             "consecutive_failures": 0 if r["is_online"] else 1,
             "sample_count": len(enriched["history"]),
             "recent_uptime_percent": 100.0 if r["is_online"] else 0.0
-        })
+        }))
+        d_info["probe_type"] = "HTTP/HTTPS 標頭探測"
+        d_info["probe_timeout_seconds"] = 10
+        enriched["diagnostics"] = d_info
         enriched_services.append(enriched)
 
     data = {
         "system_name": "ALL.Net Sentinel Telemetry",
-        "version": "2.1.0",
+        "version": "2.2.0",
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "summary": {
             "total": total,
             "online": online_count,
             "offline": offline_count,
             "uptime_percent": pct,
+            "current_availability_percent": pct,
+            "historical_uptime_percent": historical_uptime_pct,
             "status_text": "全數在線" if online_count == total else ("全數離線" if online_count == 0 else f"{offline_count} 個節點異常")
         },
         "services": enriched_services
@@ -620,7 +633,8 @@ def run_check_cycle(config, current_state, dry_run=False, force_send=False, auto
             "t": now_unix,
             "ms": res["elapsed_ms"],
             "ok": res["is_online"],
-            "code": res["status_code"]
+            "code": res["status_code"],
+            "err": res.get("error_type", "ok")
         })
         if len(hist) > 60:
             hist = hist[-60:]

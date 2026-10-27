@@ -25,20 +25,42 @@
           <span class="brand-title">ALL.Net Sentinel</span>
         </a>
         <div class="nav-controls">
-          <input type="search" id="service-search" class="search-input" placeholder="搜尋站點名稱或網址…" aria-label="搜尋站點">
+          <!-- 搜尋框 (配放大鏡圖示) -->
+          <div class="search-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="service-search" class="search-input" placeholder="搜尋站點名稱或網址…" aria-label="搜尋站點">
+          </div>
           
-          <!-- 多語言切換選單 -->
-          <select id="lang-select" class="nav-select" aria-label="切換語言">
-            <option value="zh-Hant">繁體中文</option>
-            <option value="en">English</option>
-            <option value="ja">日本語</option>
-          </select>
+          <!-- 多語言圖示選單 (純圖示/符號風格) -->
+          <div class="nav-select-wrapper" title="切換語言 (Language)">
+            <svg class="nav-select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <select id="lang-select" class="nav-icon-select" aria-label="切換語言">
+              <option value="zh-Hant">繁</option>
+              <option value="en">EN</option>
+              <option value="ja">日</option>
+            </select>
+          </div>
 
-          <!-- 深淺色切換按鈕 -->
-          <button type="button" id="theme-toggle-btn" class="nav-select" aria-label="切換色彩模式">深色模式</button>
+          <!-- 深淺色模式切換純圖示按鈕 (無文字) -->
+          <button type="button" id="theme-toggle-btn" class="icon-btn" aria-label="切換深淺色模式" title="切換色彩模式">
+            <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
           
-          <!-- 重新整理按鈕 -->
-          <button type="button" id="refresh-btn" class="key-btn">重新整理</button>
+          <!-- 重新整理純圖示按鈕 (無文字) -->
+          <button type="button" id="refresh-btn" class="icon-btn" aria-label="重新整理狀態" title="手動重新整理 (Refresh)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
+            </svg>
+          </button>
         </div>
       </nav>
     </header>
@@ -51,7 +73,7 @@
         <div class="summary-strip">
           <div class="summary-cell">
             <span id="stat-uptime" class="summary-num">--%</span>
-            <span id="label-uptime" class="summary-tag">全體在線率</span>
+            <span id="label-uptime" class="summary-tag">即時在線率 (當前週期)</span>
           </div>
           <div class="summary-cell">
             <span id="stat-online" class="summary-num healthy">-- / --</span>
@@ -62,8 +84,8 @@
             <span id="label-offline" class="summary-tag">異常離線節點</span>
           </div>
           <div class="summary-cell">
-            <span id="stat-interval" class="summary-num">60s</span>
-            <span id="label-interval" class="summary-tag">背景輪詢週期</span>
+            <span id="stat-historical" class="summary-num">--%</span>
+            <span id="label-historical" class="summary-tag">全體歷史可用率 (滾動1h)</span>
           </div>
         </div>
 
@@ -130,7 +152,7 @@
 
     <footer class="index-footer">
       <div class="footer-bar">
-        <div id="footer-system-text">ALL.Net NOC Sentinel • 自動輪詢間隔 60 秒 (下次檢查：--s)</div>
+        <div id="footer-system-text">ALL.Net NOC Sentinel • 每 60 秒自動輪詢 (下次更新：--s)</div>
         <div id="footer-updated">快照更新時間: 載入中…</div>
       </div>
     </footer>
@@ -142,14 +164,12 @@
       'zh-Hant': {
         pageTitle: 'ALL.Net 服務在線狀態監控面板',
         searchPlaceholder: '搜尋站點名稱或網址…',
-        refreshBtn: '重新整理',
-        refreshingBtn: '更新中…',
         heroHeadline: 'ALL.Net Telemetry',
         heroLead: '全天候即時監控 11 個 SEGA 音樂遊戲官方網站與 Aime 認證網路之在線狀態與延遲。',
-        labelUptime: '全體在線率',
+        labelUptime: '即時在線率 (當前週期)',
         labelOnline: '正常運行節點',
         labelOffline: '異常離線節點',
-        labelInterval: '背景輪詢週期',
+        labelHistorical: '全體歷史可用率 (滾動1h)',
         matrixTitle: '服務節點狀態清單',
         catNet: '玩家數據服務 (Net)',
         catAime: '帳號與認證系統 (Aime)',
@@ -179,25 +199,25 @@
         diagLastSuccess: '最近成功回應',
         diagLastFailure: '最近異常時間',
         diagConsecutiveFails: '連續失敗次數',
-        diagRecentUptime: '近期可用率 (1小時)',
-        diagSpec: '探測端點規格：HTTP/HTTPS 週期探測 (超時 10s)',
+        diagRecentUptime: '節點滾動可用率 (1h)',
+        diagSpec: '探測端點規格：HTTP/HTTPS 標頭探測 • 逾時上限 10s • 端點直接探測',
         diagOpenSite: '開啟目標網站 ↗',
-        diagNever: '無記錄',
+        diagNever: '尚未記錄到成功回應',
+        diagNoFailure: '近期無異常記錄',
         diagTimes: ' 次',
         diagSamples: ' 樣本',
-        emptyFilter: '無符合條件之服務節點'
+        emptyFilter: '本分組無符合條件之節點',
+        resetFilter: '重設篩選條件 (顯示全部)'
       },
       'en': {
         pageTitle: 'ALL.Net Service Status Sentinel',
         searchPlaceholder: 'Search service or URL…',
-        refreshBtn: 'Refresh',
-        refreshingBtn: 'Updating…',
         heroHeadline: 'ALL.Net Telemetry',
         heroLead: 'Continuous real-time health telemetry across 11 SEGA rhythm game platforms and Aime networks.',
-        labelUptime: 'System Availability',
+        labelUptime: 'Current Availability (Cycle)',
         labelOnline: 'Online Nodes',
         labelOffline: 'Offline Nodes',
-        labelInterval: 'Polling Cycle',
+        labelHistorical: 'Historical Availability (1h)',
         matrixTitle: 'Service Telemetry Matrix',
         catNet: 'Player Services (Net)',
         catAime: 'Authentication (Aime)',
@@ -227,25 +247,25 @@
         diagLastSuccess: 'Last Success',
         diagLastFailure: 'Last Failure',
         diagConsecutiveFails: 'Consecutive Fails',
-        diagRecentUptime: 'Recent Uptime (1h)',
-        diagSpec: 'Probe Spec: Standard HTTP/HTTPS probe (10s timeout)',
+        diagRecentUptime: 'Rolling Availability (1h)',
+        diagSpec: 'Probe Spec: HTTP/HTTPS probe • 10s timeout • Direct Endpoint Probe',
         diagOpenSite: 'Open Target ↗',
-        diagNever: 'Never',
+        diagNever: 'No successful responses recorded',
+        diagNoFailure: 'No incidents recorded recently',
         diagTimes: ' fails',
         diagSamples: ' samples',
-        emptyFilter: 'No matching service nodes'
+        emptyFilter: 'No matching nodes in this category',
+        resetFilter: 'Reset Filters (Show All)'
       },
       'ja': {
         pageTitle: 'ALL.Net サービス稼働状況モニター',
         searchPlaceholder: 'サイト名やURLで検索…',
-        refreshBtn: '更新する',
-        refreshingBtn: '取得中…',
         heroHeadline: 'ALL.Net Telemetry',
         heroLead: 'SEGA 音ゲー公式サイトおよび Aime 認証基盤の稼働状況と応答速度を24時間監視中。',
-        labelUptime: '稼働率',
+        labelUptime: '即時稼働率 (現在周期)',
         labelOnline: '稼働中ノード',
         labelOffline: '停止中ノード',
-        labelInterval: '監視間隔',
+        labelHistorical: '全体累積稼働率 (直近1h)',
         matrixTitle: 'サービス稼働リスト',
         catNet: 'プレイヤーサービス (Net)',
         catAime: '認証基盤 (Aime)',
@@ -275,13 +295,15 @@
         diagLastSuccess: '最終成功日時',
         diagLastFailure: '最終障害日時',
         diagConsecutiveFails: '連続失敗回数',
-        diagRecentUptime: '直近稼働率 (1時間)',
-        diagSpec: 'プローブ仕様: HTTP/HTTPS 定期検査 (タイムアウト 10s)',
+        diagRecentUptime: 'ローリング稼働率 (1h)',
+        diagSpec: 'プローブ仕様: HTTP/HTTPS ヘッダー検査 • タイムアウト 10s • 直接測定',
         diagOpenSite: 'サイトを開く ↗',
-        diagNever: '記録なし',
+        diagNever: '成功レスポンスの記録なし',
+        diagNoFailure: '直近の障害記録なし',
         diagTimes: ' 回',
         diagSamples: ' サンプル',
-        emptyFilter: '該当するサービスノードがありません'
+        emptyFilter: '該当するサービスノードがありません',
+        resetFilter: 'フィルターを解除 (すべて表示)'
       }
     };
 
@@ -303,13 +325,12 @@
       const t = I18N[lang];
       document.getElementById('page-title').textContent = t.pageTitle;
       document.getElementById('service-search').placeholder = t.searchPlaceholder;
-      document.getElementById('refresh-btn').textContent = t.refreshBtn;
       document.getElementById('hero-headline').textContent = t.heroHeadline;
       document.getElementById('hero-lead-text').textContent = t.heroLead;
       document.getElementById('label-uptime').textContent = t.labelUptime;
       document.getElementById('label-online').textContent = t.labelOnline;
       document.getElementById('label-offline').textContent = t.labelOffline;
-      document.getElementById('label-interval').textContent = t.labelInterval;
+      document.getElementById('label-historical').textContent = t.labelHistorical;
       document.getElementById('matrix-title').textContent = t.matrixTitle;
       document.getElementById('cat-net-title').textContent = t.catNet;
       document.getElementById('cat-aime-title').textContent = t.catAime;
@@ -323,14 +344,38 @@
       }
     }
 
-    // ── 深色 / 淺色模式切換 ──
+    // ── 深色 / 淺色模式切換 (純 SVG 圖示風格) ──
     const themeBtn = document.getElementById('theme-toggle-btn');
-    function updateThemeBtnText() {
+    function updateThemeBtnIcon() {
       const isDark = document.documentElement.dataset.mode === 'dark' || 
         (!document.documentElement.dataset.mode && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
       if (themeBtn) {
-        themeBtn.textContent = isDark ? (currentLang === 'en' ? 'Light Mode' : (currentLang === 'ja' ? 'ライト表示' : '淺色模式'))
-                                      : (currentLang === 'en' ? 'Dark Mode' : (currentLang === 'ja' ? 'ダーク表示' : '深色模式'));
+        if (isDark) {
+          // 深色模式下顯示太陽 (點擊切換為淺色)
+          themeBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          `;
+          themeBtn.setAttribute('title', '切換為淺色模式 (Switch to Light Mode)');
+        } else {
+          // 淺色模式下顯示月亮 (點擊切換為深色)
+          themeBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          `;
+          themeBtn.setAttribute('title', '切換為深色模式 (Switch to Dark Mode)');
+        }
       }
     }
 
@@ -340,7 +385,7 @@
         const newMode = (currentMode === 'dark') ? 'light' : 'dark';
         document.documentElement.dataset.mode = newMode;
         localStorage.setItem('allnet_mode', newMode);
-        updateThemeBtnText();
+        updateThemeBtnIcon();
       });
     }
 
@@ -348,7 +393,7 @@
     if (langSelect) {
       langSelect.addEventListener('change', (e) => {
         applyLanguage(e.target.value);
-        updateThemeBtnText();
+        updateThemeBtnIcon();
       });
     }
 
@@ -389,7 +434,7 @@
       return { cssClass: 'offline', text: t.badgeNetworkError };
     }
 
-    // ── 生成輕量純 SVG Sparkline 走勢圖 ──
+    // ── 生成精準純 SVG Sparkline 走勢圖 (明確區分成功延遲、失敗點與時間缺口) ──
     function generateSparklineSVG(history, t) {
       if (!Array.isArray(history) || history.length < 2) {
         return `<span class="sparkline-insufficient">${t.sparklinePending}</span>`;
@@ -397,26 +442,79 @@
       const w = 72;
       const h = 20;
       const p = 3;
-      const msList = history.map(item => Math.max(1, item.ms || 0));
+
+      const okItems = history.filter(item => item.ok);
+      if (okItems.length === 0) {
+        // 全失敗：不畫假折線，畫紅色虛線基準與紅色警報點
+        const failDots = history.map((item, idx) => {
+          const x = p + (idx / (history.length - 1)) * (w - p * 2);
+          return `<circle cx="${x.toFixed(1)}" cy="${h - p}" r="1.5" fill="var(--color-error)" />`;
+        }).join('');
+        return `
+          <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="${p}" y1="${h - p}" x2="${w - p}" y2="${h - p}" stroke="var(--color-error)" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.6" />
+            ${failDots}
+          </svg>
+        `;
+      }
+
+      const msList = okItems.map(item => Math.max(1, item.ms || 0));
       const min = Math.min(...msList);
       const max = Math.max(...msList);
       const range = (max === min) ? 1 : (max - min);
 
-      const points = history.map((item, idx) => {
-        const x = p + (idx / (history.length - 1)) * (w - p * 2);
-        const y = (h - p) - ((item.ms - min) / range) * (h - p * 2);
-        return `${x.toFixed(1)},${y.toFixed(1)}`;
-      }).join(' ');
+      // 依時間序列分段繪製 (若兩次探測間隔超過 300 秒則中斷連線，不跨時間繪製誤導連續線)
+      let segments = [];
+      let currentSegment = [];
 
-      const last = history[history.length - 1];
-      const strokeColor = last.ok ? 'var(--color-success)' : 'var(--color-error)';
-      const lastX = (w - p);
-      const lastY = (h - p) - ((last.ms - min) / range) * (h - p * 2);
+      history.forEach((item, idx) => {
+        const x = p + (idx / (history.length - 1)) * (w - p * 2);
+        if (!item.ok) {
+          // 探測失敗點：中斷當前折線段
+          if (currentSegment.length > 0) {
+            segments.push(currentSegment);
+            currentSegment = [];
+          }
+        } else {
+          if (currentSegment.length > 0) {
+            const prev = history[idx - 1];
+            if (prev && (item.t - prev.t > 300)) {
+              // 探測缺失區間：中斷折線
+              segments.push(currentSegment);
+              currentSegment = [];
+            }
+          }
+          const y = (h - p) - ((item.ms - min) / range) * (h - p * 2);
+          currentSegment.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+        }
+      });
+      if (currentSegment.length > 0) segments.push(currentSegment);
+
+      const polylineHtml = segments.map(seg => `
+        <polyline fill="none" stroke="var(--color-success)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="${seg.join(' ')}" />
+      `).join('');
+
+      // 探測失敗的點於底線標示紅色小圓點 (不誤導為 0ms)
+      const failDotsHtml = history.map((item, idx) => {
+        if (item.ok) return '';
+        const x = p + (idx / (history.length - 1)) * (w - p * 2);
+        return `<circle cx="${x.toFixed(1)}" cy="${h - p}" r="1.5" fill="var(--color-error)" />`;
+      }).join('');
+
+      // 最後一個點若為成功則繪製實心綠點
+      const lastItem = history[history.length - 1];
+      let lastDotHtml = '';
+      if (lastItem && lastItem.ok) {
+        const lastX = w - p;
+        const lastY = (h - p) - ((lastItem.ms - min) / range) * (h - p * 2);
+        lastDotHtml = `<circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2" fill="var(--color-success)" />`;
+      }
 
       return `
         <svg class="sparkline-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
-          <polyline fill="none" stroke="${strokeColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="${points}" />
-          <circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2" fill="${strokeColor}" />
+          ${polylineHtml}
+          ${failDotsHtml}
+          ${lastDotHtml}
         </svg>
       `;
     }
@@ -424,7 +522,7 @@
     // ── 分組內智慧排序 (異常優先置頂) ──
     function sortServicesInGroup(services) {
       return [...services].sort((a, b) => {
-        // 異常者 (is_online === false) 置頂
+        // 異常者 (is_online === false) 置頂排在前面
         if (a.is_online !== b.is_online) {
           return a.is_online ? 1 : -1;
         }
@@ -434,14 +532,26 @@
     }
 
     // ── 格式化時間 ──
-    function formatTime(isoStr) {
-      if (!isoStr) return I18N[currentLang].diagNever;
+    function formatTime(isoStr, fallbackText) {
+      if (!isoStr) return fallbackText;
       try {
         const d = new Date(isoStr);
         return d.toLocaleString(currentLang, { hour12: false });
       } catch (e) {
         return isoStr;
       }
+    }
+
+    // ── 重設篩選器為全部 ──
+    function resetFilters() {
+      currentFilter = 'all';
+      currentSearchQuery = '';
+      const searchInput = document.getElementById('service-search');
+      if (searchInput) searchInput.value = '';
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === 'all');
+      });
+      if (latestData) renderAll(latestData);
     }
 
     // ── 渲染全部介面 ──
@@ -454,12 +564,16 @@
       const onlineCount = services.filter(s => s.is_online).length;
       const offlineCount = total - onlineCount;
       const uptimePct = total > 0 ? ((onlineCount / total) * 100).toFixed(1) : 'N/A';
+      
+      const histPct = data.summary && typeof data.summary.historical_uptime_percent === 'number'
+        ? data.summary.historical_uptime_percent.toFixed(1) + '%'
+        : (uptimePct !== 'N/A' ? `${uptimePct}%` : 'N/A');
 
-      // 1. 頂部總覽四欄
+      // 1. 頂部總覽四欄 (明確區分即時節點比例與歷史滾動可用率)
       document.getElementById('stat-uptime').textContent = uptimePct !== 'N/A' ? `${uptimePct}%` : 'N/A';
       document.getElementById('stat-online').textContent = `${String(onlineCount).padStart(2, '0')} / ${total}`;
       document.getElementById('stat-offline').textContent = String(offlineCount).padStart(2, '0');
-      document.getElementById('stat-interval').textContent = `${pollIntervalSeconds}s`;
+      document.getElementById('stat-historical').textContent = histPct;
 
       // 2. 故障通知橫條
       const incidentBanner = document.getElementById('incident-banner');
@@ -474,7 +588,7 @@
         incidentBanner.style.display = 'none';
       }
 
-      // 3. 篩選標籤數字更新
+      // 3. 篩選標籤數字動態更新
       document.getElementById('filter-all').textContent = `${t.filterAll} (${total})`;
       document.getElementById('filter-issues').textContent = `${t.filterIssues} (${offlineCount})`;
       document.getElementById('filter-healthy').textContent = `${t.filterHealthy} (${onlineCount})`;
@@ -494,11 +608,7 @@
         const groupOffline = list.filter(s => !s.is_online).length;
         if (badgeEl) {
           badgeEl.textContent = `${list.length - groupOffline} 正常 · ${groupOffline} 異常`;
-          if (groupOffline > 0) {
-            badgeEl.className = 'group-badge has-issue';
-          } else {
-            badgeEl.className = 'group-badge';
-          }
+          badgeEl.className = groupOffline > 0 ? 'group-badge has-issue' : 'group-badge';
         }
 
         // 分組內排序：異常置頂
@@ -512,7 +622,6 @@
           const diag = s.diagnostics || {};
           const hist = s.history || [];
           const domain = s.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-          const itemId = `item-${key}-${idx}`;
           const drawerId = `drawer-${key}-${idx}`;
 
           // 比對搜尋與過濾
@@ -563,11 +672,11 @@
               <div class="diag-grid">
                 <div class="diag-card">
                   <div class="diag-lbl">${t.diagLastSuccess}</div>
-                  <div class="diag-val">${formatTime(diag.last_success_at)}</div>
+                  <div class="diag-val">${formatTime(diag.last_success_at, t.diagNever)}</div>
                 </div>
                 <div class="diag-card">
                   <div class="diag-lbl">${t.diagLastFailure}</div>
-                  <div class="diag-val">${formatTime(diag.last_failure_at)}</div>
+                  <div class="diag-val">${formatTime(diag.last_failure_at, t.diagNoFailure)}</div>
                 </div>
                 <div class="diag-card">
                   <div class="diag-lbl">${t.diagConsecutiveFails}</div>
@@ -592,7 +701,7 @@
             </div>
           `;
 
-          // 綁定點擊展開抽屜與鍵盤操作
+          // 綁定點擊展開抽屜與鍵盤無障礙操作
           const rowEl = itemDiv.querySelector('.service-row');
           const toggleDrawer = () => {
             const isOpen = itemDiv.classList.toggle('is-open');
@@ -613,7 +722,11 @@
         if (visibleCount === 0) {
           const emptyDiv = document.createElement('div');
           emptyDiv.className = 'empty-state';
-          emptyDiv.textContent = t.emptyFilter;
+          emptyDiv.innerHTML = `
+            <p>${t.emptyFilter}</p>
+            <button type="button" class="reset-filter-btn">${t.resetFilter}</button>
+          `;
+          emptyDiv.querySelector('.reset-filter-btn').addEventListener('click', resetFilters);
           tableEl.appendChild(emptyDiv);
         }
       }
@@ -629,11 +742,7 @@
     function setFilter(filterType) {
       currentFilter = filterType;
       document.querySelectorAll('.filter-btn').forEach(btn => {
-        if (btn.dataset.filter === filterType) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
+        btn.classList.toggle('active', btn.dataset.filter === filterType);
       });
       if (latestData) {
         renderAll(latestData);
@@ -668,7 +777,7 @@
       const t = I18N[currentLang];
       if (refreshBtn) {
         refreshBtn.disabled = true;
-        refreshBtn.textContent = t.refreshingBtn;
+        refreshBtn.classList.add('is-spinning');
       }
 
       try {
@@ -687,7 +796,7 @@
         isFetching = false;
         if (refreshBtn) {
           refreshBtn.disabled = false;
-          refreshBtn.textContent = t.refreshBtn;
+          refreshBtn.classList.remove('is-spinning');
         }
       }
     }
@@ -715,7 +824,7 @@
 
     // ── 初始化 ──
     applyLanguage(currentLang);
-    updateThemeBtnText();
+    updateThemeBtnIcon();
     loadStatus();
   </script>
 </body>
