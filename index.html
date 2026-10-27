@@ -353,6 +353,11 @@
     let secondsToNextPoll = pollIntervalSeconds;
     let isFetching = false;
 
+    function setTextSafe(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+
     // ── 語言切換應用 ──
     function applyLanguage(lang) {
       if (!I18N[lang]) lang = 'zh-Hant';
@@ -361,19 +366,23 @@
       document.documentElement.lang = lang;
 
       const t = I18N[lang];
-      document.getElementById('page-title').textContent = t.pageTitle;
-      document.getElementById('service-search').placeholder = t.searchPlaceholder;
-      document.getElementById('hero-headline').textContent = t.heroHeadline;
-      document.getElementById('hero-lead-text').textContent = t.heroLead;
-      document.getElementById('label-uptime').textContent = t.labelUptime;
-      document.getElementById('label-online').textContent = t.labelOnline;
-      document.getElementById('label-offline').textContent = t.labelOffline;
-      document.getElementById('label-latency').textContent = t.labelLatency;
-      document.getElementById('matrix-title').textContent = t.matrixTitle;
-      document.getElementById('cat-net-title').textContent = t.catNet;
-      document.getElementById('cat-aime-title').textContent = t.catAime;
-      document.getElementById('cat-web-title').textContent = t.catWeb;
-      document.getElementById('incidents-title').textContent = t.incidentsTitle;
+      setTextSafe('page-title', t.pageTitle);
+      const searchEl = document.getElementById('service-search');
+      if (searchEl) searchEl.placeholder = t.searchPlaceholder;
+
+      const heroEl = document.getElementById('hero-title') || document.getElementById('hero-headline');
+      if (heroEl) heroEl.textContent = t.heroHeadline;
+
+      setTextSafe('hero-lead-text', t.heroLead);
+      setTextSafe('label-uptime', t.labelUptime);
+      setTextSafe('label-online', t.labelOnline);
+      setTextSafe('label-offline', t.labelOffline);
+      setTextSafe('label-latency', t.labelLatency);
+      setTextSafe('matrix-title', t.matrixTitle);
+      setTextSafe('cat-net-title', t.catNet);
+      setTextSafe('cat-aime-title', t.catAime);
+      setTextSafe('cat-web-title', t.catWeb);
+      setTextSafe('incidents-title', t.incidentsTitle);
 
       const langSelect = document.getElementById('lang-select');
       if (langSelect) langSelect.value = lang;
@@ -897,96 +906,6 @@
         }
       }
     }
-
-    // ── 篩選切換 ──
-    function setFilter(filterType) {
-      currentFilter = filterType;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === filterType);
-      });
-      if (latestData) {
-        renderAll(latestData);
-      }
-    }
-
-    document.getElementById('filter-all').addEventListener('click', () => setFilter('all'));
-    document.getElementById('filter-issues').addEventListener('click', () => setFilter('issues'));
-    document.getElementById('filter-healthy').addEventListener('click', () => setFilter('healthy'));
-
-    document.getElementById('incident-filter-btn').addEventListener('click', () => {
-      setFilter(currentFilter === 'issues' ? 'all' : 'issues');
-    });
-
-    // ── 即時搜尋 ──
-    const searchInput = document.getElementById('service-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        currentSearchQuery = e.target.value.trim().toLowerCase();
-        if (latestData) {
-          renderAll(latestData);
-        }
-      });
-    }
-
-    // ── 狀態數據拉取 ──
-    async function loadStatus() {
-      if (isFetching) return;
-      isFetching = true;
-
-      const refreshBtn = document.getElementById('refresh-btn');
-      const t = I18N[currentLang];
-      if (refreshBtn) {
-        refreshBtn.disabled = true;
-        refreshBtn.classList.add('is-spinning');
-      }
-
-      try {
-        const res = await fetch('./status.json?t=' + Date.now());
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        renderAll(data);
-        secondsToNextPoll = pollIntervalSeconds;
-      } catch (err) {
-        console.warn('載入 status.json 失敗，保留既有資料:', err);
-        const footerUpdated = document.getElementById('footer-updated');
-        if (footerUpdated) {
-          footerUpdated.textContent = t.footerFetchError;
-        }
-      } finally {
-        isFetching = false;
-        if (refreshBtn) {
-          refreshBtn.disabled = false;
-          refreshBtn.classList.remove('is-spinning');
-        }
-      }
-    }
-
-    const refreshBtn = document.getElementById('refresh-btn');
-    if (refreshBtn) {
-      refreshBtn.addEventListener('click', () => {
-        loadStatus();
-      });
-    }
-
-    // ── 秒數倒數計時 ──
-    setInterval(() => {
-      secondsToNextPoll--;
-      if (secondsToNextPoll <= 0) {
-        secondsToNextPoll = pollIntervalSeconds;
-        loadStatus();
-      }
-      const t = I18N[currentLang];
-      const footerSys = document.getElementById('footer-system-text');
-      if (footerSys) {
-        footerSys.textContent = t.footerSystem + t.footerCountdown.replace('%s', secondsToNextPoll);
-      }
-    }, 1000);
-
-    // ── 初始化 ──
-    applyLanguage(currentLang);
-    updateThemeBtnIcon();
-    loadStatus();
-  </script>
 
     // ── 篩選切換 ──
     function setFilter(filterType) {
