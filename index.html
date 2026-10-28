@@ -34,40 +34,43 @@
             <input type="search" id="service-search" class="search-input" placeholder="搜尋站點名稱或網址…" aria-label="搜尋站點">
           </div>
           
-          <!-- 多語言圖示選單 (純圖示/符號風格) -->
-          <div class="nav-select-wrapper" title="切換語言 (Language)">
-            <svg class="nav-select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <select id="lang-select" class="nav-icon-select" aria-label="切換語言">
-              <option value="zh-Hant">繁</option>
-              <option value="en">EN</option>
-              <option value="ja">日</option>
-            </select>
+          <!-- 導覽列純圖示操作按鈕群組 -->
+          <div class="nav-actions">
+            <!-- 多語言圖示選單 (純圖示/符號風格) -->
+            <div class="nav-select-wrapper" title="切換語言 (Language)">
+              <svg class="nav-select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <select id="lang-select" class="nav-icon-select" aria-label="切換語言">
+                <option value="zh-Hant">繁</option>
+                <option value="en">EN</option>
+                <option value="ja">日</option>
+              </select>
+            </div>
+
+            <!-- 深淺色模式切換純圖示按鈕 (無文字) -->
+            <button type="button" id="theme-toggle-btn" class="icon-btn" aria-label="切換深淺色模式" title="切換色彩模式">
+              <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+            
+            <!-- 重新整理純圖示按鈕 (無文字) -->
+            <button type="button" id="refresh-btn" class="icon-btn" aria-label="重新整理狀態" title="手動重新整理 (Refresh)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
+              </svg>
+            </button>
+
+            <!-- GitHub 原始碼儲存庫純圖示連結 (無文字) -->
+            <a href="https://github.com/xydesu/allnet-status-monitor" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub 原始碼庫" title="檢視 GitHub 原始碼庫 (Repository)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
           </div>
-
-          <!-- 深淺色模式切換純圖示按鈕 (無文字) -->
-          <button type="button" id="theme-toggle-btn" class="icon-btn" aria-label="切換深淺色模式" title="切換色彩模式">
-            <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-          
-          <!-- 重新整理純圖示按鈕 (無文字) -->
-          <button type="button" id="refresh-btn" class="icon-btn" aria-label="重新整理狀態" title="手動重新整理 (Refresh)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
-            </svg>
-          </button>
-
-          <!-- GitHub 原始碼儲存庫純圖示連結 (無文字) -->
-          <a href="https://github.com/xydesu/allnet-status-monitor" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub 原始碼庫" title="檢視 GitHub 原始碼庫 (Repository)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
         </div>
       </nav>
     </header>

@@ -54,6 +54,12 @@ html, body {
   gap: var(--space-xs);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
 .search-wrapper {
   position: relative;
   display: flex;
@@ -890,5 +896,309 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .key-btn, .service-row {
     transition: none;
+  }
+}
+
+/* ── Responsive Mobile Optimizations (行動端響應式排版優化) ── */
+@media (max-width: 768px) {
+  .shell {
+    padding-inline: var(--space-xs);
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* 導覽列：品牌靠左、按鈕靠右，搜尋列全寬換行至第二行 */
+  .nav-bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+    padding-block: var(--space-xs);
+  }
+
+  .brand {
+    flex-shrink: 0;
+    gap: var(--space-2xs);
+  }
+
+  .brand-logo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .brand-title {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .nav-controls {
+    display: contents;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-icon-select {
+    height: 32px;
+    padding: var(--space-3xs) var(--space-3xs) var(--space-3xs) var(--space-md);
+    font-size: 11px;
+  }
+
+  .nav-select-icon {
+    left: 4px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .search-wrapper {
+    order: 3;
+    width: 100%;
+    margin-top: var(--space-3xs);
+  }
+
+  .search-input {
+    width: 100%;
+    min-width: 0;
+    font-size: var(--text-xs);
+    height: 34px;
+    padding-left: var(--space-lg);
+  }
+
+  /* Hero 標題與引言在手機端適當縮放 */
+  .hero {
+    padding-block: var(--space-md);
+  }
+
+  .hero-headline {
+    font-size: 24px;
+    line-height: 1.15;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .hero-lead {
+    font-size: var(--text-xs);
+    line-height: 1.45;
+    margin-bottom: var(--space-md);
+  }
+
+  /* 總覽卡片：在手機端改為 2x2 網格，杜絕 4 欄擁擠破碎折行 */
+  .summary-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+  }
+
+  .summary-cell {
+    padding: var(--space-2xs);
+  }
+
+  .summary-num {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  .summary-tag {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  /* 故障警告橫條全寬堆疊 */
+  .incident-banner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  .incident-btn {
+    width: 100%;
+    text-align: center;
+    padding: var(--space-2xs) 0;
+  }
+
+  /* 矩陣工具列與篩選按鈕全寬平分 */
+  .toolbar-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .filter-btn-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .filter-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: var(--space-xs) var(--space-3xs);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* 分組標題 */
+  .group-header {
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-xs);
+  }
+
+  .group-title {
+    font-size: var(--text-sm);
+  }
+
+  .group-badge {
+    font-size: 11px;
+    padding: var(--space-3xs) var(--space-xs);
+  }
+
+  /* 站點行：在小螢幕隱藏行內迷你 Sparkline，給予名稱與狀態充裕橫向空間 */
+  .service-side .sparkline-box {
+    display: none;
+  }
+
+  .service-row {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .service-name {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .service-sub {
+    font-size: 11px;
+    gap: var(--space-2xs);
+    margin-top: var(--space-3xs);
+  }
+
+  .service-domain {
+    font-size: 11px;
+  }
+
+  .service-failure-hint {
+    font-size: 11px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .service-side {
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  .service-tag {
+    font-size: 11px;
+    padding: var(--space-3xs) var(--space-xs);
+  }
+
+  /* 展開抽屜內部適配 */
+  .service-drawer {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .uptime-strip-header {
+    font-size: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xs);
+  }
+
+  .diag-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+  }
+
+  .diag-card {
+    padding: var(--space-2xs) var(--space-xs);
+  }
+
+  .diag-lbl {
+    font-size: 11px;
+  }
+
+  .diag-val {
+    font-size: 12px;
+  }
+
+  .diag-banner {
+    font-size: 11px;
+    padding: var(--space-xs);
+  }
+
+  .diag-trend-box {
+    padding: var(--space-2xs) var(--space-xs);
+  }
+
+  .diag-trend-header {
+    font-size: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xs);
+  }
+
+  .diag-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+    font-size: 11px;
+  }
+
+  /* 異動記錄卡片在手機端排列 */
+  .incidents-card {
+    padding: var(--space-sm);
+  }
+
+  .incident-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+    padding: var(--space-xs);
+  }
+
+  .incident-meta {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  /* 頁尾垂直流動 */
+  .footer-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .footer-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 400px) {
+  .service-failure-hint {
+    max-width: 110px;
+  }
+
+  .summary-num {
+    font-size: 18px;
+  }
+
+  .brand-title {
+    font-size: 14px;
   }
 }
