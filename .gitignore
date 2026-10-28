@@ -6,10 +6,9 @@ __pycache__/
 venv/
 env/
 
-# Config & State (Secrets)
+# Config (Secrets)
 .env
 config.json
-state.json
 
 # Tooling
 .hallmark/

@@ -41,11 +41,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 檢查是否有檔案變動 (status.json)
-          if [[ -n $(git status --porcelain status.json) ]]; then
-            echo "偵測到狀態快照更新，正在提交變更..."
-            git add status.json
-            git commit -m "chore(telemetry): 自動更新 ALL.Net 服務狀態快照 [skip ci]"
+          # 檢查是否有檔案變動 (status.json 與 state.json)
+          if [[ -n $(git status --porcelain status.json state.json) ]]; then
+            echo "偵測到狀態快照與歷程數據更新，正在提交變更..."
+            git add status.json state.json
+            git commit -m "chore(telemetry): 自動更新 ALL.Net 服務狀態快照與歷程數據 [skip ci]"
             git push
           else
             echo "狀態無變動，略過提交。"

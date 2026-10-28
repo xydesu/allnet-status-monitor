@@ -158,32 +158,83 @@ def get_probe_region():
         return "GitHub Cloud (US-East)"
     return "本地端點 (Local/Asia-East)"
 
-def load_state():
-    if not os.path.isfile(STATE_FILE):
+def rebuild_state_from_status_json():
+    """當 state.json 遺失或處於全新虛擬機環境時，從既有的 status.json 自動繼承還原歷史紀錄"""
+    status_file = os.path.join(os.path.dirname(STATE_FILE), "status.json")
+    if not os.path.isfile(status_file):
         return None
     try:
-        with open(STATE_FILE, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-            if not isinstance(raw, dict):
-                return None
-            if "urls" not in raw:
-                raw = {
-                    "last_daily_report_date": None,
-                    "urls": raw,
-                    "history": {},
-                    "diagnostics": {},
-                    "recent_incidents": []
-                }
-            if "history" not in raw:
-                raw["history"] = {}
-            if "diagnostics" not in raw:
-                raw["diagnostics"] = {}
-            if "recent_incidents" not in raw:
-                raw["recent_incidents"] = []
-            return raw
+        with open(status_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, dict):
+            return None
+        services = data.get("services", [])
+        if not isinstance(services, list) or not services:
+            return None
+
+        urls_state = {}
+        history_state = {}
+        diagnostics_state = {}
+        for s in services:
+            url = s.get("url")
+            if not url:
+                continue
+            urls_state[url] = {
+                "is_online": s.get("is_online", False),
+                "status_code": s.get("status_code", 0),
+                "reason": s.get("reason", ""),
+                "checked_at": s.get("checked_at")
+            }
+            if "history" in s and isinstance(s["history"], list):
+                history_state[url] = s["history"]
+            if "diagnostics" in s and isinstance(s["diagnostics"], dict):
+                diagnostics_state[url] = s["diagnostics"]
+
+        return {
+            "last_daily_report_date": None,
+            "urls": urls_state,
+            "history": history_state,
+            "diagnostics": diagnostics_state,
+            "recent_incidents": data.get("incidents", [])
+        }
     except Exception as e:
-        print(f"[警告] 讀取 state.json 發生錯誤: {e}", flush=True)
+        print(f"[警告] 從 status.json 還原狀態失敗: {e}", flush=True)
         return None
+
+def load_state():
+    state = None
+    if os.path.isfile(STATE_FILE):
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+                if isinstance(raw, dict):
+                    if "urls" not in raw:
+                        raw = {
+                            "last_daily_report_date": None,
+                            "urls": raw,
+                            "history": {},
+                            "diagnostics": {},
+                            "recent_incidents": []
+                        }
+                    if "history" not in raw:
+                        raw["history"] = {}
+                    if "diagnostics" not in raw:
+                        raw["diagnostics"] = {}
+                    if "recent_incidents" not in raw:
+                        raw["recent_incidents"] = []
+                    state = raw
+        except Exception as e:
+            print(f"[警告] 讀取 state.json 發生錯誤: {e}", flush=True)
+
+    # 雙重防護：若 state.json 不存在或無歷程資料，嘗試從 status.json 自動繼承還原
+    has_history = state and state.get("history") and any(len(h) > 0 for h in state["history"].values())
+    if not has_history:
+        fallback_state = rebuild_state_from_status_json()
+        if fallback_state:
+            print("[資訊] 已自動從 status.json 繼承既有探測歷程與診斷狀態", flush=True)
+            return fallback_state
+
+    return state
 
 def save_state(state):
     try:
