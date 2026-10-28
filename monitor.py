@@ -332,7 +332,7 @@ def export_status_json(results, state=None):
 
 def git_push_status():
     try:
-        subprocess.run(["git", "add", "status.json"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["git", "add", "status.json", "state.json"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"], cwd=BASE_DIR)
         if diff_res.returncode != 0:
             subprocess.run(["git", "commit", "-m", "chore(telemetry): 自動更新 ALL.Net 服務狀態快照 [skip ci]"], cwd=BASE_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
