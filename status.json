@@ -1,23 +1,23 @@
 {
   "system_name": "ALL.Net Sentinel Telemetry",
   "version": "2.4.0",
-  "updated_at": "2026-10-28T19:45:45.941107+00:00",
+  "updated_at": "2026-10-28T23:37:23.324347+00:00",
   "probe_region": "GitHub Cloud (US-East)",
   "summary": {
     "total": 11,
     "evaluable_total": 10,
-    "online": 5,
-    "offline": 5,
+    "online": 7,
+    "offline": 3,
     "geo_blocked": 1,
-    "uptime_percent": 50.0,
-    "raw_uptime_percent": 45.5,
-    "adjusted_uptime_percent": 50.0,
-    "current_availability_percent": 50.0,
-    "historical_uptime_percent": 48.3,
+    "uptime_percent": 70.0,
+    "raw_uptime_percent": 63.6,
+    "adjusted_uptime_percent": 70.0,
+    "current_availability_percent": 70.0,
+    "historical_uptime_percent": 49.2,
     "is_preliminary": false,
-    "avg_healthy_latency_ms": 643,
+    "avg_healthy_latency_ms": 771,
     "probe_region": "GitHub Cloud (US-East)",
-    "status_text": "5 個站點異常，1 個站點探測受阻"
+    "status_text": "3 個站點異常，1 個站點探測受阻"
   },
   "incidents": [
     {
@@ -39,6 +39,26 @@
       "status_code": 503,
       "error_type": "maintenance",
       "reason": "伺服器回報服務維護中 (Service Temporarily Unavailable)"
+    },
+    {
+      "timestamp": "2026-10-28T23:37:21.333058+00:00",
+      "url": "https://new.chunithm-net.com/",
+      "name": "CHUNITHM-NET (日本版)",
+      "from_online": false,
+      "to_online": true,
+      "status_code": 200,
+      "error_type": "ok",
+      "reason": "服務正常回應"
+    },
+    {
+      "timestamp": "2026-10-28T23:37:21.333058+00:00",
+      "url": "https://chunithm-net-eng.com/",
+      "name": "CHUNITHM-NET (國際版)",
+      "from_online": false,
+      "to_online": true,
+      "status_code": 200,
+      "error_type": "ok",
+      "reason": "服務正常回應"
     }
   ],
   "services": [
@@ -50,8 +70,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 210,
-      "checked_at": "2026-10-28T19:45:44.327278+00:00",
+      "elapsed_ms": 220,
+      "checked_at": "2026-10-28T23:37:21.565412+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -164,16 +184,23 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793230641,
+          "ms": 220,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-28T19:45:44.327278+00:00",
-        "consecutive_failures": 16,
-        "total_checks": 16,
+        "last_failure_at": "2026-10-28T23:37:21.565412+00:00",
+        "consecutive_failures": 17,
+        "total_checks": 17,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -188,8 +215,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 356,
-      "checked_at": "2026-10-28T19:45:44.472066+00:00",
+      "elapsed_ms": 265,
+      "checked_at": "2026-10-28T23:37:21.632126+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -302,16 +329,23 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793230641,
+          "ms": 265,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-28T19:45:44.472066+00:00",
-        "consecutive_failures": 16,
-        "total_checks": 16,
+        "last_failure_at": "2026-10-28T23:37:21.632126+00:00",
+        "consecutive_failures": 17,
+        "total_checks": 17,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -323,13 +357,13 @@
       "name": "CHUNITHM-NET (日本版)",
       "category": "🎮 玩家數據服務 (NET)",
       "strict_200": false,
-      "is_online": false,
-      "status_code": 503,
-      "reason": "Service Unavailable",
-      "elapsed_ms": 1296,
-      "checked_at": "2026-10-28T19:45:45.415978+00:00",
-      "error_type": "maintenance",
-      "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 1425,
+      "checked_at": "2026-10-28T23:37:22.784965+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
       "history": [
         {
           "t": 1793108271,
@@ -440,16 +474,23 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1793230641,
+          "ms": 1425,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": null,
+        "last_success_at": "2026-10-28T23:37:22.784965+00:00",
         "last_failure_at": "2026-10-28T19:45:45.415978+00:00",
-        "consecutive_failures": 16,
-        "total_checks": 16,
-        "successful_checks": 0,
-        "recent_uptime_percent": 0.0,
-        "sample_count": 16,
+        "consecutive_failures": 0,
+        "total_checks": 17,
+        "successful_checks": 1,
+        "recent_uptime_percent": 5.9,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -461,13 +502,13 @@
       "name": "CHUNITHM-NET (國際版)",
       "category": "🎮 玩家數據服務 (NET)",
       "strict_200": false,
-      "is_online": false,
-      "status_code": 503,
-      "reason": "Service Temporarily Unavailable",
-      "elapsed_ms": 780,
-      "checked_at": "2026-10-28T19:45:44.894540+00:00",
-      "error_type": "maintenance",
-      "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
+      "is_online": true,
+      "status_code": 200,
+      "reason": "OK",
+      "elapsed_ms": 1162,
+      "checked_at": "2026-10-28T23:37:22.524102+00:00",
+      "error_type": "ok",
+      "error_detail": "服務正常回應",
       "history": [
         {
           "t": 1793108271,
@@ -578,16 +619,23 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1793230641,
+          "ms": 1162,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T14:27:46.874017+00:00",
+        "last_success_at": "2026-10-28T23:37:22.524102+00:00",
         "last_failure_at": "2026-10-28T19:45:44.894540+00:00",
-        "consecutive_failures": 1,
-        "total_checks": 16,
-        "successful_checks": 5,
-        "recent_uptime_percent": 31.2,
-        "sample_count": 16,
+        "consecutive_failures": 0,
+        "total_checks": 17,
+        "successful_checks": 6,
+        "recent_uptime_percent": 35.3,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -602,8 +650,8 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 201,
-      "checked_at": "2026-10-28T19:45:44.324033+00:00",
+      "elapsed_ms": 182,
+      "checked_at": "2026-10-28T23:37:21.536467+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
@@ -716,16 +764,23 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1793230641,
+          "ms": 182,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-28T19:45:44.324033+00:00",
-        "consecutive_failures": 16,
-        "total_checks": 16,
+        "last_failure_at": "2026-10-28T23:37:21.536467+00:00",
+        "consecutive_failures": 17,
+        "total_checks": 17,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -740,8 +795,8 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 706,
-      "checked_at": "2026-10-28T19:45:44.826949+00:00",
+      "elapsed_ms": 549,
+      "checked_at": "2026-10-28T23:37:21.909083+00:00",
       "error_type": "geo_blocked",
       "error_detail": "探測端地區受阻 (目標限制日本國內 IP 存取，非官方伺服器停機)",
       "history": [
@@ -854,16 +909,23 @@
           "ok": false,
           "code": 403,
           "err": "geo_blocked"
+        },
+        {
+          "t": 1793230641,
+          "ms": 549,
+          "ok": false,
+          "code": 403,
+          "err": "geo_blocked"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-10-28T19:45:44.826949+00:00",
-        "consecutive_failures": 16,
-        "total_checks": 16,
+        "last_failure_at": "2026-10-28T23:37:21.909083+00:00",
+        "consecutive_failures": 17,
+        "total_checks": 17,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -878,8 +940,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 341,
-      "checked_at": "2026-10-28T19:45:44.449454+00:00",
+      "elapsed_ms": 486,
+      "checked_at": "2026-10-28T23:37:21.844916+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -992,16 +1054,23 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793230641,
+          "ms": 486,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T19:45:44.449454+00:00",
+        "last_success_at": "2026-10-28T23:37:21.844916+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 16,
-        "successful_checks": 16,
+        "total_checks": 17,
+        "successful_checks": 17,
         "recent_uptime_percent": 100.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -1016,8 +1085,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 836,
-      "checked_at": "2026-10-28T19:45:44.954276+00:00",
+      "elapsed_ms": 549,
+      "checked_at": "2026-10-28T23:37:21.913053+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -1130,16 +1199,23 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793230641,
+          "ms": 549,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T19:45:44.954276+00:00",
+        "last_success_at": "2026-10-28T23:37:21.913053+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 16,
-        "successful_checks": 16,
+        "total_checks": 17,
+        "successful_checks": 17,
         "recent_uptime_percent": 100.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -1154,8 +1230,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 893,
-      "checked_at": "2026-10-28T19:45:45.012237+00:00",
+      "elapsed_ms": 695,
+      "checked_at": "2026-10-28T23:37:22.061737+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -1268,16 +1344,23 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793230641,
+          "ms": 695,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T19:45:45.012237+00:00",
+        "last_success_at": "2026-10-28T23:37:22.061737+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 16,
-        "successful_checks": 16,
+        "total_checks": 17,
+        "successful_checks": 17,
         "recent_uptime_percent": 100.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -1292,8 +1375,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 535,
-      "checked_at": "2026-10-28T19:45:44.643079+00:00",
+      "elapsed_ms": 593,
+      "checked_at": "2026-10-28T23:37:21.955643+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -1406,16 +1489,23 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793230641,
+          "ms": 593,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T19:45:44.643079+00:00",
+        "last_success_at": "2026-10-28T23:37:21.955643+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 16,
-        "successful_checks": 16,
+        "total_checks": 17,
+        "successful_checks": 17,
         "recent_uptime_percent": 100.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
@@ -1430,8 +1520,8 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 612,
-      "checked_at": "2026-10-28T19:45:44.733220+00:00",
+      "elapsed_ms": 488,
+      "checked_at": "2026-10-28T23:37:21.842493+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
@@ -1544,16 +1634,23 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1793230641,
+          "ms": 488,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-10-28T19:45:44.733220+00:00",
+        "last_success_at": "2026-10-28T23:37:21.842493+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 16,
-        "successful_checks": 16,
+        "total_checks": 17,
+        "successful_checks": 17,
         "recent_uptime_percent": 100.0,
-        "sample_count": 16,
+        "sample_count": 17,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
         "probe_region": "GitHub Cloud (US-East)",
