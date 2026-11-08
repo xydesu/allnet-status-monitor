@@ -1,7 +1,7 @@
 {
   "system_name": "ALL.Net Sentinel Telemetry",
   "version": "2.4.0",
-  "updated_at": "2026-11-08T01:53:52.586528+00:00",
+  "updated_at": "2026-11-08T08:26:49.329696+00:00",
   "probe_region": "GitHub Cloud (US-East)",
   "summary": {
     "total": 11,
@@ -13,9 +13,9 @@
     "raw_uptime_percent": 54.5,
     "adjusted_uptime_percent": 60.0,
     "current_availability_percent": 60.0,
-    "historical_uptime_percent": 61.1,
+    "historical_uptime_percent": 61.2,
     "is_preliminary": false,
-    "avg_healthy_latency_ms": 941,
+    "avg_healthy_latency_ms": 939,
     "probe_region": "GitHub Cloud (US-East)",
     "status_text": "4 個站點異常，1 個站點探測受阻"
   },
@@ -130,17 +130,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 2818,
-      "checked_at": "2026-11-08T01:53:52.581147+00:00",
+      "elapsed_ms": 2724,
+      "checked_at": "2026-11-08T08:26:49.326074+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 2564,
-          "ok": false,
-          "code": 0
-        },
         {
           "t": 1793109028,
           "ms": 2338,
@@ -553,15 +547,22 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 2724,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:52.581147+00:00",
+        "last_success_at": "2026-11-08T08:26:49.326074+00:00",
         "last_failure_at": "2026-11-03T15:53:33.748912+00:00",
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 37,
-        "recent_uptime_percent": 61.7,
+        "total_checks": 62,
+        "successful_checks": 38,
+        "recent_uptime_percent": 63.3,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
         "probe_timeout_seconds": 10,
@@ -577,17 +578,11 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "elapsed_ms": 673,
-      "checked_at": "2026-11-08T01:53:50.429732+00:00",
+      "elapsed_ms": 660,
+      "checked_at": "2026-11-08T08:26:47.260461+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 2261,
-          "ok": false,
-          "code": 0
-        },
         {
           "t": 1793109028,
           "ms": 2375,
@@ -1000,13 +995,20 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1794126406,
+          "ms": 660,
+          "ok": false,
+          "code": 503,
+          "err": "maintenance"
         }
       ],
       "diagnostics": {
         "last_success_at": "2026-11-03T15:53:34.395784+00:00",
-        "last_failure_at": "2026-11-08T01:53:50.429732+00:00",
-        "consecutive_failures": 19,
-        "total_checks": 61,
+        "last_failure_at": "2026-11-08T08:26:47.260461+00:00",
+        "consecutive_failures": 20,
+        "total_checks": 62,
         "successful_checks": 19,
         "recent_uptime_percent": 31.7,
         "sample_count": 60,
@@ -1024,17 +1026,11 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "elapsed_ms": 1495,
-      "checked_at": "2026-11-08T01:53:51.258678+00:00",
+      "elapsed_ms": 1120,
+      "checked_at": "2026-11-08T08:26:47.729131+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 320,
-          "ok": false,
-          "code": 503
-        },
         {
           "t": 1793109028,
           "ms": 276,
@@ -1447,13 +1443,20 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1794126406,
+          "ms": 1120,
+          "ok": false,
+          "code": 503,
+          "err": "maintenance"
         }
       ],
       "diagnostics": {
         "last_success_at": "2026-11-01T22:22:57.280797+00:00",
-        "last_failure_at": "2026-11-08T01:53:51.258678+00:00",
-        "consecutive_failures": 25,
-        "total_checks": 61,
+        "last_failure_at": "2026-11-08T08:26:47.729131+00:00",
+        "consecutive_failures": 26,
+        "total_checks": 62,
         "successful_checks": 13,
         "recent_uptime_percent": 21.7,
         "sample_count": 60,
@@ -1471,17 +1474,11 @@
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "elapsed_ms": 785,
-      "checked_at": "2026-11-08T01:53:50.547203+00:00",
+      "elapsed_ms": 584,
+      "checked_at": "2026-11-08T08:26:47.194200+00:00",
       "error_type": "maintenance",
       "error_detail": "伺服器回報服務維護中 (Service Temporarily Unavailable)",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 2263,
-          "ok": false,
-          "code": 0
-        },
         {
           "t": 1793109028,
           "ms": 2312,
@@ -1894,13 +1891,20 @@
           "ok": false,
           "code": 503,
           "err": "maintenance"
+        },
+        {
+          "t": 1794126406,
+          "ms": 584,
+          "ok": false,
+          "code": 503,
+          "err": "maintenance"
         }
       ],
       "diagnostics": {
         "last_success_at": "2026-11-05T08:50:56.764907+00:00",
-        "last_failure_at": "2026-11-08T01:53:50.547203+00:00",
-        "consecutive_failures": 12,
-        "total_checks": 61,
+        "last_failure_at": "2026-11-08T08:26:47.194200+00:00",
+        "consecutive_failures": 13,
+        "total_checks": 62,
         "successful_checks": 34,
         "recent_uptime_percent": 56.7,
         "sample_count": 60,
@@ -1918,17 +1922,11 @@
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "elapsed_ms": 243,
-      "checked_at": "2026-11-08T01:53:50.007192+00:00",
+      "elapsed_ms": 207,
+      "checked_at": "2026-11-08T08:26:46.812227+00:00",
       "error_type": "conn_refused",
       "error_detail": "連線被拒：目標伺服器主動拒絕連線 (連接埠未開放或防火牆阻斷)",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 2351,
-          "ok": false,
-          "code": 0
-        },
         {
           "t": 1793109028,
           "ms": 2279,
@@ -2341,13 +2339,20 @@
           "ok": false,
           "code": 0,
           "err": "conn_refused"
+        },
+        {
+          "t": 1794126406,
+          "ms": 207,
+          "ok": false,
+          "code": 0,
+          "err": "conn_refused"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-11-08T01:53:50.007192+00:00",
-        "consecutive_failures": 61,
-        "total_checks": 61,
+        "last_failure_at": "2026-11-08T08:26:46.812227+00:00",
+        "consecutive_failures": 62,
+        "total_checks": 62,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
         "sample_count": 60,
@@ -2365,17 +2370,11 @@
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "elapsed_ms": 715,
-      "checked_at": "2026-11-08T01:53:50.479534+00:00",
+      "elapsed_ms": 803,
+      "checked_at": "2026-11-08T08:26:47.411905+00:00",
       "error_type": "geo_blocked",
       "error_detail": "探測端地區受阻 (目標限制日本國內 IP 存取，非官方伺服器停機)",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 227,
-          "ok": false,
-          "code": 403
-        },
         {
           "t": 1793109028,
           "ms": 233,
@@ -2788,13 +2787,20 @@
           "ok": false,
           "code": 403,
           "err": "geo_blocked"
+        },
+        {
+          "t": 1794126406,
+          "ms": 803,
+          "ok": false,
+          "code": 403,
+          "err": "geo_blocked"
         }
       ],
       "diagnostics": {
         "last_success_at": null,
-        "last_failure_at": "2026-11-08T01:53:50.479534+00:00",
-        "consecutive_failures": 61,
-        "total_checks": 61,
+        "last_failure_at": "2026-11-08T08:26:47.411905+00:00",
+        "consecutive_failures": 62,
+        "total_checks": 62,
         "successful_checks": 0,
         "recent_uptime_percent": 0.0,
         "sample_count": 60,
@@ -2812,17 +2818,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 429,
-      "checked_at": "2026-11-08T01:53:50.182878+00:00",
+      "elapsed_ms": 479,
+      "checked_at": "2026-11-08T08:26:47.087246+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 231,
-          "ok": true,
-          "code": 200
-        },
         {
           "t": 1793109028,
           "ms": 173,
@@ -3235,14 +3235,21 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 479,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:50.182878+00:00",
+        "last_success_at": "2026-11-08T08:26:47.087246+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 61,
+        "total_checks": 62,
+        "successful_checks": 62,
         "recent_uptime_percent": 100.0,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
@@ -3259,17 +3266,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 803,
-      "checked_at": "2026-11-08T01:53:50.564699+00:00",
+      "elapsed_ms": 684,
+      "checked_at": "2026-11-08T08:26:47.292110+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 294,
-          "ok": true,
-          "code": 200
-        },
         {
           "t": 1793109028,
           "ms": 284,
@@ -3682,14 +3683,21 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 684,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:50.564699+00:00",
+        "last_success_at": "2026-11-08T08:26:47.292110+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 61,
+        "total_checks": 62,
+        "successful_checks": 62,
         "recent_uptime_percent": 100.0,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
@@ -3706,17 +3714,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 692,
-      "checked_at": "2026-11-08T01:53:50.440068+00:00",
+      "elapsed_ms": 684,
+      "checked_at": "2026-11-08T08:26:47.293543+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 270,
-          "ok": true,
-          "code": 200
-        },
         {
           "t": 1793109028,
           "ms": 248,
@@ -4129,14 +4131,21 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 684,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:50.440068+00:00",
+        "last_success_at": "2026-11-08T08:26:47.293543+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 61,
+        "total_checks": 62,
+        "successful_checks": 62,
         "recent_uptime_percent": 100.0,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
@@ -4153,17 +4162,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 494,
-      "checked_at": "2026-11-08T01:53:50.260016+00:00",
+      "elapsed_ms": 545,
+      "checked_at": "2026-11-08T08:26:47.154162+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 251,
-          "ok": true,
-          "code": 200
-        },
         {
           "t": 1793109028,
           "ms": 268,
@@ -4576,14 +4579,21 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 545,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:50.260016+00:00",
+        "last_success_at": "2026-11-08T08:26:47.154162+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 61,
+        "total_checks": 62,
+        "successful_checks": 62,
         "recent_uptime_percent": 100.0,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
@@ -4600,17 +4610,11 @@
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "elapsed_ms": 410,
-      "checked_at": "2026-11-08T01:53:50.175848+00:00",
+      "elapsed_ms": 517,
+      "checked_at": "2026-11-08T08:26:47.125685+00:00",
       "error_type": "ok",
       "error_detail": "服務正常回應",
       "history": [
-        {
-          "t": 1793108543,
-          "ms": 233,
-          "ok": true,
-          "code": 200
-        },
         {
           "t": 1793109028,
           "ms": 183,
@@ -5023,14 +5027,21 @@
           "ok": true,
           "code": 200,
           "err": "ok"
+        },
+        {
+          "t": 1794126406,
+          "ms": 517,
+          "ok": true,
+          "code": 200,
+          "err": "ok"
         }
       ],
       "diagnostics": {
-        "last_success_at": "2026-11-08T01:53:50.175848+00:00",
+        "last_success_at": "2026-11-08T08:26:47.125685+00:00",
         "last_failure_at": null,
         "consecutive_failures": 0,
-        "total_checks": 61,
-        "successful_checks": 61,
+        "total_checks": 62,
+        "successful_checks": 62,
         "recent_uptime_percent": 100.0,
         "sample_count": 60,
         "probe_type": "HTTP/HTTPS 標頭探測",
