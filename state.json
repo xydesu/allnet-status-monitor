@@ -3,80 +3,73 @@
   "urls": {
     "https://maimaidx-eng.com/": {
       "is_online": false,
-      "status_code": 503,
-      "reason": "Service Temporarily Unavailable",
-      "checked_at": "2026-11-10T18:49:25.210924+00:00"
+      "status_code": 0,
+      "reason": "連線失敗 ([Errno 111] Connection refused)",
+      "checked_at": "2026-11-10T23:45:57.809393+00:00"
     },
     "https://maimaidx.jp/": {
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "checked_at": "2026-11-10T18:49:25.273528+00:00"
+      "checked_at": "2026-11-10T23:45:58.250457+00:00"
     },
     "https://new.chunithm-net.com/": {
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "checked_at": "2026-11-10T18:49:25.498108+00:00"
+      "checked_at": "2026-11-10T23:45:58.880619+00:00"
     },
     "https://chunithm-net-eng.com/": {
       "is_online": false,
       "status_code": 503,
       "reason": "Service Temporarily Unavailable",
-      "checked_at": "2026-11-10T18:49:25.210968+00:00"
+      "checked_at": "2026-11-10T23:45:58.237360+00:00"
     },
     "https://ongeki-net.com/": {
       "is_online": false,
       "status_code": 0,
       "reason": "連線失敗 ([Errno 111] Connection refused)",
-      "checked_at": "2026-11-10T18:49:24.879043+00:00"
+      "checked_at": "2026-11-10T23:45:57.836742+00:00"
     },
     "https://my-aime.net/": {
       "is_online": false,
       "status_code": 403,
       "reason": "Forbidden",
-      "checked_at": "2026-11-10T18:49:25.205532+00:00"
+      "checked_at": "2026-11-10T23:45:58.342917+00:00"
     },
     "https://maimai.sega.jp/": {
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "checked_at": "2026-11-10T18:49:25.108946+00:00"
+      "checked_at": "2026-11-10T23:45:58.090504+00:00"
     },
     "https://maimai.sega.com/": {
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "checked_at": "2026-11-10T18:49:25.265255+00:00"
+      "checked_at": "2026-11-10T23:45:58.255408+00:00"
     },
     "https://chunithm.sega.com/": {
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "checked_at": "2026-11-10T18:49:25.263132+00:00"
+      "checked_at": "2026-11-10T23:45:58.227998+00:00"
     },
     "https://chunithm.sega.jp/": {
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "checked_at": "2026-11-10T18:49:25.128978+00:00"
+      "checked_at": "2026-11-10T23:45:58.218477+00:00"
     },
     "https://ongeki.sega.jp/": {
       "is_online": true,
       "status_code": 200,
       "reason": "OK",
-      "checked_at": "2026-11-10T18:49:25.015670+00:00"
+      "checked_at": "2026-11-10T23:45:58.195612+00:00"
     }
   },
   "history": {
     "https://maimaidx-eng.com/": [
-      {
-        "t": 1793155515,
-        "ms": 2256,
-        "ok": false,
-        "code": 0,
-        "err": "conn_refused"
-      },
       {
         "t": 1793155547,
         "ms": 188,
@@ -489,16 +482,16 @@
         "ok": false,
         "code": 503,
         "err": "maintenance"
-      }
-    ],
-    "https://maimaidx.jp/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 2333,
+        "t": 1794354357,
+        "ms": 202,
         "ok": false,
         "code": 0,
         "err": "conn_refused"
-      },
+      }
+    ],
+    "https://maimaidx.jp/": [
       {
         "t": 1793155547,
         "ms": 140,
@@ -911,16 +904,16 @@
         "ok": false,
         "code": 503,
         "err": "maintenance"
-      }
-    ],
-    "https://new.chunithm-net.com/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 302,
+        "t": 1794354357,
+        "ms": 645,
         "ok": false,
         "code": 503,
         "err": "maintenance"
-      },
+      }
+    ],
+    "https://new.chunithm-net.com/": [
       {
         "t": 1793155547,
         "ms": 1409,
@@ -1333,16 +1326,16 @@
         "ok": false,
         "code": 503,
         "err": "maintenance"
+      },
+      {
+        "t": 1794354357,
+        "ms": 1281,
+        "ok": false,
+        "code": 503,
+        "err": "maintenance"
       }
     ],
     "https://chunithm-net-eng.com/": [
-      {
-        "t": 1793155515,
-        "ms": 378,
-        "ok": true,
-        "code": 200,
-        "err": "ok"
-      },
       {
         "t": 1793155547,
         "ms": 1052,
@@ -1755,16 +1748,16 @@
         "ok": false,
         "code": 503,
         "err": "maintenance"
+      },
+      {
+        "t": 1794354357,
+        "ms": 632,
+        "ok": false,
+        "code": 503,
+        "err": "maintenance"
       }
     ],
     "https://ongeki-net.com/": [
-      {
-        "t": 1793155515,
-        "ms": 2387,
-        "ok": false,
-        "code": 0,
-        "err": "conn_refused"
-      },
       {
         "t": 1793155547,
         "ms": 188,
@@ -2177,16 +2170,16 @@
         "ok": false,
         "code": 0,
         "err": "conn_refused"
+      },
+      {
+        "t": 1794354357,
+        "ms": 230,
+        "ok": false,
+        "code": 0,
+        "err": "conn_refused"
       }
     ],
     "https://my-aime.net/": [
-      {
-        "t": 1793155515,
-        "ms": 270,
-        "ok": false,
-        "code": 403,
-        "err": "geo_blocked"
-      },
       {
         "t": 1793155547,
         "ms": 529,
@@ -2599,16 +2592,16 @@
         "ok": false,
         "code": 403,
         "err": "geo_blocked"
+      },
+      {
+        "t": 1794354357,
+        "ms": 754,
+        "ok": false,
+        "code": 403,
+        "err": "geo_blocked"
       }
     ],
     "https://maimai.sega.jp/": [
-      {
-        "t": 1793155515,
-        "ms": 175,
-        "ok": true,
-        "code": 200,
-        "err": "ok"
-      },
       {
         "t": 1793155547,
         "ms": 383,
@@ -3021,16 +3014,16 @@
         "ok": true,
         "code": 200,
         "err": "ok"
-      }
-    ],
-    "https://maimai.sega.com/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 256,
+        "t": 1794354357,
+        "ms": 501,
         "ok": true,
         "code": 200,
         "err": "ok"
-      },
+      }
+    ],
+    "https://maimai.sega.com/": [
       {
         "t": 1793155547,
         "ms": 609,
@@ -3443,16 +3436,16 @@
         "ok": true,
         "code": 200,
         "err": "ok"
-      }
-    ],
-    "https://chunithm.sega.com/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 217,
+        "t": 1794354357,
+        "ms": 652,
         "ok": true,
         "code": 200,
         "err": "ok"
-      },
+      }
+    ],
+    "https://chunithm.sega.com/": [
       {
         "t": 1793155547,
         "ms": 634,
@@ -3865,16 +3858,16 @@
         "ok": true,
         "code": 200,
         "err": "ok"
-      }
-    ],
-    "https://chunithm.sega.jp/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 132,
+        "t": 1794354357,
+        "ms": 631,
         "ok": true,
         "code": 200,
         "err": "ok"
-      },
+      }
+    ],
+    "https://chunithm.sega.jp/": [
       {
         "t": 1793155547,
         "ms": 408,
@@ -4287,16 +4280,16 @@
         "ok": true,
         "code": 200,
         "err": "ok"
-      }
-    ],
-    "https://ongeki.sega.jp/": [
+      },
       {
-        "t": 1793155515,
-        "ms": 232,
+        "t": 1794354357,
+        "ms": 614,
         "ok": true,
         "code": 200,
         "err": "ok"
-      },
+      }
+    ],
+    "https://ongeki.sega.jp/": [
       {
         "t": 1793155547,
         "ms": 525,
@@ -4709,106 +4702,113 @@
         "ok": true,
         "code": 200,
         "err": "ok"
+      },
+      {
+        "t": 1794354357,
+        "ms": 589,
+        "ok": true,
+        "code": 200,
+        "err": "ok"
       }
     ]
   },
   "diagnostics": {
     "https://maimaidx-eng.com/": {
       "last_success_at": "2026-11-10T11:38:15.319488+00:00",
-      "last_failure_at": "2026-11-10T18:49:25.210924+00:00",
-      "consecutive_failures": 1,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:57.809393+00:00",
+      "consecutive_failures": 2,
+      "total_checks": 72,
       "successful_checks": 46,
       "recent_uptime_percent": 76.7,
       "sample_count": 60
     },
     "https://maimaidx.jp/": {
       "last_success_at": "2026-11-03T15:53:34.395784+00:00",
-      "last_failure_at": "2026-11-10T18:49:25.273528+00:00",
-      "consecutive_failures": 29,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:58.250457+00:00",
+      "consecutive_failures": 30,
+      "total_checks": 72,
       "successful_checks": 19,
       "recent_uptime_percent": 31.7,
       "sample_count": 60
     },
     "https://new.chunithm-net.com/": {
       "last_success_at": "2026-11-01T22:22:57.280797+00:00",
-      "last_failure_at": "2026-11-10T18:49:25.498108+00:00",
-      "consecutive_failures": 35,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:58.880619+00:00",
+      "consecutive_failures": 36,
+      "total_checks": 72,
       "successful_checks": 13,
       "recent_uptime_percent": 21.7,
       "sample_count": 60
     },
     "https://chunithm-net-eng.com/": {
       "last_success_at": "2026-11-05T08:50:56.764907+00:00",
-      "last_failure_at": "2026-11-10T18:49:25.210968+00:00",
-      "consecutive_failures": 22,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:58.237360+00:00",
+      "consecutive_failures": 23,
+      "total_checks": 72,
       "successful_checks": 34,
-      "recent_uptime_percent": 55.0,
+      "recent_uptime_percent": 53.3,
       "sample_count": 60
     },
     "https://ongeki-net.com/": {
       "last_success_at": null,
-      "last_failure_at": "2026-11-10T18:49:24.879043+00:00",
-      "consecutive_failures": 71,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:57.836742+00:00",
+      "consecutive_failures": 72,
+      "total_checks": 72,
       "successful_checks": 0,
       "recent_uptime_percent": 0.0,
       "sample_count": 60
     },
     "https://my-aime.net/": {
       "last_success_at": null,
-      "last_failure_at": "2026-11-10T18:49:25.205532+00:00",
-      "consecutive_failures": 71,
-      "total_checks": 71,
+      "last_failure_at": "2026-11-10T23:45:58.342917+00:00",
+      "consecutive_failures": 72,
+      "total_checks": 72,
       "successful_checks": 0,
       "recent_uptime_percent": 0.0,
       "sample_count": 60
     },
     "https://maimai.sega.jp/": {
-      "last_success_at": "2026-11-10T18:49:25.108946+00:00",
+      "last_success_at": "2026-11-10T23:45:58.090504+00:00",
       "last_failure_at": null,
       "consecutive_failures": 0,
-      "total_checks": 71,
-      "successful_checks": 71,
+      "total_checks": 72,
+      "successful_checks": 72,
       "recent_uptime_percent": 100.0,
       "sample_count": 60
     },
     "https://maimai.sega.com/": {
-      "last_success_at": "2026-11-10T18:49:25.265255+00:00",
+      "last_success_at": "2026-11-10T23:45:58.255408+00:00",
       "last_failure_at": null,
       "consecutive_failures": 0,
-      "total_checks": 71,
-      "successful_checks": 71,
+      "total_checks": 72,
+      "successful_checks": 72,
       "recent_uptime_percent": 100.0,
       "sample_count": 60
     },
     "https://chunithm.sega.com/": {
-      "last_success_at": "2026-11-10T18:49:25.263132+00:00",
+      "last_success_at": "2026-11-10T23:45:58.227998+00:00",
       "last_failure_at": null,
       "consecutive_failures": 0,
-      "total_checks": 71,
-      "successful_checks": 71,
+      "total_checks": 72,
+      "successful_checks": 72,
       "recent_uptime_percent": 100.0,
       "sample_count": 60
     },
     "https://chunithm.sega.jp/": {
-      "last_success_at": "2026-11-10T18:49:25.128978+00:00",
+      "last_success_at": "2026-11-10T23:45:58.218477+00:00",
       "last_failure_at": null,
       "consecutive_failures": 0,
-      "total_checks": 71,
-      "successful_checks": 71,
+      "total_checks": 72,
+      "successful_checks": 72,
       "recent_uptime_percent": 100.0,
       "sample_count": 60
     },
     "https://ongeki.sega.jp/": {
-      "last_success_at": "2026-11-10T18:49:25.015670+00:00",
+      "last_success_at": "2026-11-10T23:45:58.195612+00:00",
       "last_failure_at": null,
       "consecutive_failures": 0,
-      "total_checks": 71,
-      "successful_checks": 71,
+      "total_checks": 72,
+      "successful_checks": 72,
       "recent_uptime_percent": 100.0,
       "sample_count": 60
     }
